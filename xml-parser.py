@@ -1,11 +1,15 @@
 """
 TODO:   1. Finish file document
         2. Algorithm review: #paragraphs isn't needed
+
+Target languages and files:
+    1.  Russian
+
 """
-en_path = 'corpora/english.txt'
+en_path = 'corpora/english-modified.txt'
 # Slavic
-polish_path = 'corpora/slavic/Polish/polish.txt'
-russian_path = 'corpora/slavic/Russian/russian.txt'
+polish_path = 'corpora/slavic/Polish/polish-modified.txt'
+russian_path = 'corpora/slavic/Russian/russian-modified.txt'
 # Finno-ugric
 hungarian1_path = 'corpora/finno-ugric/Hungarian/Hungarian1/hung1.txt'
 hungarian2_path = 'corpora/finno-ugric/Hungarian/Hungarian2/hung2.txt'
@@ -72,12 +76,14 @@ def get_paragraph_info(file_path):
             print('*wired start in sent*:' + str(line_count) + line[:10])
     print('#chapters:' + str(chapter_count))
     print('#paragraphs:' + str(total_paragraph_count))
+    print('#paragraphs based on list:' + str(sum(paragraphs)))
     print('#lines:' + str(line_count))
     print(paragraphs)
     return paragraphs
 
 
 get_paragraph_info(en_path)
-get_paragraph_info(polish_path)
+# get_paragraph_info(polish_path)
 get_paragraph_info(hungarian1_path)
 get_paragraph_info(hungarian2_path)
+# get_paragraph_info(russian_path)

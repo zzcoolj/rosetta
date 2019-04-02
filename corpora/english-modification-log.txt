@@ -1,0 +1,11 @@
+1. line 188
+	before:
+		I had wore the ground a good deal, crawling out of the hole and dragging out so many things. So I fixed that as good as I could from the outside by scattering dust on the place, which covered up the smoothness and the sawdust. Then I fixed the piece of log back into its place, and put two rocks under it and one against it to hold it there,-for it was bent up at that place, and didn't quite touch ground. If you stood four or five foot away and didn't know it was sawed, you wouldn't ever notice it; and besides, this was the back of the cabin and it warn't likely anybody would go fooling around there.
+	after:
+		<p>I had wore the ground a good deal, crawling out of the hole and dragging out so many things. So I fixed that as good as I could from the outside by scattering dust on the place, which covered up the smoothness and the sawdust. Then I fixed the piece of log back into its place, and put two rocks under it and one against it to hold it there,-for it was bent up at that place, and didn't quite touch ground. If you stood four or five foot away and didn't know it was sawed, you wouldn't ever notice it; and besides, this was the back of the cabin and it warn't likely anybody would go fooling around there.</p>
+2. line 922, 1705, 2063
+	before: </div>
+	after:	line removed
+3. line 86
+	before: <chapter id="4" name="Huck and the Judge.—Superstition"></chapter>\
+	after: 	re-organize this chapter

@@ -2,13 +2,17 @@
 Target languages and files:
 
     1.  Bulgarian   Mark_Tven_-_Prikljuchenijata_na_Hykylberi_Fin_-1345-b.txt
-                    Chapter separator:      "\n\nГлава "
+                    Chapter separator:      "\tГлава "
                     Paragraph separator:    each line
                     Special:                each line starts with '\t' except '\n' lines
+    2.  Ukranian    ukranian-content.txt (copy from website)
+                    Chapter separator:      "Розділ "
+                    Paragraph separator:    each line
+    3.  Finnish     Finnish-content.txt (copy from HTML no images version)
 """
 
 
-def get_paragraph_info(file_path, file_total_lines):
+def get_paragraph_info(file_path, para_separ, end_valid_line_num, file_total_lines):
     with open(file_path, 'r', encoding='utf-8') as file:
         data = file.readlines()
     total_lines = len(data)
@@ -20,7 +24,7 @@ def get_paragraph_info(file_path, file_total_lines):
     chapter_count = 0
     chapter_content_starting_line = []
     for i in range(total_lines-2):
-        if data[i].startswith('\tГлава '):
+        if data[i].startswith(para_separ):
             chapter_count += 1
             chapter_content_starting_line.append(i+5)
     if chapter_count != 43:
@@ -32,9 +36,9 @@ def get_paragraph_info(file_path, file_total_lines):
     paragraphs = []
     for i in range(len(chapter_content_starting_line)):
         paragraph_count_per_chapter = 0
-        start_line_num = chapter_content_starting_line[i] + 2  # +1 is chapter title, +2 should be empty
+        start_line_num = chapter_content_starting_line[i] + 2  # For Bulgarian: +1 is chapter title, +2 should be empty
         if i == chapter_count-1:  # last chapter: special case
-            end_line_num = 2537
+            end_line_num = end_valid_line_num
         else:
             end_line_num = chapter_content_starting_line[i+1]
         if start_line_num > end_line_num:
@@ -53,4 +57,6 @@ def get_paragraph_info(file_path, file_total_lines):
     return paragraphs
 
 
-get_paragraph_info('corpora/slavic/Bulgarian/Mark_Tven_-_Prikljuchenijata_na_Hykylberi_Fin_-1345-b.txt', 2549-1)
+get_paragraph_info('corpora/slavic/Bulgarian/Mark_Tven_-_Prikljuchenijata_na_Hykylberi_Fin_-1345-b.txt', '\tГлава ',
+                   2537, 2549-1)
+get_paragraph_info('corpora/slavic/Ukrainian/ukrainian-content.txt', 'Розділ ', 2423, 2423)
