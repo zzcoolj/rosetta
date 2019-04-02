@@ -1,4 +1,7 @@
-
+"""
+TODO:   1. Finish file document
+        2. Algorithm review: #paragraphs isn't needed
+"""
 en_path = 'corpora/english.txt'
 # Slavic
 polish_path = 'corpora/slavic/Polish/polish.txt'

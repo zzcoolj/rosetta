@@ -2,7 +2,9 @@
 
 import math
 import scipy.stats
-
+import spacy
+from nltk.translate import IBMModel1
+from nltk.translate import AlignedSent
 
 match = {(1, 2): 0.023114355231143552,
          (1, 3): 0.0012165450121654502,
@@ -108,7 +110,7 @@ def get_sent_in_chapter(path):
 
 en_sent = []
 en_count = 0
-import spacy
+
 nlp = spacy.load("en_core_web_sm")
 doc = nlp(' '.join(get_sent_in_chapter(en_path)))
 for sent in doc.sents:
@@ -144,8 +146,7 @@ print('po sent count', po_count)
 
 
 # word alignment using IBM Model 1 in nltk
-from nltk.translate import IBMModel1
-from nltk.translate import AlignedSent
+
 corpus = []
 for i in range(len(align_en)):
     corpus.append(AlignedSent(align_en[i], align_po[i]))
