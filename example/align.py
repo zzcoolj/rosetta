@@ -1,10 +1,16 @@
-# https://github.com/NLPpupil/gale_and_church_align
 
+"""
+Sentence aligner
+    From:   https://github.com/NLPpupil/gale_and_church_align
+"""
 import math
 import scipy.stats
 import spacy
-from nltk.translate import IBMModel1
+import operator
+from nltk.translate import IBMModel1, IBMModel2, IBMModel3, IBMModel4, IBMModel5
 from nltk.translate import AlignedSent
+from spacy.lang.pl import Polish
+
 
 match = {(1, 2): 0.023114355231143552,
          (1, 3): 0.0012165450121654502,
@@ -68,96 +74,90 @@ def align(para1, para2):
         j -= dj
 
 
-
-
-# TODO duplicate with xml-parser
-def txt_parser(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file:
-        for line in file:
-            yield str.strip(line)
-
+"""
+Sentence alignment
+"""
 
 en_path = '../example/english.txt'
-# Slavic
 polish_path = '../example/polish.txt'
 
-
-def get_sent_in_chapter(path):
-    inChapter1 = False
-    chapter1_content = []
-    for line in txt_parser(path):
-        if line.startswith('<chapter id="1"'):
-            inChapter1 = True
-        elif inChapter1 and line.endswith('</chapter>'):
-            break
-        elif inChapter1 and line.startswith('<p>'):
-            para = ' '
-            para = line.replace('<p>', '')
-            if line.endswith('</p>'):
-                para = para.replace('</p>', '')
-                chapter1_content.append(para)
-                break
-        elif inChapter1 and not line.startswith('<p>'):
-            para += ' '
-            para += line
-            if line.endswith('</p>'):
-                para = para.replace('</p>', '')
-                chapter1_content.append(para)
-                break
-    print('#paragraphs: ' + str(len(chapter1_content)))
-    return chapter1_content
+with open(en_path, 'r', encoding='utf-8') as file:
+    en_paragraphs = file.readlines()
+with open(polish_path, 'r', encoding='utf-8') as file:
+    po_paragraphs = file.readlines()
 
 
-en_sent = []
-en_count = 0
+def sentence_alignment_from_one_paragraph(en_para, po_para):
+    en_sent = []
+    po_sent = []
+    align_en = []
+    align_po = []
+    en_count = 0
+    po_count = 0
+    count = 0
 
-nlp = spacy.load("en_core_web_sm")
-doc = nlp(' '.join(get_sent_in_chapter(en_path)))
-for sent in doc.sents:
-    en_count += 1
-    en_sent.append(sent.text)
-    print('*******'+sent.text)
+    nlp = spacy.load("en_core_web_sm")
+    doc = nlp(str.strip(en_para))
+    for sent in doc.sents:
+        en_count += 1
+        en_sent.append(sent.text)
+        # print('*******'+sent.text)
 
-po_sent = []
-po_count = 0
-from spacy.lang.pl import Polish
-nlp = Polish()  # just the language with no model
-sentencizer = nlp.create_pipe("sentencizer")
-nlp.add_pipe(sentencizer)
-doc = nlp(' '.join(get_sent_in_chapter(polish_path)))
-for sent in doc.sents:
-    po_count += 1
-    po_sent.append(sent.text)
-    print('-------'+sent.text)
+    nlp = Polish()  # just the language with no model
+    sentencizer = nlp.create_pipe("sentencizer")
+    nlp.add_pipe(sentencizer)
+    doc = nlp(str.strip(po_para))
+    for sent in doc.sents:
+        po_count += 1
+        po_sent.append(sent.text)
+        # print('-------'+sent.text)
 
-align_en = []
-align_po = []
-count=0
-for a, b in align(en_sent,po_sent):
-    count += 1
-    print('----->',a, '|||', b,'<------')
-    align_en.append(a.split())
-    align_po.append(b.split())
+    for a, b in align(en_sent,po_sent):
+        count += 1
+        # print('----->', a, '|||', b, '<------')
+        align_en.append(a.split())
+        align_po.append(b.split())
 
-print('aligned:', count)
-print('en sent count', en_count)
-print('po sent count', po_count)
+    # print('en sent count', en_count)
+    # print('po sent count', po_count)
+    print('aligned:', count)
+
+    return align_en, align_po
 
 
+# Get aligned sentences from one chapter
+en_aligned_sents = []
+po_aligned_sents = []
+for i in range(len(en_paragraphs)):
+    align_en, align_po = sentence_alignment_from_one_paragraph(en_paragraphs[i], po_paragraphs[i])
+    en_aligned_sents.extend(align_en)
+    po_aligned_sents.extend(align_po)
 
-# word alignment using IBM Model 1 in nltk
 
-corpus = []
-for i in range(len(align_en)):
-    corpus.append(AlignedSent(align_en[i], align_po[i]))
-em_ibm1 = IBMModel1(corpus, 20)
+"""
+Word aligner
+"""
 
-score=dict()
-word = 'she'
-for target in em_ibm1.translation_table[word]:
-    score[target]=em_ibm1.translation_table[word][target]
-    # print(target)
-    # print(em_ibm1.translation_table['I'][target])
-import operator
-sorted_x = sorted(score.items(), key=operator.itemgetter(1), reverse=True)
-print(sorted_x[:5])
+
+def search_translation(en_aligned_sents, po_aligned_sents, word, model):
+    # word alignment using IBM Model 1 in nltk
+    corpus = []
+    for i in range(len(en_aligned_sents)):
+        corpus.append(AlignedSent(en_aligned_sents[i], po_aligned_sents[i]))
+    em_ibm = model(corpus, 20)
+
+    score = dict()
+    for target in em_ibm.translation_table[word]:
+        score[target] = em_ibm.translation_table[word][target]
+        # print(target)
+        # print(em_ibm1.translation_table['I'][target])
+
+    sorted_x = sorted(score.items(), key=operator.itemgetter(1), reverse=True)
+    print(sorted_x[:5])
+
+
+search_translation(en_aligned_sents, po_aligned_sents, 'me', IBMModel1)
+search_translation(en_aligned_sents, po_aligned_sents, 'me', IBMModel2)
+search_translation(en_aligned_sents, po_aligned_sents, 'me', IBMModel3)
+search_translation(en_aligned_sents, po_aligned_sents, 'me', IBMModel4)
+search_translation(en_aligned_sents, po_aligned_sents, 'me', IBMModel5)
