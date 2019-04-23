@@ -77,7 +77,7 @@ def get_paragraph_info(file_path, para_separ, para_separ_type, end_valid_line_nu
     return paragraphs
 
 
-get_paragraph_info('corpora/slavic/Bulgarian/Mark_Tven_-_Prikljuchenijata_na_Hykylberi_Fin_-1345-b.txt', '\tГлава ',
-                   1, 2537, 2549-1)
-get_paragraph_info('corpora/slavic/Ukrainian/ukrainian-content.txt', 'Розділ ', 1, 2423, 2423)
-get_paragraph_info('corpora/finno-ugric/Finnish/Finnish-content.txt', 'luku.\n', 2, 4628, 4768)
+# get_paragraph_info('corpora/slavic/Bulgarian/Mark_Tven_-_Prikljuchenijata_na_Hykylberi_Fin_-1345-b.txt', '\tГлава ',
+#                    1, 2537, 2549-1)
+# get_paragraph_info('corpora/slavic/Ukrainian/ukrainian-content.txt', 'Розділ ', 1, 2423, 2423)
+# get_paragraph_info('corpora/finno-ugric/Finnish/Finnish-content.txt', 'luku.\n', 2, 4628, 4768)
