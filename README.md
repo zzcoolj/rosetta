@@ -15,7 +15,7 @@
 - EMNLP2019 submission (maybe...)
 ## General Information
 ### Development/Programming
-- [To check out team work boards](https://trello.com/hackersrosetta/home)
+- [To check out team work boards](https://trello.com/b/LulZRg4T/rosetta4slavic)
 - To jump into: contact me!
 ### Algorithms research
 - TBD in next week
