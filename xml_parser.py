@@ -82,8 +82,9 @@ def get_paragraph_info(file_path):
     return paragraphs
 
 
-get_paragraph_info(en_path)
+# get_paragraph_info(en_path)
 # get_paragraph_info(polish_path)
-get_paragraph_info(hungarian1_path)
-get_paragraph_info(hungarian2_path)
+# # Select Hungarian2 for research because it has less difference in paragraph count compared with gold standard.
+# # get_paragraph_info(hungarian1_path)
+# get_paragraph_info(hungarian2_path)
 # get_paragraph_info(russian_path)
