@@ -2,9 +2,121 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+       <link rel="stylesheet" href="source2.css">
 </head>
 <body>
-$END$
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div class="wrap" id="parent"><h3> <span class="lefttab"> English <span class="righttab"> Polish </h3></div>
+<!--<p id="demo">Null</p>-->
+<script>
+
+<!--function GetURLParameter(sParam)-->
+<!--{-->
+    <!--var sPageURL = window.location.search.split('=')[1];-->
+
+    <!--return sPageURL;-->
+<!--}​-->
+<!--var tech = GetURLParameter('pid');-->
+
+<!--document.getElementById("demo").innerHTML = window.location.search.;-->
+<!--console.log(tech);-->
+
+<!--$(document).ready(function(){-->
+    <!--$("#parent").load("en-chapter-9.txt");-->
+<!--});-->
+
+tech = window.location.search.split('=')[1];
+var text_arr = [];
+var text_arr_po = [];
+<!--document.getElementById("demo").innerHTML = window.location.search.split('=')[1];-->
+
+
+function readTextFile_En(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                var splits= allText.split("\n")
+                for (var i=0; i < splits.length; i++){
+                text_arr.push(splits[i])
+                }
+            }
+        }
+    }
+    rawFile.send(null);
+}
+readTextFile_En("en-chapter-9.txt");
+
+function readTextFile_Po(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                var splits= allText.split("\n")
+                for (var i=0; i < splits.length; i++){
+                text_arr_po.push(splits[i])
+                }
+            }
+        }
+    }
+    rawFile.send(null);
+}
+readTextFile_Po("po-chapter-9.txt");
+
+document.body.onload = addElement;
+
+function addElement () {
+
+   i = tech
+
+  // create a new div element
+  var newDiv = document.createElement("div");
+  // and give it some content
+  newDiv.setAttribute("class","borderexampleleft")
+  <!--newDiv.setAttribute("onclick","location.href='detailed_view.html?pid=5';")-->
+  newDiv.setAttribute("style","cursor: pointer;")
+  var newContent = document.createTextNode(text_arr[i]);
+  // add the text node to the newly created div
+
+  newDiv.appendChild(newContent);
+
+
+  // add the newly created element and its content into the DOM
+  var currentDiv = document.getElementById("div"+i);
+  document.body.insertBefore(newDiv, currentDiv);
+
+
+  var newDiv = document.createElement("div");
+  // and give it some content
+  newDiv.setAttribute("class","borderexampleright")
+  var newContent = document.createTextNode(text_arr_po[i]);
+  // add the text node to the newly created div
+
+  newDiv.appendChild(newContent);
+
+  // add the newly created element and its content into the DOM
+  var currentDiv = document.getElementById("div"+i);
+  document.body.insertBefore(newDiv, currentDiv);
+
+
+}
+
+
+<!--document.getElementById("demo").innerHTML = window.location.search.split('=')[1];-->
+</script>
+
 </body>
 </html>

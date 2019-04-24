@@ -1,0 +1,56 @@
+.wrap {margin-top: 100px;
+
+    width: 100%;
+
+}
+
+.borderexampleleft{
+float:left;
+    width: 55%;
+    margin: 1%;
+  text-align: justify;
+  font-family: sylfaen;
+  color: #636362;
+ display:inline-block;
+}
+
+.borderexampleright{
+
+float:right;
+    width: 55%;
+    margin: 1%;
+  text-align: justify;
+  font-family: sylfaen;
+  color: #636362;
+ display:inline-block;
+
+}
+.borderexampleleft:hover{
+background-color: #FFFF00
+}
+
+
+.borderexampleright:hover{
+background-color: #FFFF00
+}
+
+.borderexampleright:hover + .borderexampleleft{
+background-color: #FFFF00
+
+}
+
+.borderexampleleft:hover + .borderexampleright{
+background-color: #FFFF00
+
+}
+
+
+.righttab{
+       display:inline-block;
+       margin-left: 600px;
+}
+.lefttab{
+       display:inline-block;
+       margin-left: 200px;
+}
+
