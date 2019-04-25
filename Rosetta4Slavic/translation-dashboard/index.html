@@ -27,13 +27,17 @@ MIT Licensed
             fill: #000;
         }
     </style>
-    <script src="http://d3js.org/d3.v3.js"></script>
+    <!--<script src="http://d3js.org/d3.v3.js"></script>-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <!--<script src="https://d3js.org/d3.v5.min.js"></script>-->
 </head>
 <body>
 <div id="chart"></div>
 <div id="dataset-picker">
 </div>
 <script type="text/javascript">
+    // import * as d3 from "./d3.min";
+
     var margin = { top: 50, right: 0, bottom: 100, left: 30 },
         width = 960 - margin.left - margin.right,
         height = 1800 - margin.top - margin.bottom, // legend y position control
@@ -92,18 +96,17 @@ MIT Licensed
                     // .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
                     .domain([0, 1, 2, 3, 5, 10, 20, 30, 40, d3.max(data, function (d) { return Math.abs(d.value - data[d.day-1].value); })])
                     .range(colors);
-                console.log(colorScale.quantiles())
-                console.log(colorScale(0))
-                console.log(colorScale(1))
-                console.log(colorScale(2))
-                console.log(colorScale(3))
-                console.log(colorScale(6))
-                console.log(colorScale(15))
-                console.log(colorScale(25))
-                console.log(colorScale(33))
-                console.log(colorScale(42))
-                var cards = svg.selectAll(".hour")
-                    .data(data, function(d) {return d.day+':'+d.hour;});
+                // console.log(colorScale.quantiles())
+                // console.log(colorScale(0))
+                // console.log(colorScale(1))
+                // console.log(colorScale(2))
+                // console.log(colorScale(3))
+                // console.log(colorScale(6))
+                // console.log(colorScale(15))
+                // console.log(colorScale(25))
+                // console.log(colorScale(33))
+                // console.log(colorScale(42))
+                var cards = svg.selectAll(".hour").data(data, function(d) {return d.day+':'+d.hour;});
 
                 cards.append("title");
 
