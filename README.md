@@ -2,9 +2,13 @@
 ## Timetable
 ### Rosetta4Slavic
 - 17 April - 26 April
+- [Design draft](Rosetta4Slavic/info/Rosetta4Slavic-translation-dashboard-draft-v1.pdf)
+- BSNLP workshop@ACL2019 submission
+    - [BSNLP website](http://bsnlp.cs.helsinki.fi)
+    - LaTex writing on Overleaf
 - Translation dashboard prototype development
-- BSNLP@ACL2019 submission
-- Check Rosetta4Slavic folder for more information
+    - [Online demo](https://zzcoolj.github.io/garage/Rosetta4Slavic/translation-dashboard/)
+    - Check [Rosetta4Slavic folder](Rosetta4Slavic/) for more information
 ### Rosetta4Endangered
 - 22 April - 3 May
 - Digging into alignment algorithms
