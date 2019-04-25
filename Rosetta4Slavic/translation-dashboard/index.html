@@ -42,9 +42,7 @@ MIT Licensed
         buckets = 9,
         colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
         // TODO Make days and times automatically created based on the all-para-count file
-        // days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
         days = Array.from(Array(44).keys()).slice(1), // All translated versions have 43 chapters, 'slice' is for starting from 1 not 0
-        // times = ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p", "12p"];
         times = ["En", "Bu", "Po", "Ru", "Uk"];
     // datasets = ["../data/data.tsv", "../data/data2.tsv"];
     datasets = ["../data/para-count-heatmap/all-para-count.tsv"];
@@ -55,6 +53,7 @@ MIT Licensed
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    // selectAll is just in case these labels already exist. In that case, it updates the corresponding information.
     var dayLabels = svg.selectAll(".dayLabel")
         .data(days)
         .enter().append("text")
@@ -75,20 +74,34 @@ MIT Licensed
         .attr("transform", "translate(" + gridSize / 2 + ", -6)")
         .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
 
+    // Drawing cells
     var heatmapChart = function(tsvFile) {
         d3.tsv(tsvFile,
             function(d) {
+                // Accessor function to tsvFile, convert string to numbers during the loading of the data.
                 return {
                     day: +d.day,
                     hour: +d.hour,
-                    value: +d.value
+                    value: +d.value,
                 };
             },
             function(error, data) {
+                // Quantile scales map a sampled input domain to a discrete range.
+                //TODO domain array automatic generation
                 var colorScale = d3.scale.quantile()
-                    .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+                    // .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+                    .domain([0, 1, 2, 3, 5, 10, 20, 30, 40, d3.max(data, function (d) { return Math.abs(d.value - data[d.day-1].value); })])
                     .range(colors);
-
+                console.log(colorScale.quantiles())
+                console.log(colorScale(0))
+                console.log(colorScale(1))
+                console.log(colorScale(2))
+                console.log(colorScale(3))
+                console.log(colorScale(6))
+                console.log(colorScale(15))
+                console.log(colorScale(25))
+                console.log(colorScale(33))
+                console.log(colorScale(42))
                 var cards = svg.selectAll(".hour")
                     .data(data, function(d) {return d.day+':'+d.hour;});
 
@@ -104,8 +117,13 @@ MIT Licensed
                     .attr("height", gridSize)
                     .style("fill", colors[0]);
 
+                /*
+                Fill color when launching the page
+                Color depends on the difference of # paragraphs compared with English version (data[0]~data[42])
+                */
                 cards.transition().duration(1000)
-                    .style("fill", function(d) { return colorScale(d.value); });
+                    // .style("fill", function(d) { return colorScale(d.value); });
+                    .style("fill", function(d) { return colorScale(Math.abs(d.value - data[d.day-1].value)); });
 
                 cards.select("title").text(function(d) { return d.value; });
 
