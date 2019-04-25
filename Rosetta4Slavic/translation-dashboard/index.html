@@ -91,11 +91,11 @@ MIT Licensed
             },
             function(error, data) {
                 // Quantile scales map a sampled input domain to a discrete range.
-                //TODO domain array automatic generation
                 var colorScale = d3.scale.quantile()
                     // .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
                     .domain([0, 1, 2, 3, 5, 10, 20, 30, 40, d3.max(data, function (d) { return Math.abs(d.value - data[d.day-1].value); })])
                     .range(colors);
+                //TODO domain array automatic generation
                 // console.log(colorScale.quantiles())
                 // console.log(colorScale(0))
                 // console.log(colorScale(1))
@@ -106,9 +106,10 @@ MIT Licensed
                 // console.log(colorScale(25))
                 // console.log(colorScale(33))
                 // console.log(colorScale(42))
-                var cards = svg.selectAll(".hour").data(data, function(d) {return d.day+':'+d.hour;});
 
-                cards.append("title");
+
+                var cards = svg.selectAll(".hour")
+                    .data(data, function(d) {return d.day+':'+d.hour;});
 
                 cards.enter().append("rect")
                     .attr("x", function(d) { return (d.hour - 1) * gridSize; })
@@ -128,9 +129,25 @@ MIT Licensed
                     // .style("fill", function(d) { return colorScale(d.value); });
                     .style("fill", function(d) { return colorScale(Math.abs(d.value - data[d.day-1].value)); });
 
+                cards.append("title");
                 cards.select("title").text(function(d) { return d.value; });
 
+                /*
+                Coding tips: .enter is usually followed by .append which adds elements to the DOM.
+                Here we are joining cards array to an empty selection (which is a very common pattern in the examples
+                on the D3 website. ref: https://d3indepth.com/enterexit/)
+                 */
+                cards.enter().append("text")
+                    .text(function(d) { return d.value; })
+                    .attr("class", "mono")
+                    .attr("x", function(d) { return (d.hour - 0.5) * gridSize; })
+                    .attr("y", function(d) { return (d.day - 0.5) * gridSize; })
+                    .attr("font-weight", "bold")
+                    .style('fill', 'FireBrick')
+                    .style("text-anchor", "middle");
+
                 cards.exit().remove();
+
 
                 var legend = svg.selectAll(".legend")
                     .data([0].concat(colorScale.quantiles()), function(d) { return d; });
