@@ -59,9 +59,8 @@ def write_para_count_pie(gold_target_lists, output_name):
     cut2 = round(largest_difference/5)
     cut3 = round(largest_difference/2)
     type_count['#diff =0 (exact match)'] = len([diff for diff in difference_list if diff == 0])
-    type_count['0< #diff <=' + str(cut1)] = len([diff for diff in difference_list if diff <= cut1])
+    type_count['0< #diff <=' + str(cut1)] = len([diff for diff in difference_list if 0 < diff <= cut1])
     type_count[str(cut1)+'< #diff <=' + str(cut2)] = len([diff for diff in difference_list if cut1 < diff <= cut2])
-    type_count[str(cut2)+'< #diff <=' + str(cut3)] = len([diff for diff in difference_list if cut2 < diff <= cut3])
     type_count[str(cut2)+'< #diff <=' + str(cut3)] = len([diff for diff in difference_list if cut2 < diff <= cut3])
     type_count['#diff >' + str(cut3)] = len([diff for diff in difference_list if diff > cut3])
 

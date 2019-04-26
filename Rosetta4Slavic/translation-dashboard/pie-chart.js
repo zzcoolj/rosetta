@@ -1,11 +1,16 @@
-// https://jsfiddle.net/thudfactor/HdwTH/
+/*
+Based on the example form https://jsfiddle.net/thudfactor/HdwTH/
+ */
 
 var totalSubjectsNumber = 0;
-//TODO dynamic name
-d3.csv("../data/para-count-pie-chart/en-po-difference-type-count.csv", type, function(rows) {
-    var data = rows;
-    //console.log(data);
+var target_lang = getQueryVariable("target_lang");
+console.log("target language: " + target_lang);
 
+document.getElementById("pie_chart_title").innerHTML =
+    "The chapter type distribution of English-" + convertToFullName(target_lang);
+
+d3.csv("../data/para-count-pie-chart/en-" + target_lang + "-difference-type-count.csv", type, function(rows) {
+    var data = rows;
     svg = d3.select("#pie_chart_svg");
     canvas = d3.select("#canvas");
     art = d3.select("#art");
@@ -140,7 +145,7 @@ d3.csv("../data/para-count-pie-chart/en-po-difference-type-count.csv", type, fun
 
     relax();
 
-    d3.select("#explanation").text("All Subjects\n(" + totalSubjectsNumber + ")");
+    d3.select("#explanation").text(totalSubjectsNumber + " chapters");
 });
 
 function relax() {
@@ -211,6 +216,24 @@ function mouseover(d){
 }
 
 function mouseleave(){
-    d3.select("#explanation").text("All Subjects\n(" + totalSubjectsNumber + ")");
+    d3.select("#explanation").text(totalSubjectsNumber + "chapters");
     d3.select("#explanation").style("text-decoration", "");
+}
+
+function getQueryVariable(variable)
+{
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1].toLowerCase();}
+    }
+    return(false);
+}
+
+function convertToFullName(lang) {
+    if(lang == "bu"){return "Bulgarian";}
+    if(lang == "po"){return "Polish";}
+    if(lang == "ru"){return "Russian";}
+    if(lang == "uk"){return "Ukrainian";}
 }
