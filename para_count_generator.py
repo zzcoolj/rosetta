@@ -19,12 +19,13 @@ def all_count():
     lang_para_count['ru'] = xml_parser.get_paragraph_info(russian_path)
     lang_para_count['uk'] = raw_txt_parser.get_paragraph_info(ukrainian_path, 'Розділ ', 1, 2423, 2423)
 
-    # # write all-para-count file
-    # write_para_count_heatmap([lang_para_count['en'], lang_para_count['bu'], lang_para_count['po'],
-    #                           lang_para_count['ru'], lang_para_count['uk'], ], 'all-para-count.tsv')
-    # # write all combinations of english-target-count files
-    # for target_count in ['bu', 'po', 'ru', 'uk']:
-    #     write_para_count_heatmap([lang_para_count['en'], lang_para_count[target_count]], 'en-' + target_count + '-count.tsv')
+    # write all-para-count file
+    write_para_count_heatmap([lang_para_count['en'], lang_para_count['bu'], lang_para_count['po'],
+                              lang_para_count['ru'], lang_para_count['uk'], ], 'all-para-count.tsv')
+    # write all combinations of english-target-count files
+    for target_count in ['bu', 'po', 'ru', 'uk']:
+        write_para_count_heatmap([lang_para_count['en'], lang_para_count[target_count]],
+                                 'en-' + target_count + '-count.tsv')
 
     # write all combinations of english-target-difference-type-count files for pie chart
     for target_count in ['bu', 'po', 'ru', 'uk']:
