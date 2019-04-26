@@ -7,7 +7,7 @@ var target_lang = getQueryVariable("target_lang");
 console.log("target language: " + target_lang);
 
 document.getElementById("pie_chart_title").innerHTML =
-    "The chapter type distribution of English-" + convertToFullName(target_lang);
+    "The chapter type distribution of " + convertToFullName(target_lang) + " translation";
 
 d3.csv("../data/para-count-pie-chart/en-" + target_lang + "-difference-type-count.csv", type, function(rows) {
     var data = rows;
@@ -137,8 +137,11 @@ d3.csv("../data/para-count-pie-chart/en-" + target_lang + "-difference-type-coun
     }).text(function (d) {
         totalSubjectsNumber += d.data.frequency;
         //return d.data.label
-        return d.data.typeName + "(" + d.data.frequency + ")"
-    }).on("click", textLabelOnClick).on("mouseover", mouseover).on("mouseleave", mouseleave);
+        return d.data.typeName + " (" + d.data.frequency + ")"
+    })
+        // .on("click", textLabelOnClick)
+        .on("mouseover", mouseover)
+        .on("mouseleave", mouseleave);
 
     alpha = 0.5;
     spacing = 12;
@@ -226,14 +229,14 @@ function getQueryVariable(variable)
     var vars = query.split("&");
     for (var i=0;i<vars.length;i++) {
         var pair = vars[i].split("=");
-        if(pair[0] == variable){return pair[1].toLowerCase();}
+        if(pair[0] === variable){return pair[1].toLowerCase();}
     }
     return(false);
 }
 
 function convertToFullName(lang) {
-    if(lang == "bu"){return "Bulgarian";}
-    if(lang == "po"){return "Polish";}
-    if(lang == "ru"){return "Russian";}
-    if(lang == "uk"){return "Ukrainian";}
+    if(lang === "bu"){return "Bulgarian";}
+    if(lang === "po"){return "Polish";}
+    if(lang === "ru"){return "Russian";}
+    if(lang === "uk"){return "Ukrainian";}
 }
