@@ -27,16 +27,13 @@ MIT Licensed
             fill: #000;
         }
     </style>
-    <!--<script src="http://d3js.org/d3.v3.js"></script>-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
-    <!--<script src="https://d3js.org/d3.v5.min.js"></script>-->
 </head>
 <body>
 <div id="chart"></div>
 <div id="dataset-picker">
 </div>
 <script type="text/javascript">
-    // import * as d3 from "./d3.min";
 
     var margin = { top: 50, right: 0, bottom: 100, left: 30 },
         width = 960 - margin.left - margin.right,
@@ -141,7 +138,7 @@ MIT Licensed
                     .text(function(d) { return d.value; })
                     .attr("class", "mono")
                     .attr("x", function(d) { return (d.hour - 0.5) * gridSize; })
-                    .attr("y", function(d) { return (d.day - 0.5) * gridSize; })
+                    .attr("y", function(d) { return (d.day - 0.35) * gridSize; })
                     .attr("font-weight", "bold")
                     .style('fill', 'FireBrick')
                     .style("text-anchor", "middle");
