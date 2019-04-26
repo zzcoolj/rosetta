@@ -73,7 +73,17 @@ MIT Licensed
         .attr("y", 0)
         .style("text-anchor", "middle")
         .attr("transform", "translate(" + gridSize / 2 + ", -6)")
-        .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+        .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); })
+        .attr("id", function(d) {return d;})
+        .on("click", textLabelOnClick)
+        .on({
+            "mouseover": function(d) {
+                d3.select(this).style("cursor", "pointer");
+            },
+            "mouseout": function(d) {
+                d3.select(this).style("cursor", "default");
+            }
+        });
 
     // Drawing cells
     var heatmapChart = function(tsvFile) {
@@ -183,6 +193,18 @@ MIT Licensed
         .on("click", function(d) {
             heatmapChart(d);
         });
+
+    function textLabelOnClick(d) {
+        if(this.id == "En") {
+            window.alert("1")
+            // window.location.href = "../sequences_sunburst/index.html?type=" + this.id;
+        } else {
+            window.alert("2")
+            console.log("jump to page " + this.id)
+            window.location.href = "pie-chart.html?target_lang=" + this.id;
+        }
+    }
+
 </script>
 <a href="side-by-side.html" >Click here for second page</a>
 </body>
