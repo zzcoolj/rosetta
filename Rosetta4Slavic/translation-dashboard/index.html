@@ -63,7 +63,17 @@ MIT Licensed
         .attr("y", function (d, i) { return i * gridSize; })
         .style("text-anchor", "end")
         .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
-        .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+        .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); })
+        .attr("id", function(d) {return d;})
+        .on("click", chapterLabelOnClick)
+        .on({
+            "mouseover": function(d) {
+                d3.select(this).style("cursor", "pointer");
+            },
+            "mouseout": function(d) {
+                d3.select(this).style("cursor", "default");
+            }
+        });
 
     var timeLabels = svg.selectAll(".timeLabel")
         .data(times)
@@ -203,7 +213,16 @@ MIT Licensed
         }
     }
 
+    function chapterLabelOnClick(d) {
+        if(this.id == "8") {
+            window.location.href = "side-by-side.html?chapter=" + this.id;
+        } else {
+            // console.log("jump to page " + this.id)
+            // window.location.href = "pie-chart.html?target_lang=" + this.id;
+        }
+    }
+
 </script>
-<a href="side-by-side.html" >Click here for second page</a>
+
 </body>
 </html>
