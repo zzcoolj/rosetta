@@ -1,6 +1,6 @@
 typeName,frequency
-#diff =0 (exact match),4
-0< #diff <=2,14
-2< #diff <=3,2
-3< #diff <=8,14
-#diff >8,9
+#diff=0(exact match),4
+0<#diff<=2,14
+2<#diff<=3,2
+3<#diff<=8,14
+#diff>8,9
