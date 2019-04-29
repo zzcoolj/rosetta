@@ -7,7 +7,7 @@
     - [Online demo](https://zzcoolj.github.io/garage/Rosetta4Slavic/translation-dashboard/)
     - Check [Rosetta4Slavic folder](Rosetta4Slavic/) for more information about the development
 - [BSNLP](http://bsnlp.cs.helsinki.fi) workshop@ACL2019 submission
-    - Deadline: ~~26 April, 2019~~ **3 May, 2019**
+    - Deadline: ~~April 26, 2019~~ **May 3, 2019**
     - LaTex writing on Overleaf
 ### Rosetta4Endangered
 - Starting date: 22 April
