@@ -60,9 +60,9 @@ function readTextFile_Po(file)
 readTextFile_Po("po-chapter-9.txt");
 
 document.body.onload = addElement;
-
+c = 0;
 function addElement () {
-for(var i=0; i < (text_arr.length*2); i=i+2){
+for(var i=0; i < text_arr.length; i++){
 
     var wrap = document.createElement("div");
     wrap.setAttribute("class","wrap")
@@ -71,7 +71,7 @@ for(var i=0; i < (text_arr.length*2); i=i+2){
   // create a new div element
   var newDiv = document.createElement("div");
   // and give it some content
-  newDiv.setAttribute("id",i)
+  newDiv.setAttribute("id",c)
 
   newDiv.setAttribute("class","borderexampleleft")
   newDiv.setAttribute("align","center")
@@ -97,14 +97,14 @@ for(var i=0; i < (text_arr.length*2); i=i+2){
 
   var newDiv = document.createElement("div");
   // and give it some content
-  newDiv.setAttribute("id",i+1)
+  newDiv.setAttribute("id",c+1)
   newDiv.setAttribute("class","borderexampleright")
   newDiv.setAttribute("onmouseover","chbg(this.id)")
   newDiv.setAttribute("onmouseout","chbgback(this.id)")
 
    newDiv.setAttribute("align","center")
 
-
+  c = c + 2
   url = "location.href='detailed_view.html?pid=" + i + "';";
 
   <!--newDiv.setAttribute("onclick","location.href='detailed_view.html?pid=5';")-->
