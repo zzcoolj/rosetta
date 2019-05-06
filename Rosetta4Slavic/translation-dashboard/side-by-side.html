@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Side-by-Side</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
 
 
 </head>
@@ -35,7 +35,7 @@ function readTextFile_En(file)
     }
     rawFile.send(null);
 }
-readTextFile_En("en-chapter-9.txt");
+readTextFile_En("../data/en-chapter-9.txt");
 
 function readTextFile_Po(file)
 {
@@ -57,7 +57,7 @@ function readTextFile_Po(file)
     }
     rawFile.send(null);
 }
-readTextFile_Po("po-chapter-9.txt");
+readTextFile_Po("../data/po-chapter-9.txt");
 
 document.body.onload = addElement;
 c = 0;
