@@ -9,7 +9,10 @@
 - Read this PhD [thesis](references/73143_XU_2016_diffusion.pdf) Page 83 (P98 in pdf) - Page 89 (P104 in pdf)
 
 ### Experts analysis and crowd sourcing
-- TBD in next week
+- Papers to read
+
+### Relevant workshops and seminars
+- [LaTeCH-CLfL 2019](https://sighum.wordpress.com/events/latech-clfl-2019/) 
 
 
 ## Timetable
