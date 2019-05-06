@@ -11,6 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 
+
 var text_arr = [];
 var text_arr_po = [];
 
@@ -61,7 +62,7 @@ readTextFile_Po("po-chapter-9.txt");
 document.body.onload = addElement;
 
 function addElement () {
-for(var i=0; i < text_arr.length; i++){
+for(var i=0; i < (text_arr.length*2); i=i+2){
 
     var wrap = document.createElement("div");
     wrap.setAttribute("class","wrap")
@@ -70,8 +71,11 @@ for(var i=0; i < text_arr.length; i++){
   // create a new div element
   var newDiv = document.createElement("div");
   // and give it some content
+  newDiv.setAttribute("id",i)
+
   newDiv.setAttribute("class","borderexampleleft")
   newDiv.setAttribute("align","center")
+
 
   url = "location.href='detailed_view.html?pid=" + i + "';";
 
@@ -93,8 +97,13 @@ for(var i=0; i < text_arr.length; i++){
 
   var newDiv = document.createElement("div");
   // and give it some content
+  newDiv.setAttribute("id",i+1)
   newDiv.setAttribute("class","borderexampleright")
+  newDiv.setAttribute("onmouseover","chbg(this.id)")
+  newDiv.setAttribute("onmouseout","chbgback(this.id)")
+
    newDiv.setAttribute("align","center")
+
 
   url = "location.href='detailed_view.html?pid=" + i + "';";
 
@@ -114,6 +123,24 @@ for(var i=0; i < text_arr.length; i++){
   <!--document.body.insertBefore(wrap, currentDiv);-->
     document.body.appendChild(wrap);
   }
+}
+
+
+function chbg(id) {
+    <!--alert(id)-->
+    <!--alert(document.getElementById(id))-->
+    <!--alert(id - 1)-->
+    hh = id
+    document.getElementById(hh -1).style.backgroundColor = 'yellow';
+    document.getElementById(hh - 1).style.border = '1px solid red';
+}
+
+function chbgback(id) {
+
+    <!--alert(document.getElementById(id))-->
+    <!--alert(id - 1)-->
+    document.getElementById(id - 1).style.backgroundColor = '';
+    document.getElementById(id - 1).style.border = '';
 }
 
 

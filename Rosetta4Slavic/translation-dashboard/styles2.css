@@ -15,7 +15,7 @@ div{
 
 float:left;
     width: 45%;
-
+line-height: 20px;
   text-align: justify;
   font-family: sans-serif;
   color: #636362;
@@ -27,7 +27,7 @@ float:left;
 .borderexampleright{
 float:right;
     width: 40%;
-
+line-height: 20px;
   text-align: justify;
   font-family: sans-serif;
   color: #636362;
@@ -37,15 +37,17 @@ float:right;
 
 }
 .borderexampleleft:hover{
-background-color: #FFA500
+background-color: #FFA500;
+font-size: 20px;
+height:60%;
 }
 
 
 .borderexampleright:hover{
-background-color: #FFA500
+background-color: #FFA500;
+font-size: 20px;
+height:60%;
 }
-
-
 
 
 .righttab{
