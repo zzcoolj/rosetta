@@ -1,4 +1,8 @@
 
+.wrap {
+	    width: 100%;
+
+	}
 
 body {
 
@@ -15,7 +19,6 @@ div{
 
 float:left;
     width: 45%;
-
   text-align: justify;
   font-family: sans-serif;
   color: #636362;
@@ -24,35 +27,12 @@ float:left;
   margin-bottom: 2em;
  }
 
-.borderexampleright{
-float:right;
-    width: 42%;
 
-  text-align: justify;
-  font-family: sans-serif;
-  color: #636362;
- margin-right: 40px;
-  margin-left: 40px;
-  margin-bottom: 2em;
 
-}
 .borderexampleleft:hover{
-background-color: #FFFF00
-}
-
-
-.borderexampleright:hover{
-background-color: #FFFF00
-}
-
-.borderexampleright:hover + .borderexampleleft{
-background-color: #FFFF00
-
-}
-
-.borderexampleleft:hover + .borderexampleright{
-background-color: #FFFF00
-
+background-color: #FFFF00;
+font-family: Arial;
+  border: 1px solid blue;
 }
 
 
@@ -70,3 +50,33 @@ background-color: #FFFF00
 
 }
 
+.borderexampleright{
+float:right;
+    width: 42%;
+
+  text-align: justify;
+  font-family: sans-serif;
+  color: #636362;
+ margin-right: 40px;
+  margin-left: 40px;
+  margin-bottom: 2em;
+}
+
+
+.borderexampleright:hover{
+background-color: #FFFF00;
+font-family: Arial;
+  border: 1px solid blue;
+}
+
+.colored_class{
+background-color: #FFFF00;
+border: 1px solid blue;
+
+}
+
+.borderexampleleft:hover + .borderexampleright{
+background-color: #FFFF00;
+border: 1px solid red;
+
+}
