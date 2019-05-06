@@ -1,0 +1,64 @@
+
+
+body {
+
+   background-image: url("background.jpg");
+  font-family: sans-serif;
+
+}
+
+div{
+    width:100%;
+}
+
+.borderexampleleft{
+
+float:left;
+    width: 45%;
+
+  text-align: justify;
+  font-family: sans-serif;
+  color: #636362;
+  margin-right: 40px;
+  margin-left: 40px;
+  margin-bottom: 2em;
+ }
+
+.borderexampleright{
+float:right;
+    width: 40%;
+
+  text-align: justify;
+  font-family: sans-serif;
+  color: #636362;
+ margin-right: 40px;
+  margin-left: 40px;
+  margin-bottom: 2em;
+
+}
+.borderexampleleft:hover{
+background-color: #FFA500
+}
+
+
+.borderexampleright:hover{
+background-color: #FFA500
+}
+
+
+
+
+.righttab{
+     margin-top: 2em;
+       display:inline-block;
+       margin-left: 650px;
+         margin-bottom: 2em;
+}
+.lefttab{
+    margin-top: 2em;
+       display:inline-block;
+       margin-left: 250px;
+         margin-bottom: 2em;
+
+}
+
