@@ -21,7 +21,7 @@ def all_count():
 
     # write all-para-count file
     write_para_count_heatmap([lang_para_count['en'], lang_para_count['bu'], lang_para_count['po'],
-                              lang_para_count['ru'], lang_para_count['uk'], ], 'all-para-count.tsv')
+                              lang_para_count['ru'], lang_para_count['uk']], 'all-para-count.tsv')
     # write all combinations of english-target-count files
     for target_count in ['bu', 'po', 'ru', 'uk']:
         write_para_count_heatmap([lang_para_count['en'], lang_para_count[target_count]],

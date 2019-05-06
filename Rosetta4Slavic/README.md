@@ -8,4 +8,9 @@
 - Day / Hour Heat map from d3.js  
 - Data path: data/all-para-count.tsv  
 ## Chapter level paragraph alignment page / Aligned paragraph page
-- Example data path: data/en-chapter-9.txt and po-chapter-9.txt (exact match case)  
+- Example data path: data/en-chapter-9.txt and po-chapter-9.txt (exact match case)
+## Fetures
+### Paragraph count correction (for quotes, poems, etc.)
+- Only for txt format. For xml format, we assume that p tag annotation has already consider this problem and put sentences of quotes/poems into one paragraph.
+- The trigger is based the difference of the number of # paragraphs rather than percentage of difference compared with the original version.
+Because the # paragraph in one chapter won't influence the number of lines taken by poems/quotes.
