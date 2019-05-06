@@ -10,6 +10,15 @@
 
 ### Experts analysis and crowd sourcing
 - Papers to read
+    - [The BAF: A Corpus of English-French Bitext](references/The%20BAF_A%20Corpus%20of%20English-French%20Bitext.pdf)
+    - [Revisiting sentence alignment algorithms for alignment visualization and evaluation](references/Revisiting%20sentence%20alignment%20algorithms%20for%20alignment%20visualization%20and%20evaluation.pdf)
+    - PhD [thesis](references/73143_XU_2016_diffusion.pdf) Page 87 (P102 in pdf) - Page 88 (P103 in pdf), *Evaluation metrics* and *Evaluation corpora*
+- Website to check
+    - [FarkasTranslations.com](http://www.farkastranslations.com/bilingual_books.php): Multi-parallel, corpora of publicly available books.
+    - The [online view](http://www.farkastranslations.com/books/Twain_Mark-Tom_Sawyer-en-de-hu-nl-ca.html) of *The Adventures of Tom Sawyer* can be a baseline view of our tool. 
+    (We gonna build something more than that for sure.)
+- Our plan
+    - Crowd sourcing idea draft
 
 ### Relevant workshops and seminars
 - [LaTeCH-CLfL 2019](https://sighum.wordpress.com/events/latech-clfl-2019/) 
