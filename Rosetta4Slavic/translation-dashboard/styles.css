@@ -18,13 +18,14 @@ div{
 .borderexampleleft{
 
 float:left;
-    width: 45%;
+    width: 44%;
   text-align: justify;
   font-family: sans-serif;
   color: #636362;
-  margin-right: 40px;
-  margin-left: 40px;
-  margin-bottom: 2em;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-bottom: 2%;
+
  }
 
 
@@ -52,14 +53,15 @@ font-family: Arial;
 
 .borderexampleright{
 float:right;
-    width: 42%;
+    width: 44%;
 
   text-align: justify;
   font-family: sans-serif;
   color: #636362;
- margin-right: 40px;
-  margin-left: 40px;
-  margin-bottom: 2em;
+ margin-right: 5%;
+margin-left: 5%;
+  margin-bottom: 2%;
+
 }
 
 
