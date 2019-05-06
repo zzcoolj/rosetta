@@ -1,5 +1,19 @@
 # Rosetta Project
+## General Information
+
+### Development/Programming
+- [Check out team work boards in Trello](https://trello.com/b/LulZRg4T/rosetta4slavic)
+- Jump into hackers team: contact me!
+
+### Algorithms research
+- Read this PhD [thesis](references/73143_XU_2016_diffusion.pdf) Page 83 (P98 in pdf) - Page 89 (P104 in pdf)
+
+### Experts analysis and crowd sourcing
+- TBD in next week
+
+
 ## Timetable
+
 ### Rosetta4Slavic
 - Starting date: 17 April
 - Project: Translation dashboard prototype development
@@ -9,11 +23,13 @@
 - [BSNLP](http://bsnlp.cs.helsinki.fi) workshop@ACL2019 submission
     - Deadline: ~~April 26, 2019~~ **May 3, 2019**
     - LaTex writing on Overleaf
+
 ### Rosetta4Endangered
 - Starting date: 22 April
 - Digging into alignment algorithms
 - Results analysis by domain experts
 - Crowd sourcing test by using Translation dashboard
+
 ### Rosetta4All
 - 6 May - 17 May
 - [EMNLP 2019](https://www.emnlp-ijcnlp2019.org) submission (maybe option 1...)
@@ -22,11 +38,3 @@
     - Submissions due (demos): July 1, 2019
 - [CoNLL 2019](http://www.conll.org/2019) submission (maybe option 2...)
     - Deadline: **May 31, 2019**
-## General Information
-### Development/Programming
-- [To check out team work boards](https://trello.com/b/LulZRg4T/rosetta4slavic)
-- To jump into: contact me!
-### Algorithms research
-- TBD in next week
-### Experts analysis and crowd sourcing
-- TBD in next week
