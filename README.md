@@ -24,7 +24,10 @@
         - Previous *gold references only specify alignment links*, they can not evaluate the similarity between aligned paragraphs,
         which is important for literary translation studies.
     - How?
-        - Check our two-step crowd sourcing [design draft]().
+        - Check our two-step crowd sourcing [design draft](references/two-step-crowd-sourcing-scenario-draft.pdf).
+            - 0/1/2 score standards in the second step: 2 means aligned (insofar as possible — sometimes it’s truncated, but it’s not like the missing data is in a different paragraph), 
+            1 means sorta aligned (includes situations where a paragraph in English is split across multiple paragraphs), and 0 means it wasn’t translated. 
+            - An manual annotated example [here](references/human-annotated-score-for-exact-matching-paragraph-alignment.pdf).
 
 ### Relevant workshops and seminars
 - [LaTeCH-CLfL 2019](https://sighum.wordpress.com/events/latech-clfl-2019/) 
@@ -35,7 +38,7 @@
 ### Rosetta4Slavic
 - Starting date: 17 April
 - Project: Translation dashboard prototype development
-    - [Design draft](Rosetta4Slavic/info/Rosetta4Slavic-translation-dashboard-draft-v1.pdf)
+    - [Design draft](Rosetta4Slavic/references/Rosetta4Slavic-translation-dashboard-draft-v1.pdf)
     - [Online demo](https://zzcoolj.github.io/garage/Rosetta4Slavic/translation-dashboard/)
     - Check [Rosetta4Slavic folder](Rosetta4Slavic/) for more information about the development
 - [BSNLP](http://bsnlp.cs.helsinki.fi) workshop@ACL2019 submission
