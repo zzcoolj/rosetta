@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Details</title>
-       <link rel="stylesheet" href="styles2.css">
+       <link rel="stylesheet" href="../assets/css/styles2.css">
 </head>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -52,7 +52,7 @@ function readTextFile_En(file)
     }
     rawFile.send(null);
 }
-readTextFile_En("en-chapter-9.txt");
+readTextFile_En("../data/en-chapter-9.txt");
 
 function readTextFile_Po(file)
 {
@@ -74,7 +74,7 @@ function readTextFile_Po(file)
     }
     rawFile.send(null);
 }
-readTextFile_Po("po-chapter-9.txt");
+readTextFile_Po("../data/po-chapter-9.txt");
 
 document.body.onload = addElement;
 
