@@ -17,8 +17,14 @@
     - [FarkasTranslations.com](http://www.farkastranslations.com/bilingual_books.php): Multi-parallel, corpora of publicly available books.
     - The [online view](http://www.farkastranslations.com/books/Twain_Mark-Tom_Sawyer-en-de-hu-nl-ca.html) of *The Adventures of Tom Sawyer* can be a baseline view of our tool. 
     (We gonna build something more than that for sure.)
-- Our plan
-    - Crowd sourcing idea draft
+- Our crowd sourcing plan
+    - Why we need paragraph alignments of literary texts?
+        - Used as a gold alignment for literary texts sentence/paragraph alignment algorithms evaluation. *Manual alignments constitute the most reliable references, but are quite rare.*
+        - Simplify the process of literary alignment evaluation corpora generation.
+        - Previous *gold references only specify alignment links*, they can not evaluate the similarity between aligned paragraphs,
+        which is important for literary translation studies.
+    - How?
+        - Check our two-step crowd sourcing [design draft]().
 
 ### Relevant workshops and seminars
 - [LaTeCH-CLfL 2019](https://sighum.wordpress.com/events/latech-clfl-2019/) 
