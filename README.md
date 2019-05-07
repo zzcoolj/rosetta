@@ -27,7 +27,7 @@
         - Check our two-step crowd sourcing [design draft](references/two-step-crowd-sourcing-scenario-draft.pdf).
             - 0/1/2 score standards in the second step: 2 means aligned (insofar as possible — sometimes it’s truncated, but it’s not like the missing data is in a different paragraph), 
             1 means sorta aligned (includes situations where a paragraph in English is split across multiple paragraphs), and 0 means it wasn’t translated. 
-            - An manual annotated example [here](references/human-annotated-score-for-exact-matching-paragraph-alignment.pdf).
+            - A manual annotated example [here](references/human-annotated-score-for-exact-matching-paragraph-alignment.pdf).
 
 ### Relevant workshops and seminars
 - [LaTeCH-CLfL 2019](https://sighum.wordpress.com/events/latech-clfl-2019/) 
