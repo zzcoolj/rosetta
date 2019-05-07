@@ -1,0 +1,28 @@
+
+.wrap {
+	    width: 100%;
+
+	}
+
+body {
+
+   background-image: url("background.jpg");
+  font-family: sans-serif;
+
+}
+
+.lefttab{
+ width:100%;
+
+}
+
+.table, .tr, .th{
+  border: 1px solid black;
+  text-align: center;
+
+}
+
+.td{
+border: 1px solid black;
+ text-align: justify;
+}

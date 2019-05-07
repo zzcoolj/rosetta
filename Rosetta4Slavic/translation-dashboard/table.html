@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table of Languages</title>
+    <link rel="stylesheet" href="table_styles.css">
+
+
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+
+var text_arr = [];
+var text_arr_po = [];
+
+function readTextFile_En(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                var splits= allText.split("\n")
+                for (var i=0; i < splits.length; i++){
+                text_arr.push(splits[i])
+                }
+            }
+        }
+    }
+    rawFile.send(null);
+}
+readTextFile_En("../data/en-chapter-9.txt");
+
+function readTextFile_Po(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                var splits= allText.split("\n")
+                for (var i=0; i < splits.length; i++){
+                text_arr_po.push(splits[i])
+                }
+            }
+        }
+    }
+    rawFile.send(null);
+}
+readTextFile_Po("../data/po-chapter-9.txt");
+
+
+document.body.onload = addElement;
+
+
+function addElement () {
+
+var table1 = document.createElement("TABLE");
+table1.setAttribute("class","table");
+table1.setAttribute("width","85%");
+table1.setAttribute("align","center");
+table1.setAttribute("bgcolor","white");
+
+document.body.appendChild(table1);
+
+ var y = document.createElement("TR");
+  y.setAttribute("class", "tr");
+
+  var z = document.createElement("TH");
+    z.setAttribute("class", "th");
+  var t = document.createTextNode("English");
+  z.appendChild(t);
+  y.appendChild(z);
+
+  var z = document.createElement("TH");
+    z.setAttribute("class", "th");
+  var t = document.createTextNode("Polish");
+  z.appendChild(t);
+  y.appendChild(z);
+
+
+table1.appendChild(y);
+
+
+
+for(var i=0; i < text_arr.length; i++){
+
+
+  var y = document.createElement("TR");
+  y.setAttribute("class", "tr");
+
+  var z = document.createElement("TD");
+  z.setAttribute("class", "td");
+
+  var t = document.createTextNode(text_arr[i]);
+  z.appendChild(t);
+  y.appendChild(z);
+
+  var z = document.createElement("TD");
+    z.setAttribute("class", "td");
+  var t = document.createTextNode(text_arr_po[i]);
+  z.appendChild(t);
+  y.appendChild(z);
+
+
+table1.appendChild(y);
+
+
+  }
+}
+
+
+</script>
+
+
+<div class="wrap" id="parent"><h3 align="center"> <span class="lefttab"> English - Polish </h3></div>
+
+<!--<table class="table" width=80% align="center"  bgcolor="white">-->
+
+     <!--<tr class="tr">-->
+        <!--<th class="th">-->
+            <!--English-->
+        <!--</th>-->
+
+        <!--<th class="th">-->
+            <!--Polish-->
+        <!--</th>-->
+    <!--</tr>-->
+
+    <!--<tr>-->
+
+        <!--<td class="td">-->
+            <!--I WANTED to go and look at a place right about the middle of the island, that I'd found when I was exploring; so we started, and soon got to it, because the island was only three miles long and a quarter of a mile wide.-->
+        <!--</td>-->
+        <!--<td class="td">-->
+            <!--Zachciało mi się pójść wgłąb wyspy dla obejrzenia jednego miejsca, które spotkałem przy pierwszem jej zwiedzaniu. Dotarliśmy tam wkrótce, bo wyspa miała co najwyżej trzy mile długości, a zaledwie ćwierć mili szerokości.-->
+        <!--</td>-->
+
+    <!--</tr>-->
+
+    <!--<tr>-->
+         <!--<td class="td">-->
+            <!--I WANTED to go and look at a place right about the middle of the island, that I'd found when I was exploring; so we started, and soon got to it, because the island was only three miles long and a quarter of a mile wide.-->
+        <!--</td>-->
+        <!--<td class="td">-->
+            <!--Zachciało mi się pójść wgłąb wyspy dla obejrzenia jednego miejsca, które spotkałem przy pierwszem jej zwiedzaniu. Dotarliśmy tam wkrótce, bo wyspa miała co najwyżej trzy mile długości, a zaledwie ćwierć mili szerokości.-->
+        <!--</td>-->
+    <!--</tr>-->
+
+<!--</table>-->
+
+</body>
+
+
+</html>
