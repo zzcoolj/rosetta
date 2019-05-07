@@ -82,3 +82,7 @@ background-color: #FFFF00;
 border: 1px solid red;
 
 }
+
+.table, .th, td {
+  border: 1px solid black;
+}
