@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Table of Languages</title>
-    <link rel="stylesheet" href="table_styles.css">
+    <link rel="stylesheet" href="../assets/css/table_styles.css">
 
 
 </head>
@@ -15,7 +15,7 @@
 var text_arr = [];
 var text_arr_po = [];
 
-function readTextFile_En(file)
+function readTextFile_En(file, text_arr)
 {
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
@@ -28,36 +28,38 @@ function readTextFile_En(file)
                 var allText = rawFile.responseText;
                 var splits= allText.split("\n")
                 for (var i=0; i < splits.length; i++){
-                text_arr.push(splits[i])
+                    text_arr.push(splits[i])
                 }
             }
         }
     }
     rawFile.send(null);
 }
-readTextFile_En("../data/en-chapter-9.txt");
+readTextFile_En("../data/en-chapter-9.txt", text_arr);
+readTextFile_En("../data/po-chapter-9.txt", text_arr_po);
 
-function readTextFile_Po(file)
-{
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                var allText = rawFile.responseText;
-                var splits= allText.split("\n")
-                for (var i=0; i < splits.length; i++){
-                text_arr_po.push(splits[i])
-                }
-            }
-        }
-    }
-    rawFile.send(null);
-}
-readTextFile_Po("../data/po-chapter-9.txt");
+// //TODO delete function below
+// function readTextFile_Po(file)
+// {
+//     var rawFile = new XMLHttpRequest();
+//     rawFile.open("GET", file, false);
+//     rawFile.onreadystatechange = function ()
+//     {
+//         if(rawFile.readyState === 4)
+//         {
+//             if(rawFile.status === 200 || rawFile.status == 0)
+//             {
+//                 var allText = rawFile.responseText;
+//                 var splits= allText.split("\n")
+//                 for (var i=0; i < splits.length; i++){
+//                 text_arr_po.push(splits[i])
+//                 }
+//             }
+//         }
+//     }
+//     rawFile.send(null);
+// }
+// readTextFile_Po("../data/po-chapter-9.txt");
 
 
 document.body.onload = addElement;
