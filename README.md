@@ -35,7 +35,7 @@
 
 ## Timetable
 
-### Rosetta4Slavic
+### [submission] Rosetta4Slavic (submitted; Notification of acceptance date: 26 May 2019)
 - Starting date: 17 April
 - Project: Translation dashboard prototype development
     - [Design draft](Rosetta4Slavic/references/Rosetta4Slavic-translation-dashboard-draft-v1.pdf)
@@ -47,6 +47,9 @@
 
 ### Rosetta4Endangered
 - Starting date: 22 April
+- Languages:
+    - Basque
+    - Finno-Ugric: Finnish & Hungarian
 - Digging into alignment algorithms
 - Results analysis by domain experts
 - Crowd sourcing test by using Translation dashboard
@@ -59,3 +62,17 @@
     - Submissions due (demos): July 1, 2019
 - [CoNLL 2019](http://www.conll.org/2019) submission (maybe option 2...)
     - Deadline: **May 31, 2019**
+
+### [submission] MDPI information
+- [Special Issue "Computational Linguistics for Low-Resource Languages"](https://www.mdpi.com/journal/information/special_issues/Low-Resource_Languages)
+- Deadline for manuscript submissions: 30 June 2019
+- Tentative Title: Mapping the Circulation of Literary Writings through Aligned Translations: The example of Slavic and Finno-Ugric Translations of Adventures of Huckleberry Finn.
+- Abstract: Because translated texts have been regarded as unreliable due to suspicions of bias and untrustworthiness, 
+they have so far been an overlooked resource in the field of NLP. 
+But localizing, digitizing, and aligning translated texts of well-travelled famous novels can  provide a fruitful basis for developing  digitized linguistic material  in under-resourced language.   
+In this paper we focus on translations of Mark Twain’s Adventures of Huckleberry Finn into a set of Slavic and Finno-Ugric languages in order to map the circulation of ideas and writings and to build up digitalized linguistic material with a view to help preserve the diversity of languages and cultures.
+
+### [submission] [Journal of Digital Humanities and Data Mining](https://jdmdh.episciences.org/page/)
+- [Special Issue “Collecting, Preserving, and Disseminating Endangered Cultural Heritage for New Understandings and Multilingual Approaches.”](https://jdmdh.episciences.org/page/collecting-preserving-and-disseminating-endangered-cultural-heritage-for-new-understandings-and-multilingual-approaches)
+- Deadline for submissions: TBD
+
