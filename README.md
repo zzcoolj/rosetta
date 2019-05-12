@@ -76,4 +76,3 @@ In this paper we focus on translations of Mark Twain’s Adventures of Huckleber
 ### [submission] [Journal of Digital Humanities and Data Mining](https://jdmdh.episciences.org/page/)
 - [Special Issue “Collecting, Preserving, and Disseminating Endangered Cultural Heritage for New Understandings and Multilingual Approaches.”](https://jdmdh.episciences.org/page/collecting-preserving-and-disseminating-endangered-cultural-heritage-for-new-understandings-and-multilingual-approaches)
 - Deadline for submissions: TBD
-
