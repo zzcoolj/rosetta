@@ -1,11 +1,13 @@
 # Rosetta Project
 ## General Information
 
+### Project [website](https://rosetta.univ-lille.fr)
+
 ### Development/Programming
 - [Check out team work boards in Trello](https://trello.com/b/LulZRg4T/rosetta4slavic)
-- Jump into hackers team: contact me!
+- Jump into the hackers team: contact me!
 
-### Algorithms research
+### Alignment algorithms research
 - Read this PhD [thesis](references/73143_XU_2016_diffusion.pdf) Page 83 (P98 in pdf) - Page 89 (P104 in pdf)
 
 ### Experts analysis and crowd sourcing
@@ -18,7 +20,7 @@
     - [FarkasTranslations.com](http://www.farkastranslations.com/bilingual_books.php): Multi-parallel, corpora of publicly available books.
     - The [online view](http://www.farkastranslations.com/books/Twain_Mark-Tom_Sawyer-en-de-hu-nl-ca.html) of *The Adventures of Tom Sawyer* can be a baseline view of our tool. 
     (We gonna build something more than that for sure.)
-- Our crowd sourcing plan
+- Two-step crowd sourcing plan
     - Why we need paragraph alignments of literary texts?
         - Used as a gold alignment for literary texts sentence/paragraph alignment algorithms evaluation. *Manual alignments constitute the most reliable references, but are quite rare.*
         - Simplify the process of literary alignment evaluation corpora generation.
@@ -29,6 +31,10 @@
             - 0/1/2 score standards in the second step: 2 means aligned (insofar as possible — sometimes it’s truncated, but it’s not like the missing data is in a different paragraph), 
             1 means sorta aligned (includes situations where a paragraph in English is split across multiple paragraphs), and 0 means it wasn’t translated. 
             - A manual annotated example [here](references/human-annotated-score-for-exact-matching-paragraph-alignment.pdf).
+    - Paragraph summarization
+        - [GoWvis: a web application for Graph-of-Words-based text visualization and summarization](https://www.aclweb.org/anthology/P16-4026)
+        - [GoWvis online demo](https://safetyapp.shinyapps.io/GoWvis/)
+    
 
 ### Relevant workshops and seminars
 - [LaTeCH-CLfL 2019](https://sighum.wordpress.com/events/latech-clfl-2019/) 
@@ -39,9 +45,9 @@
 ### [submission] Rosetta4Slavic (submitted; Notification of acceptance date: 26 May 2019)
 - Starting date: 17 April
 - Project: Translation dashboard prototype development
-    - [Design draft](Rosetta4Slavic/references/Rosetta4Slavic-translation-dashboard-draft-v1.pdf)
-    - [Online demo](https://zzcoolj.github.io/garage/Rosetta4Slavic/translation-dashboard/)
-    - Check [Rosetta4Slavic folder](Rosetta4Slavic/) for more information about the development
+    - [Design draft](translation-dashboard/references/Rosetta4Slavic-translation-dashboard-draft-v1.pdf)
+    - [Online demo](https://rosetta.univ-lille.fr/rosetta-translation-dashboard/)
+    - Check [translation-dashboard folder](translation-dashboard/) for more information about the development
 - [BSNLP](http://bsnlp.cs.helsinki.fi) workshop@ACL2019 submission
     - Deadline: ~~April 26, 2019~~ **May 3, 2019**
     - LaTex writing on Overleaf
