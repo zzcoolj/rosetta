@@ -2,35 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Details</title>
-       <link rel="stylesheet" href="../assets/css/styles2.css">
+    <title>Side-by-Side</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+
 </head>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<div class="wrap" id="parent"><h3> <span class="lefttab"> English <span class="righttab"> Polish </h3></div>
-<!--<p id="demo">Null</p>-->
 <script>
 
-<!--function GetURLParameter(sParam)-->
-<!--{-->
-    <!--var sPageURL = window.location.search.split('=')[1];-->
 
-    <!--return sPageURL;-->
-<!--}​-->
-<!--var tech = GetURLParameter('pid');-->
-
-<!--document.getElementById("demo").innerHTML = window.location.search.;-->
-<!--console.log(tech);-->
-
-<!--$(document).ready(function(){-->
-    <!--$("#parent").load("en-chapter-9.txt");-->
-<!--});-->
-
-tech = window.location.search.split('=')[1];
 var text_arr = [];
 var text_arr_po = [];
-<!--document.getElementById("demo").innerHTML = window.location.search.split('=')[1];-->
-
 
 function readTextFile_En(file)
 {
@@ -52,7 +35,7 @@ function readTextFile_En(file)
     }
     rawFile.send(null);
 }
-readTextFile_En("../data/en-chapter-9.txt");
+readTextFile_En("data/en-chapter-9.txt");
 
 function readTextFile_Po(file)
 {
@@ -74,49 +57,98 @@ function readTextFile_Po(file)
     }
     rawFile.send(null);
 }
-readTextFile_Po("../data/po-chapter-9.txt");
+readTextFile_Po("data/po-chapter-9.txt");
 
 document.body.onload = addElement;
-
+c = 0;
 function addElement () {
+for(var i=0; i < text_arr.length; i++){
 
-   i = tech
+    var wrap = document.createElement("div");
+    wrap.setAttribute("class","wrap")
+
 
   // create a new div element
   var newDiv = document.createElement("div");
   // and give it some content
+  newDiv.setAttribute("id",c)
+
   newDiv.setAttribute("class","borderexampleleft")
+  newDiv.setAttribute("align","center")
+
+
+  url = "location.href='detailed_view.html?pid=" + i + "';";
+
   <!--newDiv.setAttribute("onclick","location.href='detailed_view.html?pid=5';")-->
+  newDiv.setAttribute("onclick",url)
+
   newDiv.setAttribute("style","cursor: pointer;")
   var newContent = document.createTextNode(text_arr[i]);
   // add the text node to the newly created div
 
   newDiv.appendChild(newContent);
 
-
+   wrap.appendChild(newDiv);
   // add the newly created element and its content into the DOM
-  var currentDiv = document.getElementById("div"+i);
-  document.body.insertBefore(newDiv, currentDiv);
+  <!--var currentDiv = document.getElementById("div"+i);-->
+  <!--document.body.insertBefore(newDiv, currentDiv);-->
+
 
 
   var newDiv = document.createElement("div");
   // and give it some content
+  newDiv.setAttribute("id",c+1)
   newDiv.setAttribute("class","borderexampleright")
+  newDiv.setAttribute("onmouseover","chbg(this.id)")
+  newDiv.setAttribute("onmouseout","chbgback(this.id)")
+
+   newDiv.setAttribute("align","center")
+
+  c = c + 2
+  url = "location.href='detailed_view.html?pid=" + i + "';";
+
+  <!--newDiv.setAttribute("onclick","location.href='detailed_view.html?pid=5';")-->
+  newDiv.setAttribute("onclick",url)
+
+  newDiv.setAttribute("style","cursor: pointer;")
   var newContent = document.createTextNode(text_arr_po[i]);
   // add the text node to the newly created div
 
   newDiv.appendChild(newContent);
 
   // add the newly created element and its content into the DOM
-  var currentDiv = document.getElementById("div"+i);
-  document.body.insertBefore(newDiv, currentDiv);
+  <!--var currentDiv = document.getElementById("div"+i);-->
 
-
+  wrap.appendChild(newDiv);
+  <!--document.body.insertBefore(wrap, currentDiv);-->
+    document.body.appendChild(wrap);
+  }
 }
 
 
-<!--document.getElementById("demo").innerHTML = window.location.search.split('=')[1];-->
+function chbg(id) {
+    <!--alert(id)-->
+    <!--alert(document.getElementById(id))-->
+    <!--alert(id - 1)-->
+    hh = id
+    document.getElementById(hh -1).style.backgroundColor = 'yellow';
+    document.getElementById(hh - 1).style.border = '1px solid red';
+}
+
+function chbgback(id) {
+
+    <!--alert(document.getElementById(id))-->
+    <!--alert(id - 1)-->
+    document.getElementById(id - 1).style.backgroundColor = '';
+    document.getElementById(id - 1).style.border = '';
+}
+
+
 </script>
 
+
+<div class="wrap" id="parent"><h3> <span class="lefttab"> English <span class="righttab"> Polish </h3></div>
 </body>
+
+
 </html>

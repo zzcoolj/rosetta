@@ -9,7 +9,7 @@ console.log("target language: " + target_lang);
 document.getElementById("pie_chart_title").innerHTML =
     "The chapter type distribution of " + convertToFullName(target_lang) + " translation";
 
-d3.csv("../data/para-count-pie-chart/en-" + target_lang + "-difference-type-count.csv", type, function(rows) {
+d3.csv("data/para-count-pie-chart/en-" + target_lang + "-difference-type-count.csv", type, function(rows) {
     var data = rows;
     svg = d3.select("#pie_chart_svg");
     canvas = d3.select("#canvas");

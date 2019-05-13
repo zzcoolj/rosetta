@@ -46,7 +46,7 @@ MIT Licensed
         days = Array.from(Array(44).keys()).slice(1), // All translated versions have 43 chapters, 'slice' is for starting from 1 not 0
         times = ["En", "Bu", "Po", "Ru", "Uk"];
     // datasets = ["../data/data.tsv", "../data/data2.tsv"];
-    datasets = ["../data/para-count-heatmap/all-para-count.tsv"];
+    datasets = ["data/para-count-heatmap/all-para-count.tsv"];
 
     var svg = d3.select("#chart").append("svg")
         .attr("width", width + margin.left + margin.right)
