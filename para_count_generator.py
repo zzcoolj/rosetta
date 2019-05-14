@@ -18,23 +18,27 @@ def all_count():
     lang_para_count['po'] = xml_parser.get_paragraph_info(polish_path)
     lang_para_count['ru'] = xml_parser.get_paragraph_info(russian_path)
     lang_para_count['uk'] = raw_txt_parser.get_paragraph_info(ukrainian_path, 'Розділ ', 1, 2423, 2423)
+    # TODO automatic Basque
+    lang_para_count['ba'] = [10, 42, 18, 25, 36, 19, 29, 86, 21, 13, 70, 49, 52, 56, 49, 73, 63, 82, 55, 45, 53, 18, 36,
+                             49, 47, 100, 47, 98, 93, 46, 54, 52, 74, 72, 70, 36, 51, 65, 28, 50, 50, 75, 13]
 
     # write all-para-count file
     write_para_count_heatmap([lang_para_count['en'], lang_para_count['bu'], lang_para_count['po'],
-                              lang_para_count['ru'], lang_para_count['uk']], 'all-para-count.tsv')
+                              lang_para_count['ru'], lang_para_count['uk'], lang_para_count['ba']],
+                             'all-para-count.tsv')
     # write all combinations of english-target-count files
-    for target_count in ['bu', 'po', 'ru', 'uk']:
+    for target_count in ['bu', 'po', 'ru', 'uk', 'ba']:
         write_para_count_heatmap([lang_para_count['en'], lang_para_count[target_count]],
                                  'en-' + target_count + '-count.tsv')
 
     # write all combinations of english-target-difference-type-count files for pie chart
-    for target_count in ['bu', 'po', 'ru', 'uk']:
+    for target_count in ['bu', 'po', 'ru', 'uk', 'ba']:
         write_para_count_pie([lang_para_count['en'], lang_para_count[target_count]],
                              'en-' + target_count + '-difference-type-count.csv')
 
 
 def write_para_count_heatmap(lists, output_name):
-    with open('Rosetta4Slavic/data/para-count-heatmap/' + output_name, 'w+') as f:  # Creat file if not existed
+    with open('translation-dashboard/data/para-count-heatmap/' + output_name, 'w+') as f:  # Creat file if not existed
         f.write('day\thour\tvalue\n')
         for i in range(len(lists)):
             for j in range(chapter_count):
@@ -64,7 +68,7 @@ def write_para_count_pie(gold_target_lists, output_name):
     type_count[str(cut2)+'<#diff<=' + str(cut3)] = len([diff for diff in difference_list if cut2 < diff <= cut3])
     type_count['#diff>' + str(cut3)] = len([diff for diff in difference_list if diff > cut3])
 
-    with open('Rosetta4Slavic/data/para-count-pie-chart/' + output_name, 'w+') as f:
+    with open('translation-dashboard/data/para-count-pie-chart/' + output_name, 'w+') as f:
         f.write('typeName,frequency\n')
         for key, value in type_count.items():
             f.write(key + ',' + str(value) + '\n')
