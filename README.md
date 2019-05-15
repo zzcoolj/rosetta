@@ -3,6 +3,40 @@
 
 ### Project [website](https://rosetta.univ-lille.fr)
 
+### Resources
+Language | Type | Text | Para count | folder | comment|
+---      | :---:| :---:| :---:      | ---    | ---    |
+English | tagged text | √ | √ | Rosetta_data (Amel)
+Afrikaans	|pdf	|	|	|	Tom and Huck(Noah)	
+Arabe	|pdf|	|	|		Rosetta_data (Amel)	
+Basque	|tagged text|	√|	√|		Rosetta_data (Amel)	
+Bengali	|pdf|	|	|		Rosetta_data (Amel)	|many illustrations; "12+"
+Bulgarian|	tagged text|	√	|√		|Rosetta_data (Amel)	
+Chinese|	pdf|	√|		|	Rosetta_data (Amel)	
+Croatian|	pdf|	√|		|	Rosetta_data (Amel)	
+Czech|	pdf|	√|		|	Rosetta_data (Amel)	
+Dozivljaji|	pdf	| | |			Tom and Huck(Noah)	
+Dutch|	tagged text	|√|	|		Rosetta_data (Amel)|	2 versions
+Estonian|	pdf		|	|	|Tom and Huck(Noah)	
+Finnish|	raw text|	√|	|		Rosetta_data (Amel)	
+Finnish|	pdf		|	| |	Tom and Huck(Noah)	
+German|	tagged text|	√|	|		Rosetta_data (Amel)	
+Hebrew|	pdf|		|	|	Tom and Huck(Noah)	|scan quality is not good
+Hungarian|	tagged text|	√|		|	Rosetta_data (Amel)|	2 versions
+Italian|	pdf	|√	|	|	Rosetta_data (Amel)	
+Latvian|	pdf	|	|	|	Tom and Huck(Noah)	
+Polish|	tagged text	|√	|√|		Rosetta_data (Amel)	
+Portuguese|	tagged text|	√|	|		Rosetta_data (Amel)	
+Romanian|	pdf	|√	|	|	Rosetta_data (Amel)	
+Russian|	tagged text	|√|	√|		Rosetta_data (Amel)	
+Russian|	pdf			|	| |Tom and Huck(Noah)	
+Spanish|	tagged text	|√	|	|	Rosetta_data (Amel)	
+Turkish|	epub -> txt	|√	|	|	Rosetta_data (Amel)	
+Ukrainian|	tagged text|	√|	√|		Rosetta_data (Amel)	
+Vietnamese|	pdf| √|	|		Rosetta_data (Amel)	
+Vietnamese|	pdf|	|	|		Tom and Huck(Noah)	
+Yiddish|	pdf|	|	|		Tom and Huck(Noah)	|poor scan quality<br/> As I don't understand Yiddish, <br/>I'm not sure that's the *Huckleburry finn*
+
 ### Development/Programming
 - [Check out team work boards in Trello](https://trello.com/b/LulZRg4T/rosetta4slavic)
 - Jump into the hackers team: contact me!
@@ -34,6 +68,9 @@
     - Paragraph summarization
         - [GoWvis: a web application for Graph-of-Words-based text visualization and summarization](https://www.aclweb.org/anthology/P16-4026)
         - [GoWvis online demo](https://safetyapp.shinyapps.io/GoWvis/)
+- Possible submission
+    - Aggregating and analysing crowdsourced annotations for NLP [AnnoNLP workshop@EMNLP-IJCNLP 2019](http://dali.eecs.qmul.ac.uk/annonlp)
+        - Submission deadline: **Sep 2, 2019**
     
 
 ### Relevant workshops and seminars
@@ -63,11 +100,7 @@
 
 ### Rosetta4All
 - 6 May - 17 May
-- [EMNLP 2019](https://www.emnlp-ijcnlp2019.org) submission (maybe option 1...)
-    - Abstracts due (long & short): **May 15, 2019**
-    - Submissions due (long & short): May 21, 2019
-    - Submissions due (demos): July 1, 2019
-- [CoNLL 2019](http://www.conll.org/2019) submission (maybe option 2...)
+- [CoNLL 2019](http://www.conll.org/2019) submission (maybe...)
     - Deadline: **May 31, 2019**
 
 ### [submission] MDPI information
