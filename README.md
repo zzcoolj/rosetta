@@ -26,7 +26,7 @@ Hungarian|	tagged text|√|√|	Rosetta_data (Amel)|	2 versions
 Italian|	pdf	|√|	|	Rosetta_data (Amel)	
 Latvian|	pdf	|	|	|	Tom and Huck(Noah)	
 Polish|	tagged text	|√|√|		Rosetta_data (Amel)	
-Portuguese|raw text;<br/>word|√|	|		Rosetta_data (Amel)| each line is NOT one paragraph
+Portuguese|raw text;<br/>word|√|√|		Rosetta_data (Amel)| each line is NOT one paragraph
 Romanian|	pdf	|√|	|	Rosetta_data (Amel)	
 Russian|	tagged text	|√|	√|		Rosetta_data (Amel)	
 Russian|	pdf			|	| |Tom and Huck(Noah)	
