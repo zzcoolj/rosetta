@@ -16,23 +16,23 @@ Chinese|	pdf|	√|		|	Rosetta_data (Amel)
 Croatian|	pdf|	√|		|	Rosetta_data (Amel)	
 Czech|	pdf|	√|		|	Rosetta_data (Amel)	
 Dozivljaji|	pdf	| | |			Tom and Huck(Noah)	
-Dutch|	tagged text	|√|	|		Rosetta_data (Amel)|	2 versions
+Dutch|	tagged text	|√|√|		Rosetta_data (Amel)|	2 versions
 Estonian|	pdf		|	|	|Tom and Huck(Noah)	
-Finnish|	raw text|	√|	|		Rosetta_data (Amel)	
+Finnish|	raw text|√|√|		Rosetta_data (Amel)	
 Finnish|	pdf		|	| |	Tom and Huck(Noah)	
-German|	tagged text|	√|	|		Rosetta_data (Amel)	
+German|	tagged text|√|√|		Rosetta_data (Amel)	
 Hebrew|	pdf|		|	|	Tom and Huck(Noah)	|scan quality is not good
-Hungarian|	tagged text|	√|		|	Rosetta_data (Amel)|	2 versions
+Hungarian|	tagged text|√|√|	Rosetta_data (Amel)|	2 versions
 Italian|	pdf	|√	|	|	Rosetta_data (Amel)	
 Latvian|	pdf	|	|	|	Tom and Huck(Noah)	
-Polish|	tagged text	|√	|√|		Rosetta_data (Amel)	
+Polish|	tagged text	|√|√|		Rosetta_data (Amel)	
 Portuguese|	tagged text|	√|	|		Rosetta_data (Amel)| each line is NOT one paragraph
 Romanian|	pdf	|√	|	|	Rosetta_data (Amel)	
 Russian|	tagged text	|√|	√|		Rosetta_data (Amel)	
 Russian|	pdf			|	| |Tom and Huck(Noah)	
 Spanish|	url	|	|	|	Rosetta_data (Amel)	
 Turkish|	epub -> txt	|√	|	|	Rosetta_data (Amel)	
-Ukrainian|	tagged text|	√|	√|		Rosetta_data (Amel)	
+Ukrainian|	tagged text|√|√|		Rosetta_data (Amel)	
 Vietnamese|	pdf| √|	|		Rosetta_data (Amel)	
 Vietnamese|	pdf|	|	|		Tom and Huck(Noah)	
 Yiddish|	pdf|	|	|		Tom and Huck(Noah)	|poor scan quality<br/> As I don't understand Yiddish, <br/>I'm not sure that's the *Huckleburry finn*
