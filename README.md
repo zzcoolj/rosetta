@@ -26,11 +26,11 @@ Hungarian|	tagged text|	√|		|	Rosetta_data (Amel)|	2 versions
 Italian|	pdf	|√	|	|	Rosetta_data (Amel)	
 Latvian|	pdf	|	|	|	Tom and Huck(Noah)	
 Polish|	tagged text	|√	|√|		Rosetta_data (Amel)	
-Portuguese|	tagged text|	√|	|		Rosetta_data (Amel)	
+Portuguese|	tagged text|	√|	|		Rosetta_data (Amel)| each line is NOT one paragraph
 Romanian|	pdf	|√	|	|	Rosetta_data (Amel)	
 Russian|	tagged text	|√|	√|		Rosetta_data (Amel)	
 Russian|	pdf			|	| |Tom and Huck(Noah)	
-Spanish|	tagged text	|√	|	|	Rosetta_data (Amel)	
+Spanish|	url	|	|	|	Rosetta_data (Amel)	
 Turkish|	epub -> txt	|√	|	|	Rosetta_data (Amel)	
 Ukrainian|	tagged text|	√|	√|		Rosetta_data (Amel)	
 Vietnamese|	pdf| √|	|		Rosetta_data (Amel)	

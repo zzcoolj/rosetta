@@ -7,32 +7,41 @@ bulgarian_path = 'corpora/slavic/Bulgarian/Mark_Tven_-_Prikljuchenijata_na_Hykyl
 polish_path = 'corpora/slavic/Polish/polish-modified.txt'
 russian_path = 'corpora/slavic/Russian/russian-modified.txt'
 ukrainian_path = 'corpora/slavic/Ukrainian/ukrainian-content.txt'
+# Others
+dutch_path = 'corpora/Dutch/Dutch1/dutch1.txt'  # total paragraphs count closer to English version than Dutch2
+finnish_path = 'corpora/finno-ugric/Finnish/Finnish-content.txt'
+german_path = 'corpora/German/german.txt'
+hungarian2_path = 'corpora/finno-ugric/Hungarian/Hungarian2/hung2.txt'
+#
 
 chapter_count = 43
 
 
 def all_count():
+    lang_order = ['en', 'ba', 'bu', 'du', 'fi', 'ge', 'hu', 'po', 'ru', 'uk']
     lang_para_count = dict()
     lang_para_count['en'] = xml_parser.get_paragraph_info(en_path)
     lang_para_count['bu'] = raw_txt_parser.get_paragraph_info(bulgarian_path, '\tГлава ', 1, 2537, 2549 - 1)
+    lang_para_count['du'] = xml_parser.get_paragraph_info(dutch_path)
     lang_para_count['po'] = xml_parser.get_paragraph_info(polish_path)
     lang_para_count['ru'] = xml_parser.get_paragraph_info(russian_path)
     lang_para_count['uk'] = raw_txt_parser.get_paragraph_info(ukrainian_path, 'Розділ ', 1, 2423, 2423)
+    lang_para_count['fi'] = raw_txt_parser.get_paragraph_info(finnish_path, 'luku.\n', 2, 4628, 4768)
+    lang_para_count['ge'] = xml_parser.get_paragraph_info(german_path)
+    lang_para_count['hu'] = xml_parser.get_paragraph_info(hungarian2_path)
     # TODO automatic Basque
     lang_para_count['ba'] = [10, 42, 18, 25, 36, 19, 29, 86, 21, 13, 70, 49, 52, 56, 49, 73, 63, 82, 55, 45, 53, 18, 36,
                              49, 47, 100, 47, 98, 93, 46, 54, 52, 74, 72, 70, 36, 51, 65, 28, 50, 50, 75, 13]
 
-    # write all-para-count file
-    write_para_count_heatmap([lang_para_count['en'], lang_para_count['bu'], lang_para_count['po'],
-                              lang_para_count['ru'], lang_para_count['uk'], lang_para_count['ba']],
-                             'all-para-count.tsv')
-    # write all combinations of english-target-count files
-    for target_count in ['bu', 'po', 'ru', 'uk', 'ba']:
+    # heatmap: write all-para-count file
+    write_para_count_heatmap([lang_para_count[lang] for lang in lang_order], 'all-para-count.tsv')
+    # heatmap: write all combinations of english-target-count files
+    for target_count in lang_order[1:]:
         write_para_count_heatmap([lang_para_count['en'], lang_para_count[target_count]],
                                  'en-' + target_count + '-count.tsv')
 
-    # write all combinations of english-target-difference-type-count files for pie chart
-    for target_count in ['bu', 'po', 'ru', 'uk', 'ba']:
+    # pie-chart: write all combinations of english-target-difference-type-count files
+    for target_count in lang_order[1:]:
         write_para_count_pie([lang_para_count['en'], lang_para_count[target_count]],
                              'en-' + target_count + '-difference-type-count.csv')
 
@@ -41,7 +50,7 @@ def write_para_count_heatmap(lists, output_name):
     with open('translation-dashboard/data/para-count-heatmap/' + output_name, 'w+') as f:  # Creat file if not existed
         f.write('day\thour\tvalue\n')
         for i in range(len(lists)):
-            for j in range(chapter_count):
+            for j in range(len(lists[i])):
                 # day hour value <=> chapter language count
                 f.write('\t'.join([str(j+1), str(i+1), str(lists[i][j]), '\n']))
 
@@ -54,7 +63,7 @@ def write_para_count_pie(gold_target_lists, output_name):
     :return:
     """
     difference_list = []
-    for i in range(len(gold_target_lists[0])):
+    for i in range(len(gold_target_lists[1])):
         difference_list.append(abs(gold_target_lists[1][i] - gold_target_lists[0][i]))
 
     type_count = dict()

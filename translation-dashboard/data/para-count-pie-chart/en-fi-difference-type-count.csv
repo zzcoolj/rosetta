@@ -1,0 +1,6 @@
+typeName,frequency
+#diff=0(exact match),6
+0<#diff<=8,33
+8<#diff<=17,2
+17<#diff<=42,1
+#diff>42,1

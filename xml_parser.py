@@ -13,6 +13,9 @@ russian_path = 'corpora/slavic/Russian/russian-modified.txt'
 # Finno-ugric
 hungarian1_path = 'corpora/finno-ugric/Hungarian/Hungarian1/hung1.txt'
 hungarian2_path = 'corpora/finno-ugric/Hungarian/Hungarian2/hung2.txt'
+# Others
+dutch_path = 'corpora/Dutch/Dutch1/dutch1.txt'  # total paragraphs count closer to English version than Dutch2
+german_path = 'corpora/German/german.txt'
 
 
 def txt_parser(file_path):
@@ -37,7 +40,7 @@ def get_paragraph_info(file_path):
             paragraph_of_chapter_count = 0
             chapter_count += 1
         elif line == '</chapter>':
-            print('Chapter:' + str(chapter_count) + 'paragraph:' + str(paragraph_of_chapter_count))
+            print('[Chapter ' + str(chapter_count) + '] paragraph count: ' + str(paragraph_of_chapter_count))
             paragraphs.append(paragraph_of_chapter_count)
 
         elif line.startswith('<p>') and line.endswith('</p>'):
@@ -73,7 +76,8 @@ def get_paragraph_info(file_path):
             # print('[special content]' + str(line_count) + line)
             pass
         else:
-            print('*wired start in sent*:' + str(line_count) + line[:10])
+            print('[wired start in line ' + str(line_count) + ']' + line[:10])
+
     print('#chapters:' + str(chapter_count))
     print('#paragraphs:' + str(total_paragraph_count))
     print('#paragraphs based on list:' + str(sum(paragraphs)))
@@ -88,3 +92,5 @@ def get_paragraph_info(file_path):
 # # get_paragraph_info(hungarian1_path)
 # get_paragraph_info(hungarian2_path)
 # get_paragraph_info(russian_path)
+# get_paragraph_info(dutch_path)
+# get_paragraph_info(german_path)
