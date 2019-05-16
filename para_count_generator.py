@@ -1,5 +1,6 @@
 import raw_txt_parser, xml_parser
 
+chapter_count = 43
 # English (gold standard)
 en_path = 'corpora/english-modified.txt'
 # Slavic
@@ -12,23 +13,22 @@ dutch_path = 'corpora/Dutch/Dutch1/dutch1.txt'  # total paragraphs count closer 
 finnish_path = 'corpora/finno-ugric/Finnish/Finnish-content.txt'
 german_path = 'corpora/German/german.txt'
 hungarian2_path = 'corpora/finno-ugric/Hungarian/Hungarian2/hung2.txt'
-#
-
-chapter_count = 43
+portuguese_path = 'corpora/Portuguese/Portuguese.txt'
 
 
 def all_count():
-    lang_order = ['en', 'ba', 'bu', 'du', 'fi', 'ge', 'hu', 'po', 'ru', 'uk']
+    lang_order = ['en', 'ba', 'bu', 'du', 'fi', 'ge', 'hu', 'pol', 'por', 'ru', 'uk']
     lang_para_count = dict()
     lang_para_count['en'] = xml_parser.get_paragraph_info(en_path)
     lang_para_count['bu'] = raw_txt_parser.get_paragraph_info(bulgarian_path, '\tГлава ', 1, 2537, 2549 - 1)
     lang_para_count['du'] = xml_parser.get_paragraph_info(dutch_path)
-    lang_para_count['po'] = xml_parser.get_paragraph_info(polish_path)
+    lang_para_count['pol'] = xml_parser.get_paragraph_info(polish_path)
     lang_para_count['ru'] = xml_parser.get_paragraph_info(russian_path)
     lang_para_count['uk'] = raw_txt_parser.get_paragraph_info(ukrainian_path, 'Розділ ', 1, 2423, 2423)
     lang_para_count['fi'] = raw_txt_parser.get_paragraph_info(finnish_path, 'luku.\n', 2, 4628, 4768)
     lang_para_count['ge'] = xml_parser.get_paragraph_info(german_path)
     lang_para_count['hu'] = xml_parser.get_paragraph_info(hungarian2_path)
+    lang_para_count['por'] = raw_txt_parser.get_paragraph_info(portuguese_path, 'CAPÍTULO', 3, 14569, 14596)
     # TODO automatic Basque
     lang_para_count['ba'] = [10, 42, 18, 25, 36, 19, 29, 86, 21, 13, 70, 49, 52, 56, 49, 73, 63, 82, 55, 45, 53, 18, 36,
                              49, 47, 100, 47, 98, 93, 46, 54, 52, 74, 72, 70, 36, 51, 65, 28, 50, 50, 75, 13]

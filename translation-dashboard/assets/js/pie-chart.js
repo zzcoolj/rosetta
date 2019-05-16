@@ -235,8 +235,14 @@ function getQueryVariable(variable)
 }
 
 function convertToFullName(lang) {
+    if(lang === "ba"){return "Basque";}
     if(lang === "bu"){return "Bulgarian";}
-    if(lang === "po"){return "Polish";}
+    if(lang === "du"){return "Dutch";}
+    if(lang === "fi"){return "Finnish";}
+    if(lang === "ge"){return "German";}
+    if(lang === "hu"){return "Hungarian";}
+    if(lang === "pol"){return "Polish";}
+    if(lang === "por"){return "Portuguese";}
     if(lang === "ru"){return "Russian";}
     if(lang === "uk"){return "Ukrainian";}
 }
