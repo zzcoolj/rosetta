@@ -24,550 +24,665 @@
         pointer-events: none;
     }
 
+    #header {
+        /*background-color:black;*/
+        /*color:white;*/
+        text-align:center;
+        padding:5px;
+        width: 2500px;
+        height: 1050px;
+    }
+    #nav {
+        line-height:30px;
+        background-color:#eeeeee;
+        height:300px;
+        width:200px;
+        float:left;
+        padding:5px;
+    }
+    #img {
+        float: left;
+    }
+    #cover{
+        height: 310px;
+    }
+    #section {
+        width:670px;
+        float:left;
+        padding:10px;
+    }
+    #footer {
+        background-color:black;
+        color:white;
+        clear:both;
+        text-align:center;
+        padding:5px;
+        width: 2500px;
+    }
 </style>
+
 <body>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script src="//d3js.org/topojson.v1.min.js"></script>
 <script src="datamaps.world.min.js"></script>
-<div id="container" style="position: relative; width: 3000px; height: 1500px;"></div>
+
+<div id="header">
+
+</div>
+
+<div id="nav">
+    <p onclick="ap()">Alda Porto (2013)</p>
+    <p onclick="re()">Rosaura Eichenberg (2011)</p>
+    <p onclick="ml()">Monteiro Lobato (1934)</p>
+    <p onclick="sf()">Sergio Flaksman (1996)</p>
+</div>
+
+<div id="img">
+    <img id="cover" src="">
+</div>
+
+<div id="section">
+    <h1 id="title"></h1>
+    <p id="info"></p>
+</div>
+
+<div id="footer">
+    GLOBAL Digital HUmanities, Crowdsourcing, Knowledge Organization, and Deep Mapping (GLOBAL HUCK)
+</div>
+
 <script>
 
     var bubble_map = new Datamap({
-        element: document.getElementById("container"),
+        element: document.getElementById("header"),
         geographyConfig: {
             popupOnHover: false,
             highlightOnHover: false
         },
         fills: {
             defaultFill: '#ABDDA4',
-            USA: 'blue',
-            RUS: 'red'
-        }
+            wr: 'blue',
+            mr: 'orange',
+            ur: 'red',
+            bg: '#009B3A'
+        },
     });
+
     bubble_map.bubbles([
         //well-resourced languages
         {
             name: 'English',
-            radius: 7,
+            radius: 5,
             centered: 'USA', // position
             country: 'USA',
-            fillKey: 'RUS',
+            fillKey: 'wr',
             date: '1954-03-01'
         },
         {
             name: 'Chinese',
-            radius: 7,
+            radius: 5,
             centered: 'CHN', // position
             country: 'China',
-            fillKey: 'RUS',
+            fillKey: 'wr',
             date: ''
         },
         {
             name: 'French',
-            radius: 7,
+            radius: 5,
             centered: 'FRA', // position
             country: 'France',
-            fillKey: 'RUS',
+            fillKey: 'wr',
             date: ''
         },
         {
             name: 'German',
-            radius: 7,
+            radius: 5,
             centered: 'DEU', // position
             country: 'Germany',
-            fillKey: 'USA',
+            fillKey: 'wr',
             date: '1954-03-01'
         },
         {
             name: 'Italian',
-            radius: 7,
+            radius: 5,
             centered: 'ITA', // position
             country: 'Italy',
-            fillKey: 'USA',
+            fillKey: 'wr',
             date: ''
         },
         {
             name: 'Japanese',
-            radius: 7,
+            radius: 5,
             centered: 'JPN', // position
             country: 'Japan',
-            fillKey: 'USA',
+            fillKey: 'wr',
             date: ''
         },
         {
             name: 'Korean',
-            radius: 7,
+            radius: 5,
             centered: 'KOR', // position
             country: 'Korea',
-            fillKey: 'USA',
+            fillKey: 'wr',
             date: ''
         },
         {
             name: 'Russian',
-            radius: 7,
+            radius: 5,
             centered: 'RUS', // position
             country: 'Russia',
-            fillKey: 'USA',
+            fillKey: 'wr',
             date: '1954-03-01'
         },
         {
             name: 'Spanish',
-            radius: 7,
+            radius: 5,
             centered: 'ESP', // position
             country: 'Spain',
-            fillKey: 'USA',
+            fillKey: 'wr',
             date: ''
         },
         {
             name: 'Swedish',
-            radius: 7,
+            radius: 5,
             centered: 'SWE', // position
             country: 'Sweden',
-            fillKey: 'USA',
+            fillKey: 'wr',
             date: ''
         },
         //Medium-resourced languages
         {
             name: 'Arabic',
-            radius: 7,
+            radius: 5,
             centered: '', //TODO position
             country: '',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: ''
         },
         {
             name: 'Bulgarian',
-            radius: 7,
+            radius: 5,
             centered: 'BGR', // position
             country: 'Bulgaria',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: '1954-03-01'
         },
         {
             name: 'Czech',
-            radius: 7,
+            radius: 5,
             centered: 'CZE', // position
             country: 'Czechia',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: ''
         },
         {
             name: 'Croatian',
-            radius: 7,
+            radius: 5,
             centered: 'HRV', // position
             country: 'Croatia',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: ''
         },
         {
             name: 'Danish',
-            radius: 7,
+            radius: 5,
             centered: 'DNK', // position
             country: 'Denmark',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: ''
         },
         {
             name: 'Dutch',
-            radius: 7,
+            radius: 5,
             centered: 'NLD', // position
             country: 'Netherlands',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: '1954-03-01'
         },
         {
             name: 'Estonian',
-            radius: 7,
+            radius: 5,
             centered: 'EST', // position
             country: 'Estonia',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: ''
         },
         {
             name: 'Finnish',
-            radius: 7,
+            radius: 5,
             centered: 'FIN', // position
             country: 'Finland',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: '1954-03-01'
         },
         {
             name: 'Greek',
-            radius: 7,
+            radius: 5,
             centered: 'GRC', // position
             country: 'Greece',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: ''
         },
         {
             name: 'Hebrew',
-            radius: 7,
+            radius: 5,
             centered: 'ISR', // position
             country: 'Israel',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: ''
         },
         {
             name: 'Hungarian',
-            radius: 7,
+            radius: 5,
             centered: 'HUN', // position
             country: 'Hungary',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: '1954-03-01'
         },
         {
             name: 'Icelandic',
-            radius: 7,
+            radius: 5,
             centered: 'ISL', // position
             country: 'Iceland',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: ''
         },
         {
             name: 'Latvian',
-            radius: 7,
+            radius: 5,
             centered: 'LVA', // position
             country: 'Latvia',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: ''
         },
         {
             name: 'Lithuanian',
-            radius: 7,
+            radius: 5,
             country: '',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: '',
             latitude: 54.683333,
             longitude: 25.316667
         },
         {
             name: 'Norwegian',
-            radius: 7,
+            radius: 5,
             centered: 'NOR', // position
             country: 'Norway',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: ''
         },
         {
             name: 'Polish',
-            radius: 7,
+            radius: 5,
             centered: 'POL', // position
             country: 'Poland',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: '1954-03-01'
         },
         {
             name: 'Portuguese',
-            radius: 7,
+            radius: 5,
             centered: 'PRT', // position
             country: 'Portugal',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: '1954-03-01'
         },
         {
             name: 'Romanian',
-            radius: 7,
+            radius: 5,
             centered: 'ROU', // position
             country: 'Romania',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: ''
         },
         {
             name: 'Serbian',
-            radius: 7,
+            radius: 5,
             centered: 'SRB', // position
             country: 'Serbia',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: ''
         },
         {
             name: 'Slovak',
-            radius: 7,
+            radius: 5,
             centered: 'SVK', // position
             country: 'Slovakia',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: ''
         },
         {
             name: 'Slovenian',
-            radius: 7,
+            radius: 5,
             centered: 'SVN', // position
             country: 'Slovenia',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: ''
         },
         {
             name: 'Turkish',
-            radius: 7,
+            radius: 5,
             centered: 'TUR', // position
             country: 'Turkey',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: ''
         },
         {
             name: 'Ukrainian',
-            radius: 7,
+            radius: 5,
             centered: 'UKR', // position
             country: 'Ukraine',
-            fillKey: 'USA',
+            fillKey: 'mr',
             date: '1954-03-01'
         },
         //Under-resourced languages
         {
             name: 'Afrikans',
-            radius: 7,
+            radius: 5,
             centered: 'NAM', // position
             country: 'Namibia',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Albanian',
-            radius: 7,
+            radius: 5,
             centered: 'ALB', // position
             country: 'Albania',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Assamese',
-            radius: 7,
+            radius: 5,
             country: '',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: '',
             latitude: 26.14,
             longitude: 91.77
         },
         {
             name: 'Bengali',
-            radius: 7,
+            radius: 5,
             centered: 'BGD', // position
             country: 'Bangladesh',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Burmese',
-            radius: 7,
+            radius: 5,
             centered: 'MMR', // position
             country: 'Myanmar',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Catalan',
-            radius: 7,
+            radius: 5,
             country: '',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: '',
             latitude: 42.5,
             longitude: 1.516667
         },
         {
             name: 'Chuvash',
-            radius: 7,
+            radius: 5,
             country: '',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: '',
             latitude: 55.55,
             longitude: 47.1
         },
         {
             name: 'Farsi',
-            radius: 7,
+            radius: 5,
             centered: 'IRN', // position
             country: 'Iran',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Georgian',
-            radius: 7,
+            radius: 5,
             centered: 'GEO', // position
             country: 'Georgia',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Hindi',
-            radius: 7,
+            radius: 5,
             centered: 'IND', // position
             country: 'India',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Indonesian',
-            radius: 7,
+            radius: 5,
             centered: 'IDN', // position
             country: 'Indonesia',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Kazakh',
-            radius: 7,
+            radius: 5,
             centered: 'KAZ', // position
             country: 'Kazakhstan',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Kirghiz',
-            radius: 7,
+            radius: 5,
             centered: 'KGZ', // position
             country: 'Kyrgyzstan',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Macedonian',
-            radius: 7,
+            radius: 5,
             centered: 'MKD', // position
             country: 'North Macedonia',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Malay',
-            radius: 7,
+            radius: 5,
             centered: 'BRU', // position
             country: 'Brunei',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Malayalam',
-            radius: 7,
+            radius: 5,
             country: '',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: '',
             latitude: 8.5,
             longitude: 77
         },
         {
             name: 'Marathi',
-            radius: 7,
+            radius: 5,
             country: '',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: '',
             latitude: 18.97,
             longitude: 72.82
         },
         {
             name: 'Oriya',
-            radius: 7,
+            radius: 5,
             country: '',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: '',
             latitude: 18.97,
             longitude: 72.82
         },
         {
             name: 'Sinhalese',
-            radius: 7,
+            radius: 5,
             country: '',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: '',
             latitude: 20.27,
             longitude: 85.82
         },
         {
             name: 'Tamil',
-            radius: 7,
+            radius: 5,
             centered: 'LKA', // position
             country: 'Sri Lanka',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Tatar',
-            radius: 7,
+            radius: 5,
             country: '',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: '',
             latitude: 55.55,
             longitude: 50.933333
         },
         {
             name: 'Telugu',
-            radius: 7,
+            radius: 5,
             country: '',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: '',
             latitude: 16.5,
             longitude: 80.64
         },
         {
             name: 'Thai',
-            radius: 7,
+            radius: 5,
             centered: 'THA', // position
             country: 'Thailand',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Uzbech',
-            radius: 7,
+            radius: 5,
             centered: 'UZB', // position
             country: 'Uzbekistan',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Basque',
-            radius: 7,
+            radius: 5,
             country: '',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: '1961-10-31',
             latitude: 42.833333,
             longitude: -2.683333
         },
         {
             name: 'Vietnamese',
-            radius: 7,
+            radius: 5,
             centered: 'VNM', // position
             country: 'Viet Nam',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Yiddish',
-            radius: 7,
+            radius: 5,
             centered: 'BIH', // position
             country: 'Bosnia and Herzegovina',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Moldovan',
-            radius: 7,
+            radius: 5,
             centered: 'MDA', // position
             country: 'Moldova, Republic of',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Armenian',
-            radius: 7,
+            radius: 5,
             centered: 'ARM', // position
             country: 'Armenia',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
         {
             name: 'Turkmen',
-            radius: 7,
+            radius: 5,
             centered: 'AFG', // position
             country: 'Afghanistan',
-            fillKey: 'USA',
+            fillKey: 'ur',
             date: ''
         },
-
-    ], {
+        //Brazilian Portuguese
+        {
+            name: 'Portuguese',
+            radius: 10,
+            centered: 'BRA', // position
+            country: 'Brazil',
+            fillKey: 'bg',
+            date: ''
+        }
+    ]
+        , {
         popupTemplate: function(geo, data) {
-            return '<div class="hoverinfo">' + data.name + ' translation' + ' from '  + data.country
+            return '<div class="hoverinfo">' + data.name + ' translation' + ' from '  + data.country;
+        }
+    }
+    );
+
+    d3.selectAll('.datamaps-bubble').on('click', function(bubble) {
+        if (bubble.country === 'Brazil')
+        {
+            ap();
+            document.getElementById("nav").style.visibility = "visible";
+            document.getElementById("img").style.visibility = "visible";
+            document.getElementById("section").style.visibility = "visible";
+        } else {
+            document.getElementById("nav").style.visibility = "hidden";
+            document.getElementById("img").style.visibility = "hidden";
+            document.getElementById("section").style.visibility = "hidden";
         }
     });
 
+    function ml() {
+        document.getElementById("title").innerText = "Monteiro Lobato (1934)"
+        document.getElementById("info").innerHTML = "It is quite visible why there is no paratext for the translation by Monteiro Lobato. As he was the owner of the publishing house, Companhia Editora Nacional, he had chosen the text to be translated and he did not need a validation for his translation. Also, as a famous writer it was crucial that his name appeared on the cover so the readers could identify him. His translation and Flaksman’s have their names on the cover. Although there are many studies on Lobato and his translation strategy, his pedagogical use, there is not exactly a study on his translation of HF, since in that text he kept the characters from Twain’s book, not including his own to tell the story of HF. But he makes visible cuts (the two notes of Twain: notice and explanatory), the poem “Ode to Stephen Dowling Bots, Dec’d” (Chapter 17), Hamlet’s Soliloquy (Chapter 21) and everything that he must have considered unnecessarily for translation, according to what some Lobato scholars explain his free way of intervening in the text.";
+        document.getElementById("cover").src = "data/ml.png"
+    }
+
+    function sf() {
+        document.getElementById("title").innerText = "Sergio Flaksman (1996)"
+        document.getElementById("info").innerHTML = "Sergio Flaksman was the translator who received more attention from the media (newspaper article) and from the publishing house where his translation was published, since it has a foreword, a translator's note, and a postface. So that the reception of his translation was positive. The newspaper article is about Twain, Huck and how difficult the task for translating Huck is, there are excerpts from the book and a whole page of Flaksman’s text. His own note is about his translation strategy and reflections about the act of translation and the translation of dialects, which for him is impossible. Finally, the foreword and the postface were written by a famous author, Ana Maria Machado.";
+        document.getElementById("cover").src = "data/sf.png"
+    }
+
+    function re() {
+        document.getElementById("title").innerText = "Rosaura Eichenberg (2011)"
+        document.getElementById("info").innerHTML = "Rosaura Eichenberg does not describe her translation strategy but makes some remarks concerning the act of translation in her translator's note. She contextualizes the “n-word” and explains the implications of its use today and what words she chose to translate it, which are “negro” and “preto”. (TWAIN, Mark. As Aventuras de Huckleberry Finn. Tradução de Rosaura Eichenberg. Porto Alegre: L&PM. 2011, p.5-8)";
+        document.getElementById("cover").src = "data/re.png"
+    }
+
+    function ap() {
+        document.getElementById("title").innerText = "Alda Porto (2013)"
+        document.getElementById("info").innerHTML = "The translation of Alda Porto only presents a foreword signed by a university professor who discusses the importance of the HF and of Mark Twain. The title of the foreword is “A Celebração de Mark Twain em As Aventuras de Huckleberry Finn” by Vera Lúcia Harabagi Hanna.  (TWAIN, Mark. As Aventuras de Huckleberry Finn. Tradução de Alda Porto. São Paulo: Martin Claret. 2013, p.11-15.)";
+        document.getElementById("cover").src = "data/ap.png"
+    }
+
+    document.getElementById("nav").style.visibility = "hidden";
+
 </script>
+
+</body>
