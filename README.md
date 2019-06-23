@@ -1,7 +1,7 @@
 # Rosetta Project
 ## General Information
 
-### Project [website](https://rosetta.univ-lille.fr)
+### Project [website](https://rosetta.univ-lille.fr/en/)
 
 ### Resources
 Language | Type | Text | Para count | folder | comment|
@@ -79,15 +79,12 @@ Yiddish|	pdf|	|	|		Tom and Huck(Noah)	|poor scan quality<br/> As I don't underst
 
 ## Timetable
 
-### [submission] Rosetta4Slavic (submitted; Notification of acceptance date: 26 May 2019)
+### [submission] Rosetta4Slavic
 - Starting date: 17 April
 - Project: Translation dashboard prototype development
     - [Design draft](translation-dashboard/references/Rosetta4Slavic-translation-dashboard-draft-v1.pdf)
     - [Online demo](https://rosetta.univ-lille.fr/rosetta-translation-dashboard/)
     - Check [translation-dashboard folder](translation-dashboard/) for more information about the development
-- [BSNLP](http://bsnlp.cs.helsinki.fi) workshop@ACL2019 submission
-    - Deadline: ~~April 26, 2019~~ **May 3, 2019**
-    - LaTex writing on Overleaf
 
 ### Rosetta4Endangered
 - Starting date: 22 April
@@ -98,14 +95,9 @@ Yiddish|	pdf|	|	|		Tom and Huck(Noah)	|poor scan quality<br/> As I don't underst
 - Results analysis by domain experts
 - Crowd sourcing test by using Translation dashboard
 
-### Rosetta4All
-- 6 May - 17 May
-- [CoNLL 2019](http://www.conll.org/2019) submission (maybe...)
-    - Deadline: **May 31, 2019**
-
 ### [submission] MDPI information
 - [Special Issue "Computational Linguistics for Low-Resource Languages"](https://www.mdpi.com/journal/information/special_issues/Low-Resource_Languages)
-- Deadline for manuscript submissions: 30 June 2019
+- Deadline for manuscript submissions: 15 July 2019
 - Tentative Title: Mapping the Circulation of Literary Writings through Aligned Translations: The example of Slavic and Finno-Ugric Translations of Adventures of Huckleberry Finn.
 - Abstract: Because translated texts have been regarded as unreliable due to suspicions of bias and untrustworthiness, 
 they have so far been an overlooked resource in the field of NLP. 
