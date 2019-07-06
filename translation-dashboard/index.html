@@ -66,14 +66,15 @@ MIT Licensed
         .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); })
         .attr("id", function(d) {return d;})
         .on("click", chapterLabelOnClick)
-        .on({
-            "mouseover": function(d) {
-                d3.select(this).style("cursor", "pointer");
-            },
-            "mouseout": function(d) {
-                d3.select(this).style("cursor", "default");
-            }
-        });
+        // .on({
+        //     "mouseover": function(d) {
+        //         d3.select(this).style("cursor", "pointer");
+        //     },
+        //     "mouseout": function(d) {
+        //         d3.select(this).style("cursor", "default");
+        //     }
+        // })
+    ;
 
     var timeLabels = svg.selectAll(".timeLabel")
         .data(times)
@@ -93,7 +94,8 @@ MIT Licensed
             "mouseout": function(d) {
                 d3.select(this).style("cursor", "default");
             }
-        });
+        })
+    ;
 
     // Drawing cells
     var heatmapChart = function(tsvFile) {
@@ -155,6 +157,17 @@ MIT Licensed
                  */
                 cards.enter().append("text")
                     .text(function(d) { return d.value; })
+                    .on("click", cellOnClick)
+                    .on({
+                        "mouseover": function(d) {
+                            if(d.hour == 2){
+                                d3.select(this).style("cursor", "pointer");
+                            }
+                        },
+                        "mouseout": function(d) {
+                            d3.select(this).style("cursor", "default");
+                        }
+                    })
                     .attr("class", "mono")
                     .attr("x", function(d) { return (d.hour - 0.5) * gridSize; })
                     .attr("y", function(d) { return (d.day - 0.35) * gridSize; })
@@ -213,8 +226,18 @@ MIT Licensed
     }
 
     function chapterLabelOnClick(d) {
-        if(this.id) {
-            window.location.href = "table.html?chapter=" + this.id;
+        // if(this.id) {
+        //     window.location.href = "table.html?chapter=" + this.id;
+        // } else {
+        //     // console.log("jump to page " + this.id)
+        //     // window.location.href = "pie-chart.html?target_lang=" + this.id;
+        // }
+    }
+
+    function cellOnClick(d) {
+        if(d.hour == 2) {
+            // Column 2: Basque translation
+            window.location.href = "table.html?chapter=" + d.day;
         } else {
             // console.log("jump to page " + this.id)
             // window.location.href = "pie-chart.html?target_lang=" + this.id;

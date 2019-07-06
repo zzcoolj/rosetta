@@ -8,6 +8,9 @@
 
 </head>
 <body>
+
+<div class="wrap" id="parent"></div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
     var chapter = getQueryVariable("chapter");
@@ -86,7 +89,7 @@ function addElement() {
 
     var z = document.createElement("TH");
     z.setAttribute("class", "th");
-    var t = document.createTextNode("Polish");
+    var t = document.createTextNode("Basque");
     z.appendChild(t);
     y.appendChild(z);
 
@@ -130,10 +133,13 @@ function getQueryVariable(variable)
     return(false);
 }
 
+
+document.getElementById("parent").innerHTML = '<h3 align="center"> <span class="lefttab"> English - Basque Chapter '+chapter+'</h3>';
+
 </script>
 
 
-<div class="wrap" id="parent"><h3 align="center"> <span class="lefttab"> English - Polish </h3></div>
+
 
 <!--<table class="table" width=80% align="center"  bgcolor="white">-->
 
