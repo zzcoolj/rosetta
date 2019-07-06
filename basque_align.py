@@ -57,7 +57,10 @@ def chapter_paras_length(chap):
     return [len(para.split(' ')) for para in chap]
 
 
-def align_and_show(chap_en, chap_ba):
+def align_and_show(chap, chap_en, chap_ba, show_detail=False):
+    f_en = open('translation-dashboard/data/en-ba-para-align/en-chapter-' + str(chap) + '.txt', 'w')
+    f_ba = open('translation-dashboard/data/en-ba-para-align/ba-chapter-' + str(chap) + '.txt', 'w')
+
     chap_en_leng = chapter_paras_length(chap_en)
     chap_ba_leng = chapter_paras_length(chap_ba)
     a = gale_church.align_blocks(chap_en_leng, chap_ba_leng)
@@ -65,16 +68,34 @@ def align_and_show(chap_en, chap_ba):
     for (e, g) in a:
         if e not in al: al[e] = []
         al[e].append(g)
+
     all = [(k, al[k]) for k in sorted(al.keys())]
     print("Mappings from English sentences")
-    for (k, v) in all:
+
+    ba_en_dict = {}
+    for en, ba_list in all:
+        ba_string = '-'.join([str(ba) for ba in ba_list])
+        if ba_string not in ba_en_dict: ba_en_dict[ba_string] = []
+        ba_en_dict[ba_string].append(en)
+
+    final = []
+    for ba_str, en_list in ba_en_dict.items():
+        final.append((en_list, [int(p) for p in ba_str.split('-')]))
+    # print(all)
+    print(final)  # TODO Double chekc final
+
+    for (k, v) in final:
         print("{} -> {}".format(k, v))
-    # print("\nText of the aligned sentences:")
-    # for (i, v) in all:
-    #     print("{} {}\n---".format(i, chap_en[i]))
-    #     for j in v:
-    #         print("{} {}".format(j, chap_ba[j]))
-    #     print()
+        f_en.write('<para>'.join([chap_en[kk] for kk in k]) + '\n')
+        f_ba.write('<para>'.join([chap_ba[vv] for vv in v]) + '\n')
+
+    if show_detail:
+        print("\nText of the aligned sentences:")
+        for (i, v) in all:
+            print("{} {}\n---".format(i, chap_en[i]))
+            for j in v:
+                print("{} {}".format(j, chap_ba[j]))
+            print()
 
 
 if __name__ == '__main__':
@@ -82,5 +103,8 @@ if __name__ == '__main__':
     ba_folder_path = 'corpora/basque'
     for i in range(1, 44):
         print('Chapter:', str(i))
-        align_and_show(get_english_chapter(en_path, i), get_basque_chapter(ba_folder_path, i))
-        # exit()
+        if i == 44:
+            align_and_show(i, get_english_chapter(en_path, i), get_basque_chapter(ba_folder_path, i), show_detail=True)
+        else:
+            align_and_show(i, get_english_chapter(en_path, i), get_basque_chapter(ba_folder_path, i))
+        # if i == 3: exit()
