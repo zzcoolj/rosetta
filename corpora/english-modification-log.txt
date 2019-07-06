@@ -9,3 +9,230 @@
 3. line 86
 	before: <chapter id="4" name="Huck and the Judge.—Superstition"></chapter>\
 	after: 	re-organize this chapter
+4. line 919
+    before: </chapter> in the end
+    after: </chapter> in line 920
+5. line 1509, 1756, etc
+    same as 4
+6. line 777: add </p> in the end
+
+7. Poem chap17, chap21 (2 poems), chap22, chap38: merge into <p>one line</p>
+
+####### 17 ########
+<p>
+####### 17 ########
+Ode to Stephen Dowling Bots, Dec'd.
+####### 17 ########
+
+####### 17 ########
+And did young Stephen sicken,
+####### 17 ########
+And did young Stephen die?
+####### 17 ########
+And did the sad hearts thicken,
+####### 17 ########
+And did the mourners cry?
+####### 17 ########
+
+####### 17 ########
+No; such was not the fate of
+####### 17 ########
+Young Stephen Dowling Bots;
+####### 17 ########
+Though sad hearts round him thickened,
+####### 17 ########
+'Twas not from sickness' shots.
+####### 17 ########
+
+####### 17 ########
+No whooping-cough did rack his frame,
+####### 17 ########
+Nor measles drear, with spots;
+####### 17 ########
+Not these impaired the sacred name
+####### 17 ########
+Of Stephen Dowling Bots.
+####### 17 ########
+Despised love struck not with woe
+####### 17 ########
+That head of curly knots,
+####### 17 ########
+Nor stomach troubles laid him low,
+####### 17 ########
+Young Stephen Dowling Bots.
+####### 17 ########
+
+####### 17 ########
+O no. Then list with tearful eye,
+####### 17 ########
+Whilst I his fate do tell.
+####### 17 ########
+His soul did from this cold world fly,
+####### 17 ########
+By falling down a well.
+####### 17 ########
+
+####### 17 ########
+They got him out and emptied him;
+####### 17 ########
+Alas it was too late;
+####### 17 ########
+His spirit was gone for to sport aloft
+####### 17 ########
+In the realms of the good and great.
+####### 17 ########
+</p>
+####### 21 ########
+<p>To be, or not to be; that is the bare bodkin
+####### 21 ########
+That makes calamity of so long life;
+####### 21 ########
+For who would fardels bear, till Birnam Wood do come to Dunsinane,
+####### 21 ########
+But that the fear of something after death
+####### 21 ########
+Murders the innocent sleep,
+####### 21 ########
+Great nature's second course,
+####### 21 ########
+And makes us rather sling the arrows of outrageous fortune
+####### 21 ########
+Than fly to others that we know not of.
+####### 21 ########
+There's the respect must give us pause:
+####### 21 ########
+Wake Duncan with thy knocking! I would thou couldst;
+####### 21 ########
+For who would bear the whips and scorns of time,
+####### 21 ########
+The oppressor's wrong, the proud man's contumely,
+####### 21 ########
+The law's delay, and the quietus which his pangs might take,
+####### 21 ########
+In the dead waste and middle of the night, when churchyards yawn
+####### 21 ########
+In customary suits of solemn black,
+####### 21 ########
+But that the undiscovered country from whose bourne no traveler returns,
+####### 21 ########
+Breathes forth contagion on the world,
+####### 21 ########
+And thus the native hue of resolution, like the poor cat i' the adage,
+####### 21 ########
+Is sicklied o'er with care,
+####### 21 ########
+And all the clouds that lowered o'er our housetops,
+####### 21 ########
+With this regard their currents turn awry,
+####### 21 ########
+And lose the name of action.
+####### 21 ########
+'Tis a consummation devoutly to be wished. But soft you, the fair Ophelia:
+####### 21 ########
+Ope not thy ponderous and marble jaws,
+####### 21 ########
+But get thee to a nunnery—go!</p>
+####### 21 ########
+<p>Shaksperean Revival ! ! !
+####### 21 ########
+Wonderful Attraction !
+####### 21 ########
+For One Night Only !
+####### 21 ########
+The world renowned tragedians,
+####### 21 ########
+David Garrick the younger, of Drury Lane Theatre, London,
+####### 21 ########
+and
+####### 21 ########
+Edmund Kean the elder, of the Royal Haymarket Theatre, White-
+####### 21 ########
+chapel, Pudding Lane, Piccadilly, London, and the
+####### 21 ########
+Royal Continental Theatres, in their sublime
+####### 21 ########
+Shaksperean Spectacle entitled
+####### 21 ########
+The Balcony Scene
+####### 21 ########
+in
+####### 21 ########
+Romeo and Juliet ! ! !
+####### 21 ########
+Romeo................... Mr. Garrick.
+####### 21 ########
+Juliet.......................... Mr. Kean.
+####### 21 ########
+Assisted by the whole strength of the company !
+####### 21 ########
+New costumes, new scenery, new appointments !
+####### 21 ########
+
+####### 21 ########
+Also:
+####### 21 ########
+The thrilling, masterly, and blood-curdling
+####### 21 ########
+Broad-sword conflict
+####### 21 ########
+In Richard III. ! ! !
+####### 21 ########
+Richard III.......................... Mr. Garrick.
+####### 21 ########
+Richmond............................. Mr. Kean.
+####### 21 ########
+also:
+####### 21 ########
+(by special request,)
+####### 21 ########
+Hamlet's Immortal Soliloquy ! !
+####### 21 ########
+By the Illustrious Kean !
+####### 21 ########
+Done by him 300 consecutive nights in Paris !
+####### 21 ########
+For One Night Only,
+####### 21 ########
+On account of imperative European engagements !
+####### 21 ########
+Admission 25 cents; children and servants, 10 cents.</p>
+####### 22 ########
+<p>
+####### 22 ########
+AT THE COURT HOUSE !
+####### 22 ########
+FOR 3 NIGHTS ONLY !
+####### 22 ########
+The World-Renowned Tragedians
+####### 22 ########
+DAVID GARRICK THE YOUNGER !
+####### 22 ########
+AND
+####### 22 ########
+EDMUND KEAN THE ELDER !
+####### 22 ########
+Of the London and Continental
+####### 22 ########
+Theatres,
+####### 22 ########
+In their Thrilling Tragedy of
+####### 22 ########
+THE KING'S CAMELOPARD
+####### 22 ########
+OR
+####### 22 ########
+THE ROYAL NONESUCH ! ! !
+####### 22 ########
+Admission 50 cents.
+####### 22 ########
+</p>
+####### 38 ########
+<p>Here a captive heart busted.
+####### 38 ########
+Here a poor prisoner, forsook by the world and friends, fretted out his sorrowful life.
+####### 38 ########
+Here a lonely heart broke, and a worn spirit went to its rest, after thirty-seven years of solitary captivity.
+####### 38 ########
+Here, homeless and friendless, after thirty-seven years of bitter captivity, perished a noble stranger, natural son of Louis XIV.
+####### 38 ########
+</p>
