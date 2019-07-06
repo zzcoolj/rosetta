@@ -29,9 +29,11 @@ def all_count():
     lang_para_count['ge'] = xml_parser.get_paragraph_info(german_path)
     lang_para_count['hu'] = xml_parser.get_paragraph_info(hungarian2_path)
     lang_para_count['por'] = raw_txt_parser.get_paragraph_info(portuguese_path, 'CAPÍTULO', 3, 14569, 14596)
-    # TODO automatic Basque
-    lang_para_count['ba'] = [10, 42, 18, 25, 36, 19, 29, 86, 21, 13, 70, 49, 52, 56, 49, 73, 63, 82, 55, 45, 53, 18, 36,
-                             49, 47, 100, 47, 98, 93, 46, 54, 52, 74, 72, 70, 36, 51, 65, 28, 50, 50, 75, 13]
+    # TODO automatic Basque from basque_align.py
+    # lang_para_count['ba'] = [10, 42, 18, 25, 36, 19, 29, 86, 21, 13, 70, 49, 52, 56, 49, 73, 63, 82, 55, 45, 53, 18, 36,
+    #                          49, 47, 100, 47, 98, 93, 46, 54, 52, 74, 72, 70, 36, 51, 65, 28, 50, 50, 75, 13]
+    lang_para_count['ba'] = [10, 42, 18, 25, 36, 19, 29, 86, 21, 13, 70, 49, 52, 56, 49, 73, 64, 82, 55, 45, 55, 20, 36,
+                             50, 47, 100, 47, 98, 93, 46, 54, 52, 74, 72, 70, 36, 51, 62, 29, 50, 50, 75, 13]
 
     # heatmap: write all-para-count file
     write_para_count_heatmap([lang_para_count[lang] for lang in lang_order], 'all-para-count.tsv')
