@@ -2,6 +2,10 @@
 Starting with the aligned paragraphs in each chapter.
 """
 import operator
+import pickle
+import dill
+import csv
+from nltk import FreqDist
 from nltk.translate import AlignedSent
 from nltk.translate import IBMModel1, IBMModel2, IBMModel3, IBMModel4, IBMModel5
 
@@ -64,21 +68,49 @@ def para_as_sent(en_path, trans_path):
     return corpus
 
 
-def search_word_translation(ibm_model, word):
+def search_word_translation(ibm_model, word, firstN=5):
     score = dict()
     for target in ibm_model.translation_table[word]:
         score[target] = ibm_model.translation_table[word][target]
         # print(target)
         # print(em_ibm1.translation_table['I'][target])
     sorted_x = sorted(score.items(), key=operator.itemgetter(1), reverse=True)
-    print(sorted_x[:5])
+    return sorted_x[:firstN]
+
+
+def word_count(file_path):
+    # Only for English so far.
+    with open(file_path, "r") as myfile:
+        data = myfile.read().replace('\n', ' ')
+    data = data.split(' ')
+    fdist1 = FreqDist(data)
+    return fdist1
+
+
+def write_common_words_translations(model, wc, topN, output):
+    with open(output, 'wt', encoding='utf-8') as trans_file:
+        trans_writer = csv.writer(trans_file, delimiter='\t')
+        for (word, count) in wc.most_common(topN):
+            print(search_word_translation(model, word))
+            for (trans, score) in search_word_translation(model, word):
+                if trans is None:
+                    trans = 'None'
+                trans_writer.writerow([word, trans, score])
 
 
 if __name__ == '__main__':
     aligned_paras = []
+    wc = FreqDist()
     for i in range(1, 44):
-        aligned_paras.extend(para_as_sent('translation-dashboard/data/en-ba-para-align/en-chapter-' + str(i) + '.txt',
-                                          'translation-dashboard/data/en-ba-para-align/ba-chapter-' + str(i) + '.txt'))
+        en_path = 'translation-dashboard/data/en-ba-para-align/en-chapter-' + str(i) + '.txt'
+        ba_path = 'translation-dashboard/data/en-ba-para-align/ba-chapter-' + str(i) + '.txt'
+        aligned_paras.extend(para_as_sent(en_path, ba_path))
+        wc += word_count(en_path)
     model = IBMModel1(aligned_paras, 20)
-    # TODO word count on english corpus and list top 5 translations
-    search_word_translation(model, 'she')
+
+    # Save model and word count
+    with open('align_models/ibm1.model', 'wb') as m_file:
+        dill.dump(model, m_file)
+    with open('align_models/en.wc', 'wb') as wc_file:
+        pickle.dump(wc, wc_file)
+    write_common_words_translations(model, wc, 10, 'align_models/word-align.csv')
