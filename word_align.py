@@ -113,4 +113,4 @@ if __name__ == '__main__':
         dill.dump(model, m_file)
     with open('align_models/en.wc', 'wb') as wc_file:
         pickle.dump(wc, wc_file)
-    write_common_words_translations(model, wc, 10, 'align_models/word-align.csv')
+    write_common_words_translations(model, wc, 200, 'align_models/word-align.csv')
