@@ -80,7 +80,7 @@ def search_word_translation(ibm_model, word, firstN=5):
 
 def word_count(file_path):
     # Only for English so far.
-    with open(file_path, "r") as myfile:
+    with open(file_path, "r", encoding='utf-8') as myfile:
         data = myfile.read().replace('\n', ' ')
     data = data.split(' ')
     fdist1 = FreqDist(data)
