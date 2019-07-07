@@ -44,7 +44,7 @@ def sentence_alignment_from_one_paragraph(en_para, po_para):
         align_po.append(b.split())
     # print('en sent count', en_count)
     # print('po sent count', po_count)
-    print('aligned:', count)
+    # print('aligned:', count)
 
     return align_en, align_po
 
@@ -91,7 +91,7 @@ def write_common_words_translations(model, wc, topN, output):
     with open(output, 'wt', encoding='utf-8') as trans_file:
         trans_writer = csv.writer(trans_file, delimiter='\t')
         for (word, count) in wc.most_common(topN):
-            print(search_word_translation(model, word))
+            # print(search_word_translation(model, word))
             for (trans, score) in search_word_translation(model, word):
                 if trans is None:
                     trans = 'None'
