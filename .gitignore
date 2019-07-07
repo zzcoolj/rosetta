@@ -3,3 +3,4 @@
 __pycache__/
 geckodriver.log
 corpora/test/
+align_models/*.model
