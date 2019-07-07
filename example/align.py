@@ -1,8 +1,3 @@
-
-"""
-Sentence aligner
-    From:   https://github.com/NLPpupil/gale_and_church_align
-"""
 import math
 import scipy.stats
 import spacy
@@ -11,6 +6,10 @@ from nltk.translate import IBMModel1, IBMModel2, IBMModel3, IBMModel4, IBMModel5
 from nltk.translate import AlignedSent
 from spacy.lang.pl import Polish
 
+"""
+gale and church align algorithm (From: https://github.com/NLPpupil/gale_and_church_align)
+ATTENTION: Don't reinvent the wheel as below. Just use nltk.translate.gale_church.align_blocks(...)
+"""
 
 match = {(1, 2): 0.023114355231143552,
          (1, 3): 0.0012165450121654502,
@@ -22,17 +21,15 @@ c = 1.467
 s2 = 6.315
 
 
-def prob_delta(delta):
-    return scipy.stats.norm(0, 1).cdf(delta)
-
-
-def length(sentence):
-    punt_list = ',.!?:;~，。！？：；～”“《》'
-    sentence = sentence
-    return sum(1 for char in sentence if char not in punt_list)
-
-
 def distance(partition1, partition2, match_prob):
+    def prob_delta(delta):
+        return scipy.stats.norm(0, 1).cdf(delta)
+
+    def length(sentence):
+        punt_list = ',.!?:;~，。！？：；～”“《》'
+        sentence = sentence
+        return sum(1 for char in sentence if char not in punt_list)
+
     l1 = sum(map(length, partition1))
     l2 = sum(map(length, partition2))
     try:
@@ -75,7 +72,7 @@ def align(para1, para2):
 
 
 """
-Sentence alignment
+Align sentences in aligned paragraphs
 """
 
 en_path = '../example/english.txt'
@@ -96,6 +93,7 @@ def sentence_alignment_from_one_paragraph(en_para, po_para):
     po_count = 0
     count = 0
 
+    # English sentence segmenter
     nlp = spacy.load("en_core_web_sm")
     doc = nlp(str.strip(en_para))
     for sent in doc.sents:
@@ -103,6 +101,7 @@ def sentence_alignment_from_one_paragraph(en_para, po_para):
         en_sent.append(sent.text)
         # print('*******'+sent.text)
 
+    # Polish sentence segmenter
     nlp = Polish()  # just the language with no model
     sentencizer = nlp.create_pipe("sentencizer")
     nlp.add_pipe(sentencizer)
@@ -112,12 +111,11 @@ def sentence_alignment_from_one_paragraph(en_para, po_para):
         po_sent.append(sent.text)
         # print('-------'+sent.text)
 
-    for a, b in align(en_sent,po_sent):
+    for a, b in align(en_sent, po_sent):
         count += 1
         # print('----->', a, '|||', b, '<------')
         align_en.append(a.split())
         align_po.append(b.split())
-
     # print('en sent count', en_count)
     # print('po sent count', po_count)
     print('aligned:', count)
