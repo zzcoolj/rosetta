@@ -4,17 +4,12 @@ import csv
 def create_aligned_matrix(file_name, num_eng_words, top_n):
     with open(file_name, 'r') as csvFile:
         csvreader = csv.reader(csvFile, delimiter = ' ')
-
         #row_count = sum(1 for row in csvreader) # number of rows in csv file
-
         matrix = []
-
         line_count = 1
         my_list = []
-
         for row in csvreader:
             vals = row[0].split("\t")
-
             if(line_count <= (num_eng_words * top_n)): # and line_count <= row_count  
                 if line_count % top_n == 1:
                     my_list.append(vals[0])  # english word
@@ -38,7 +33,6 @@ def get_user_input(matrix):
         (d) Unsure
         ''')
         lower_user_input = user_input.lower()
-
         if lower_user_input != "a" and lower_user_input != "b" and lower_user_input != "c" and lower_user_input != "d":
             print("Value not accepted. Please try again.")
             get_user_input(matrix)
@@ -52,7 +46,6 @@ def get_user_input(matrix):
             row.append(exception_values)
         if lower_user_input == "b" or lower_user_input == "d":
             row.append("-")
-
     return matrix # with added user input values
 
 
