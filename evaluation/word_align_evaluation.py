@@ -27,10 +27,9 @@ def get_user_input(matrix):
     for row in matrix:
         print("Please evaluate the following translations for '" + row[0] + "': " + ', '.join(row[1:]))
         user_input = input('''
-        (a) At least one translation is correct 
-        (b) All translations are incorrect
-        (c) Exception (e.g. punctuation, capitalization)
-        (d) Unsure
+        (a) At least one translation is correct, regardless of exceptions.
+        (b) All translations are incorrect but have no exceptions.
+        (c) Exceptions or uncertainties (e.g. punctuation, misc character, close translations etc)
         ''')
         lower_user_input = user_input.lower()
         if lower_user_input != "a" and lower_user_input != "b" and lower_user_input != "c" and lower_user_input != "d":
@@ -41,10 +40,10 @@ def get_user_input(matrix):
         if lower_user_input == "a":
             correct_values = input("Which translations (1-5) are correct? Separate inputs with a comma.")
             row.append(correct_values)
-        if lower_user_input == "c":
-            exception_values = input("Which translations (1-5) have exceptions? Separate inputs with a comma.")
+        elif lower_user_input == "c":
+            exception_values = input("Which translations (1-5) have exceptions or uncertainties? Separate inputs with a comma.")
             row.append(exception_values)
-        if lower_user_input == "b" or lower_user_input == "d":
+        else:
             row.append("-")
     return matrix # with added user input values
 
@@ -74,6 +73,6 @@ def write_accuracy_rate(matrix):
     output_file.close()
 
 
-mat = get_user_input(create_aligned_matrix("../align_models/word-align.csv", 10, 5))
+mat = get_user_input(create_aligned_matrix("../align_models/word-align.csv", 50, 5))
 write_user_input(mat, "word-align-eval.csv")
 write_accuracy_rate(mat)
