@@ -9,7 +9,7 @@ import csv
 from nltk import FreqDist
 from nltk.translate import AlignedSent
 from nltk.translate import IBMModel1, IBMModel2, IBMModel3, IBMModel4, IBMModel5
-
+from timeit import default_timer as timer
 
 def sentence_alignment_from_one_paragraph(en_para, po_para):
     en_sent = []
@@ -107,7 +107,17 @@ if __name__ == '__main__':
         ba_path = 'translation-dashboard/data/en-ba-para-align/ba-chapter-' + str(i) + '.txt'
         aligned_paras.extend(para_as_sent(en_path, ba_path))
         wc += word_count(en_path)
-    model = IBMModel2(aligned_paras, 20)
+
+    num_iterations = 5
+    start = timer()
+    model = IBMModel2(aligned_paras, num_iterations)
+    end = timer()
+    timeelapsed = end - start
+
+    with open('align_models/ibm-model-runtimes.csv', 'a', encoding='utf-8') as output_file:
+        output_writer = csv.writer(output_file, delimiter='\t')
+        output_writer.writerow(["2", str(num_iterations), timeelapsed])
+    output_file.close()
 
     # Save model and word count
     with open('align_models/ibm2.model', 'wb') as m_file:
