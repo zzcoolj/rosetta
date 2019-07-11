@@ -72,7 +72,7 @@ def write_accuracy_rate(matrix):
         output_writer.writerow(["accuracy percentage: ", acc])
     output_file.close()
 
-
-mat = get_user_input(create_aligned_matrix("../align_models/word-align.csv", 50, 5))
-write_user_input(mat, "word-align-eval.csv")
-write_accuracy_rate(mat)
+if __name__ == '__main__':
+    mat = get_user_input(create_aligned_matrix("../align_models/word-align.csv", 50, 5))
+    write_user_input(mat, "word-align-eval.csv")
+    write_accuracy_rate(mat)
