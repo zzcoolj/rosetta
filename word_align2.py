@@ -107,7 +107,7 @@ if __name__ == '__main__':
         ba_path = 'translation-dashboard/data/en-ba-para-align/ba-chapter-' + str(i) + '.txt'
         aligned_paras.extend(para_as_sent(en_path, ba_path))
         wc += word_count(en_path)
-    model = IBMModel2(aligned_paras, 3)
+    model = IBMModel2(aligned_paras, 20)
 
     # Save model and word count
     with open('align_models/ibm2.model', 'wb') as m_file:
