@@ -10,6 +10,7 @@ from nltk import FreqDist
 from nltk.translate import AlignedSent
 from nltk.translate import IBMModel1, IBMModel2, IBMModel3, IBMModel4, IBMModel5
 from timeit import default_timer as timer
+import socket
 
 def sentence_alignment_from_one_paragraph(en_para, po_para):
     en_sent = []
@@ -116,7 +117,7 @@ if __name__ == '__main__':
 
     with open('align_models/ibm-model-runtimes.csv', 'a', encoding='utf-8') as output_file:
         output_writer = csv.writer(output_file, delimiter='\t')
-        output_writer.writerow(["4", str(num_iterations), timeelapsed])
+        output_writer.writerow(["4", str(num_iterations), timeelapsed, socket.gethostname()])
     output_file.close()
 
     # Save model and word count
