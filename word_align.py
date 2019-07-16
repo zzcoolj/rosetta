@@ -65,8 +65,10 @@ def para_as_sent(en_path, trans_path):
         # TODO tokenizer
         en_sent = en_paragraphs[i].split()
         trans_sent = trans_paragraphs[i].split()
+        en_sent_lower = [x.lower() for x in en_sent]
+        trans_sent_lower = [x.lower() for x in trans_sent]
 
-        corpus.append(AlignedSent(en_sent, trans_sent))
+        corpus.append(AlignedSent(en_sent_lower, trans_sent_lower))
     return corpus
 
 
@@ -85,6 +87,8 @@ def word_count(file_path):
     with open(file_path, "r", encoding='utf-8') as myfile:
         data = myfile.read().replace('\n', ' ')
     data = data.split(' ')
+    data = [x.lower() for x in data]
+    # TODO consider merging methods word_count and para_as_sent
     fdist1 = FreqDist(data)
     return fdist1
 
@@ -108,8 +112,10 @@ if __name__ == '__main__':
         ba_path = 'translation-dashboard/data/en-ba-para-align/ba-chapter-' + str(i) + '.txt'
         aligned_paras.extend(para_as_sent(en_path, ba_path))
         wc += word_count(en_path)
+    # print (wc.freq("i"))
 
-    num_iterations = 5
+
+    num_iterations = 3
     start = timer()
     model = IBMModel1(aligned_paras, num_iterations)
     end = timer()
@@ -125,4 +131,4 @@ if __name__ == '__main__':
         dill.dump(model, m_file)
     with open('align_models/en.wc', 'wb') as wc_file:
         pickle.dump(wc, wc_file)
-    write_common_words_translations(model, wc, 200, 'align_models/word-align.csv')
+    write_common_words_translations(model, wc, 100, 'align_models/word-align.csv')
