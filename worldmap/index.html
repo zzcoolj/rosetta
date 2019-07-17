@@ -1,20 +1,16 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
-
     .background {
         fill: none;
         pointer-events: all;
     }
-
     #states {
         fill: #aaa;
     }
-
     #states .active {
         fill: orange;
     }
-
     #state-borders {
         fill: none;
         stroke: #fff;
@@ -23,7 +19,6 @@
         stroke-linecap: round;
         pointer-events: none;
     }
-
     #header {
         /*background-color:black;*/
         /*color:white;*/
@@ -91,7 +86,6 @@
 </div>
 
 <script>
-
     var bubble_map = new Datamap({
         element: document.getElementById("header"),
         geographyConfig: {
@@ -106,7 +100,6 @@
             bg: '#009B3A'
         },
     });
-
     bubble_map.bubbles([
         //well-resourced languages
         {
@@ -163,7 +156,12 @@
             centered: 'KOR', // position
             country: 'Korea',
             fillKey: 'wr',
-            date: ''
+            date: '1990',
+            translated_title: 'Tomo Sojerio nuotykiai',
+            translator: 'Kwak, Kyong-su',
+            publisher: 'Kumsong ch\'ulp\'ansa [Republic of Korea]',
+            publisher_city: 'Seoul',
+            page_count: '534'
         },
         {
             name: 'Russian',
@@ -194,9 +192,14 @@
             name: 'Arabic',
             radius: 5,
             centered: '', //TODO position
-            country: '',
+            country: 'Egypt',
             fillKey: 'mr',
-            date: ''
+            date: '1986',
+            translated_title: 'Mughāmrāt Hilkbirīfīn',
+            translator: 'Al-Siwīfī, Mukhatār',
+            publisher: 'Al-Hay\ʻah al-Miṣrīyah al-Āmmah lil-Kitāb',
+            publisher_city: 'Al-Qāhirah',
+            page_count: '363'
         },
         {
             name: 'Bulgarian',
@@ -244,7 +247,12 @@
             centered: 'EST', // position
             country: 'Estonia',
             fillKey: 'mr',
-            date: ''
+            date: '1989',
+            translated_title: 'Huckleberry Finni seiklused',
+            translator: 'Bergmann, A.; Sillaots, M.',
+            publisher: 'Eesti Raamat [USSR (to 1991)]',
+            publisher_city: 'Tallinn',
+            page_count: '1989'
         },
         {
             name: 'Finnish',
@@ -268,7 +276,12 @@
             centered: 'ISR', // position
             country: 'Israel',
             fillKey: 'mr',
-            date: ''
+            date: '2005',
+            translated_title: 'Harpatqeotaw shel Huckleberry Finn',
+            translator: 'Farkash, Yaniv',
+            publisher: 'A. Nir [Israel]',
+            publisher_city: 'Tel Aviv',
+            page_count: '431'
         },
         {
             name: 'Hungarian',
@@ -284,7 +297,12 @@
             centered: 'ISL', // position
             country: 'Iceland',
             fillKey: 'mr',
-            date: ''
+            date: '1986',
+            translated_title: 'Stikilberja-Finnur',
+            translator: 'Bjarnason, Kristmundur; Kristjánsson, Árni',
+            publisher: 'Ab [Iceland]',
+            publisher_city: 'Reykjavík',
+            page_count: '244'
         },
         {
             name: 'Latvian',
@@ -297,11 +315,16 @@
         {
             name: 'Lithuanian',
             radius: 5,
-            country: '',
+            country: 'Lithuania',
             fillKey: 'mr',
-            date: '',
+            date: '1984',
             latitude: 54.683333,
-            longitude: 25.316667
+            longitude: 25.316667,
+            translated_title: 'Heklberio Fino nuotykiai',
+            translator: 'Churginaitė Valentina',
+            publisher: 'Vaga [USSR (to 1991)]',
+            publisher_city: 'Vilnius',
+            page_count: '519'
         },
         {
             name: 'Norwegian',
@@ -309,7 +332,12 @@
             centered: 'NOR', // position
             country: 'Norway',
             fillKey: 'mr',
-            date: ''
+            date: '2006',
+            translated_title: 'Huckleberry Finn',
+            translator: 'Hopp, Zinken',
+            publisher: 'Fono forl [Norway]',
+            publisher_city: 'Oslo',
+            page_count: ''
         },
         {
             name: 'Polish',
@@ -341,7 +369,12 @@
             centered: 'SRB', // position
             country: 'Serbia',
             fillKey: 'mr',
-            date: ''
+            date: '2005',
+            translated_title: 'Doživljaji Haklberi Fina',
+            translator: 'Držić, Leo; Miličević, Nika',
+            publisher: 'Mediasat [Spain]',
+            publisher_city: 'Madrid',
+            page_count: '505'
         },
         {
             name: 'Slovak',
@@ -390,16 +423,26 @@
             centered: 'ALB', // position
             country: 'Albania',
             fillKey: 'ur',
-            date: ''
+            date: '2008',
+            translated_title: 'Aventurat e Hakëlberi Finit',
+            translator: 'Koka, Dritan',
+            publisher: 'Dritan [Albania]',
+            publisher_city: 'Tiranë',
+            page_count: '243'
         },
         {
             name: 'Assamese',
             radius: 5,
-            country: '',
+            country: 'India',
             fillKey: 'ur',
-            date: '',
+            date: '2002',
             latitude: 26.14,
-            longitude: 91.77
+            longitude: 91.77,
+            translated_title: 'Aghari Lara',
+            translator: 'Baruwa, Tarun Chandra',
+            publisher: 'Saraighat Prakashan [India]',
+            publisher_city: 'Guwahati',
+            page_count: '158'
         },
         {
             name: 'Bengali',
@@ -407,7 +450,12 @@
             centered: 'BGD', // position
             country: 'Bangladesh',
             fillKey: 'ur',
-            date: ''
+            date: '1986',
+            translated_title: 'The adventures of Huckleberry Fin',
+            translator: 'Jamil, Rowshan',
+            publisher: 'Seba prakashani',
+            publisher_city: 'Dhaka',
+            page_count: '100'
         },
         {
             name: 'Burmese',
@@ -429,11 +477,16 @@
         {
             name: 'Chuvash',
             radius: 5,
-            country: '',
+            country: 'Turkey',
             fillKey: 'ur',
-            date: '',
+            date: '1985',
             latitude: 55.55,
-            longitude: 47.1
+            longitude: 47.1,
+            translated_title: 'Gekl\'berri Finn temtepĕr kursa şüreni',
+            translator: 'Sokolova, Askliada',
+            publisher: 'Čuvašskoe knižnoe izdatel\'stvo',
+            publisher_city: 'Čeboksary',
+            page_count: '327'
         },
         {
             name: 'Farsi',
@@ -441,7 +494,12 @@
             centered: 'IRN', // position
             country: 'Iran',
             fillKey: 'ur',
-            date: ''
+            date: '1987',
+            translated_title: 'Sargozasht-e Hakelberi Fin',
+            translator: 'Daryā Bandari, Najaf',
+            publisher: 'Khārazmi [Iran, Islamic Rep.]',
+            publisher_city: 'Tehrān',
+            page_count: '379'
         },
         {
             name: 'Georgian',
@@ -449,7 +507,12 @@
             centered: 'GEO', // position
             country: 'Georgia',
             fillKey: 'ur',
-            date: ''
+            date: '1983',
+            translated_title: 'Priključenija Gekl\'berri Finna',
+            translator: '',
+            publisher: 'Nakaduli [USSR (to 1991)]',
+            publisher_city: 'Tbilisi',
+            page_count: '276'
         },
         {
             name: 'Hindi',
@@ -481,7 +544,12 @@
             centered: 'KGZ', // position
             country: 'Kyrgyzstan',
             fillKey: 'ur',
-            date: ''
+            date: '1987',
+            translated_title: 'Gekl\'berri Findin žoruktary',
+            translator: 'Isaev, Kurmanbek',
+            publisher: 'Mektep [USSR (to 1991)]',
+            publisher_city: 'Frunze',
+            page_count: '267'
         },
         {
             name: 'Macedonian',
@@ -489,7 +557,12 @@
             centered: 'MKD', // position
             country: 'North Macedonia',
             fillKey: 'ur',
-            date: ''
+            date: '1979',
+            translated_title: 'Haklberi Fin',
+            translator: 'Crvenkovski, Dušan',
+            publisher: 'Kultura [Yugoslavia (to 2002)]',
+            publisher_city: 'Skopje',
+            page_count: '284'
         },
         {
             name: 'Malay',
@@ -497,7 +570,12 @@
             centered: 'BRU', // position
             country: 'Brunei',
             fillKey: 'ur',
-            date: ''
+            date: '1983',
+            translated_title: 'Pengembaraan Huckleberry Finn',
+            translator: '',
+            publisher: 'Whereever Distributors [Malaysia]',
+            publisher_city: 'Kuala Lumpur',
+            page_count: '143'
         },
         {
             name: 'Malayalam',
@@ -520,20 +598,30 @@
         {
             name: 'Oriya',
             radius: 5,
-            country: '',
+            country: 'India',
             fillKey: 'ur',
-            date: '',
+            date: '1977',
             latitude: 18.97,
-            longitude: 72.82
+            longitude: 72.82,
+            translated_title: 'Sahari yubaka',
+            translator: 'Rajendraprasad Acharya',
+            publisher: 'Jagannath Rath [India]',
+            publisher_city: 'Cuttack',
+            page_count: '69'
         },
         {
             name: 'Sinhalese',
             radius: 5,
-            country: '',
+            country: 'Sri Lanka',
             fillKey: 'ur',
-            date: '',
+            date: '1998',
             latitude: 20.27,
-            longitude: 85.82
+            longitude: 85.82,
+            translated_title: 'Huckleberryge hapankam',
+            translator: 'Anagiratne, Chandra',
+            publisher: 'Dayawansa Jayakody and Company [Sri Lanka]',
+            publisher_city: 'Colombo',
+            page_count: '333'
         },
         {
             name: 'Tamil',
@@ -555,11 +643,16 @@
         {
             name: 'Telugu',
             radius: 5,
-            country: '',
+            country: 'India',
             fillKey: 'ur',
-            date: '',
+            date: '1978',
             latitude: 16.5,
-            longitude: 80.64
+            longitude: 80.64,
+            translated_title: 'Hakalberi phin',
+            translator: 'Nanduri Ramamohanaravu',
+            publisher: 'Navodaya publishers [India]',
+            publisher_city: 'Vijayavada',
+            page_count: '228'
         },
         {
             name: 'Thai',
@@ -603,12 +696,17 @@
             date: ''
         },
         {
-            name: 'Moldovan',
+            name: 'Moldovian',
             radius: 5,
             centered: 'MDA', // position
             country: 'Moldova, Republic of',
             fillKey: 'ur',
-            date: ''
+            date: '2008',
+            translated_title: 'Aventurile lui Huckleberry Finn',
+            translator: 'Solomon, Petre',
+            publisher: 'Prut International',
+            publisher_city: 'Chisinau',
+            page_count: '332'
         },
         {
             name: 'Armenian',
@@ -616,7 +714,12 @@
             centered: 'ARM', // position
             country: 'Armenia',
             fillKey: 'ur',
-            date: ''
+            date: '1979',
+            translated_title: 'Heklberi Finni arkaçnerë',
+            translator: '',
+            publisher: 'Sovetakan groh [USSR (to 1991)]',
+            publisher_city: 'Erevan',
+            page_count: '549'
         },
         {
             name: 'Turkmen',
@@ -624,7 +727,12 @@
             centered: 'AFG', // position
             country: 'Afghanistan',
             fillKey: 'ur',
-            date: ''
+            date: '1989',
+            translated_title: 'Tom Sojeriń ve Gekl\'berri Finniń bašdan gečirenleri',
+            translator: 'Berdiev, Danatar',
+            publisher: 'Magaryf [USSR (to 1991)]',
+            publisher_city: 'Ašhabad',
+            page_count: '443'
         },
         //Brazilian Portuguese
         {
@@ -638,11 +746,21 @@
     ]
         , {
         popupTemplate: function(geo, data) {
-            return '<div class="hoverinfo">' + data.name + ' translation' + ' from '  + data.country;
+            return ['<div class="hoverinfo">' + data.name + ' translation from ' + data.country,
+            '<br/>Title: ' +  data.translated_title + '',
+            '<br/>Translator: ' +  data.translator + '',
+            '<br/>Date: ' +  data.date + '',
+            '<br/>Publisher: ' +  data.publisher + '',
+            '<br/>City: ' +  data.publisher_city + '',
+            '<br/>Page Count: ' +  data.page_count + '',
+            '</div>'].join('');
+
+
+
+
         }
     }
     );
-
     d3.selectAll('.datamaps-bubble').on('click', function(bubble) {
         if (bubble.country === 'Brazil')
         {
@@ -656,33 +774,27 @@
             document.getElementById("section").style.visibility = "hidden";
         }
     });
-
     function ml() {
         document.getElementById("title").innerText = "Monteiro Lobato (1934)"
         document.getElementById("info").innerHTML = "It is quite visible why there is no paratext for the translation by Monteiro Lobato. As he was the owner of the publishing house, Companhia Editora Nacional, he had chosen the text to be translated and he did not need a validation for his translation. Also, as a famous writer it was crucial that his name appeared on the cover so the readers could identify him. His translation and Flaksman’s have their names on the cover. Although there are many studies on Lobato and his translation strategy, his pedagogical use, there is not exactly a study on his translation of HF, since in that text he kept the characters from Twain’s book, not including his own to tell the story of HF. But he makes visible cuts (the two notes of Twain: notice and explanatory), the poem “Ode to Stephen Dowling Bots, Dec’d” (Chapter 17), Hamlet’s Soliloquy (Chapter 21) and everything that he must have considered unnecessarily for translation, according to what some Lobato scholars explain his free way of intervening in the text.";
         document.getElementById("cover").src = "data/ml.png"
     }
-
     function sf() {
         document.getElementById("title").innerText = "Sergio Flaksman (1996)"
         document.getElementById("info").innerHTML = "Sergio Flaksman was the translator who received more attention from the media (newspaper article) and from the publishing house where his translation was published, since it has a foreword, a translator's note, and a postface. So that the reception of his translation was positive. The newspaper article is about Twain, Huck and how difficult the task for translating Huck is, there are excerpts from the book and a whole page of Flaksman’s text. His own note is about his translation strategy and reflections about the act of translation and the translation of dialects, which for him is impossible. Finally, the foreword and the postface were written by a famous author, Ana Maria Machado.";
         document.getElementById("cover").src = "data/sf.png"
     }
-
     function re() {
         document.getElementById("title").innerText = "Rosaura Eichenberg (2011)"
         document.getElementById("info").innerHTML = "Rosaura Eichenberg does not describe her translation strategy but makes some remarks concerning the act of translation in her translator's note. She contextualizes the “n-word” and explains the implications of its use today and what words she chose to translate it, which are “negro” and “preto”. (TWAIN, Mark. As Aventuras de Huckleberry Finn. Tradução de Rosaura Eichenberg. Porto Alegre: L&PM. 2011, p.5-8)";
         document.getElementById("cover").src = "data/re.png"
     }
-
     function ap() {
         document.getElementById("title").innerText = "Alda Porto (2013)"
         document.getElementById("info").innerHTML = "The translation of Alda Porto only presents a foreword signed by a university professor who discusses the importance of the HF and of Mark Twain. The title of the foreword is “A Celebração de Mark Twain em As Aventuras de Huckleberry Finn” by Vera Lúcia Harabagi Hanna.  (TWAIN, Mark. As Aventuras de Huckleberry Finn. Tradução de Alda Porto. São Paulo: Martin Claret. 2013, p.11-15.)";
         document.getElementById("cover").src = "data/ap.png"
     }
-
     document.getElementById("nav").style.visibility = "hidden";
-
 </script>
 
 </body>
