@@ -210,7 +210,7 @@ def align_and_show(chap_en, chap_ba, en_output_path, ba_output_path, show_detail
 
 
 if __name__ == '__main__':
-    # Step 1
+    # Structure 1
     en_path = 'corpora/english-modified.txt'
     ba_folder_path = 'corpora/basque'
     for i in range(1, 44):
@@ -223,3 +223,7 @@ if __name__ == '__main__':
         else:
             align_and_show(i, get_english_chapter(en_path, i), get_basque_chapter(ba_folder_path, i), f_en, f_ba)
         if i == 3: exit()
+
+
+    # Structure 2
+    # TODO: handle <para> : replacing it with ' '
