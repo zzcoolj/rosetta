@@ -30,6 +30,7 @@ def get_user_input(matrix):
         (a) At least one translation is correct, regardless of exceptions.
         (b) All translations are incorrect but have no exceptions.
         (c) Exceptions or uncertainties (e.g. punctuation, misc character, close translations etc)
+        (d) English word has exceptions or is incorrect, regardless of translated words.
         ''')
         lower_user_input = user_input.lower()
         if lower_user_input != "a" and lower_user_input != "b" and lower_user_input != "c" and lower_user_input != "d":
@@ -65,14 +66,22 @@ def get_accuracy_rate(matrix):
     return accuracy_percent
 
 
-def write_accuracy_rate(matrix):
+def write_accuracy_rate(matrix, num_words):
     acc = str(get_accuracy_rate(matrix)) + "%"
     with open('word-align-eval2.csv', 'a', encoding='utf-8') as output_file:
         output_writer = csv.writer(output_file, delimiter='\t')
         output_writer.writerow(["accuracy percentage: ", acc])
     output_file.close()
 
+    # write all accuracy percentages into accuracies.csv
+    with open('accuracies.csv', 'a', encoding='utf-8') as output_file:
+        output_writer = csv.writer(output_file, delimiter='\t')
+        output_writer.writerow(['1', str(num_words), acc]) # model 1, number of words, accuracy percentage
+    output_file.close()
+
 if __name__ == '__main__':
-    mat = get_user_input(create_aligned_matrix("../align_models/word-align2.csv", 100, 5))
-    write_user_input(mat, "word-align-eval2.csv")
-    write_accuracy_rate(mat)
+    num_words = 20
+    top_n = 5
+    mat = get_user_input(create_aligned_matrix("../align_models/word-align.csv", num_words, top_n))
+    write_user_input(mat, "word-align-eval.csv")
+    write_accuracy_rate(mat, num_words)
