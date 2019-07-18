@@ -80,7 +80,7 @@ def write_accuracy_rate(matrix, num_words):
     output_file.close()
 
 if __name__ == '__main__':
-    num_words = 20
+    num_words = 50
     top_n = 5
     mat = get_user_input(create_aligned_matrix("../align_models/word-align.csv", num_words, top_n))
     write_user_input(mat, "word-align-eval.csv")

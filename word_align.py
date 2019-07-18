@@ -131,7 +131,7 @@ if __name__ == '__main__':
 
     # Structures: 1-paragraph alignment only, 2-sentence alignment based on paragraphs, 3-direct sentence alignment
     structures = {1: "para", 2: "psent", 3: ""}
-    struct_num = 2
+    struct_num = 1
 
     for i in range(1, 44):
         en_path = 'translation-dashboard/data/en-ba-' + structures[struct_num] + '-align/en-chapter-' + str(i) + '.txt'

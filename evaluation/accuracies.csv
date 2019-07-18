@@ -1,3 +1,4 @@
-1   50  40.0% #paragraph (20 iterations)
-2   100 29.896907216494845% #paragraph (20 iterations)
-1	20	25.0% #sentence (20 iterations)
+1   50  40.0% #paragraph (20 iterations) struct1 before removing punctuation
+2   100 29.896907216494845% #paragraph (20 iterations) struct1
+1	20	25.0% #sentence (20 iterations) struct2
+1	50	32.0% #paragraph (20 iterations) struct1 after removing punctuation
