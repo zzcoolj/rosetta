@@ -53,7 +53,7 @@ def get_english_chapter(path, chap):
     return paras
 
 
-def get_sents_from_alinged_chapter(chap, folder_path='traslatiopn-dashboard/data/en-ba-para-align'):
+def get_sents_from_aligned_chapter(chap, folder_path='translation-dashboard/data/en-ba-para-align'):
     """
 
     :param chap:
@@ -71,15 +71,20 @@ def get_sents_from_alinged_chapter(chap, folder_path='traslatiopn-dashboard/data
     aligned_paras_en = f_en.readlines()
     aligned_paras_ba = f_ba.readlines()
 
-    # TODO NOW ST
-    sents_list_of_aligned_chapters_en = [ST(para) for para in aligned_paras_en]
-    sents_list_of_aligned_chapters_ba = [ST(para) for para in aligned_paras_ba]
+    sents_list_of_aligned_chapters_en = [stokenizer(para) for para in aligned_paras_en]
+    sents_list_of_aligned_chapters_ba = [stokenizer(para) for para in aligned_paras_ba]
 
     return sents_list_of_aligned_chapters_en, sents_list_of_aligned_chapters_ba
 
 
 def chapter_paras_length(chap):
+    '''
+
+    :param chap: list of texts in the corresponding English Chapter
+    :return:
+    '''
     # TODO improve tokenizer
+    # wtokenizer and get rid of punctuation; don't replace now because the current .split method is needed to compare results from previous tests
     return [len(para.split(' ')) for para in chap]
 
 
@@ -118,14 +123,23 @@ def aligned_indexes2aligned_texts(aligned_indexes, en_list_of_texts, ba_list_of_
 
 
 def align_sents_of_aligned_chapter_pair(chap):
-    sents_list_of_aligned_chapters_en, sents_list_of_aligned_chapters_ba = get_sents_from_alinged_chapter(chap)
+    sents_list_of_aligned_chapters_en, sents_list_of_aligned_chapters_ba = get_sents_from_aligned_chapter(chap)
     en_aligned_sents = []
     ba_aligned_sents = []
     for i in range(len(sents_list_of_aligned_chapters_en)):
         en_aligned_text_list, ba_aligned_text_list = align_and_show(sents_list_of_aligned_chapters_en[i], sents_list_of_aligned_chapters_ba[i], '', '', write=False)
         en_aligned_sents.extend(en_aligned_text_list)
         ba_aligned_sents.extend(ba_aligned_text_list)
-    # TODO write en_aligned_sents and ba_aligned_sents into a new folder like "en-ba-sent-align"
+
+    en_output_file = "translation-dashboard/data/en-ba-sent-align/en-chapter-" + str(chap) + ".txt"
+    ba_output_file = "translation-dashboard/data/en-ba-sent-align/ba-chapter-" + str(chap) + ".txt"
+
+    with open(en_output_file, 'w', encoding='utf-8') as en_file:
+        for i in range(len(en_aligned_sents)):
+            en_file.write(en_aligned_sents[i].replace("<para>", " ") + '\n')
+    with open(ba_output_file, 'w', encoding='utf-8') as ba_file:
+        for i in range(len(ba_aligned_sents)):
+            ba_file.write(ba_aligned_sents[i].replace("<para>", " ") + '\n')
 
 
 def align_and_show(chap_en, chap_ba, en_output_path, ba_output_path, show_detail=False, write=True):
@@ -151,14 +165,14 @@ def align_and_show(chap_en, chap_ba, en_output_path, ba_output_path, show_detail
         aligned_indexes = [(k, al[k]) for k in sorted(al.keys())]
         return aligned_indexes
 
-    chap_en_leng = chapter_paras_length(
-        chap_en)  # [105, 184, 150, 60, 113, 218, 88, 354, 138], length of each paragraph
+    chap_en_leng = chapter_paras_length(chap_en)  # [105, 184, 150, 60, 113, 218, 88, 354, 138], length of each paragraph
     chap_ba_leng = chapter_paras_length(chap_ba)  # [ 101, 154, 121, 45, 94, 192, 80, 159, 130, 116]
     index_mapping = gale_church.align_blocks(chap_en_leng, chap_ba_leng)
 
     aligned_indexes = align_index(index_mapping)
     en_aligned_text_list, ba_aligned_text_list = aligned_indexes2aligned_texts(aligned_indexes, chap_en, chap_ba, en_output_path, ba_output_path, write=write)
     return en_aligned_text_list, ba_aligned_text_list
+
     # en_paras = []
     # ba_paras = []
     # with open('translation-dashboard/data/en-ba-para-align/en-chapter-' + str(chap) + '.txt', "r") as en_txt:
@@ -215,15 +229,16 @@ if __name__ == '__main__':
     ba_folder_path = 'corpora/basque'
     for i in range(1, 44):
         print('Chapter:', str(i))
-        # TODO change f_en to en_path or something represents path
-        f_en = 'translation-dashboard/data/en-ba-para-align/en-chapter-' + str(i) + '.txt'
-        f_ba = 'translation-dashboard/data/en-ba-para-align/ba-chapter-' + str(i) + '.txt'
+        en_file_path = 'translation-dashboard/data/en-ba-para-align/en-chapter-' + str(i) + '.txt'
+        ba_file_path = 'translation-dashboard/data/en-ba-para-align/ba-chapter-' + str(i) + '.txt'
         if i == 44:
-            align_and_show(i, get_english_chapter(en_path, i), get_basque_chapter(ba_folder_path, i), f_en, f_ba, show_detail=True)
+            align_and_show(get_english_chapter(en_path, i), get_basque_chapter(ba_folder_path, i), en_file_path, ba_file_path, show_detail=True)
         else:
-            align_and_show(i, get_english_chapter(en_path, i), get_basque_chapter(ba_folder_path, i), f_en, f_ba)
-        if i == 3: exit()
-
+            align_and_show(get_english_chapter(en_path, i), get_basque_chapter(ba_folder_path, i), en_file_path, ba_file_path)
+        # if i == 3: exit()
 
     # Structure 2
-    # TODO: handle <para> : replacing it with ' '
+    for i in range(1, 44):
+        align_sents_of_aligned_chapter_pair(i)
+
+
