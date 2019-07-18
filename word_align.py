@@ -128,15 +128,20 @@ def write_common_words_translations(model, wc, topN, output):
 if __name__ == '__main__':
     aligned_paras = []
     wc = FreqDist()
+
+    # Structures: 1-paragraph alignment only, 2-sentence alignment based on paragraphs, 3-direct sentence alignment
+    structures = {1: "para", 2: "sent", 3: ""}
+    struct_num = 2
+
     for i in range(1, 44):
-        en_path = 'translation-dashboard/data/en-ba-para-align/en-chapter-' + str(i) + '.txt'
-        ba_path = 'translation-dashboard/data/en-ba-para-align/ba-chapter-' + str(i) + '.txt'
+        en_path = 'translation-dashboard/data/en-ba-' + structures[struct_num] + '-align/en-chapter-' + str(i) + '.txt'
+        ba_path = 'translation-dashboard/data/en-ba-' + structures[struct_num] + '-align/ba-chapter-' + str(i) + '.txt'
         aligned_paras.extend(para_as_sent(en_path, ba_path))
         wc += word_count(en_path)
     # print (wc.freq("i"))
 
 
-    num_iterations = 3
+    num_iterations = 20
     start = timer()
     model = IBMModel1(aligned_paras, num_iterations)
     end = timer()
@@ -144,7 +149,7 @@ if __name__ == '__main__':
 
     with open('align_models/ibm-model-runtimes.csv', 'a', encoding='utf-8') as output_file:
         output_writer = csv.writer(output_file, delimiter='\t')
-        output_writer.writerow(["1", str(num_iterations), timeelapsed, socket.gethostname()])
+        output_writer.writerow(["1", str(num_iterations), timeelapsed, socket.gethostname(), 'struct' + str(struct_num)])
     output_file.close()
 
     # Save model and word count
