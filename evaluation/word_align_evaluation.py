@@ -68,7 +68,7 @@ def get_accuracy_rate(matrix):
 
 def write_accuracy_rate(matrix, num_words):
     acc = str(get_accuracy_rate(matrix)) + "%"
-    with open('word-align-eval2.csv', 'a', encoding='utf-8') as output_file:
+    with open('word-align-eval.csv', 'a', encoding='utf-8') as output_file:
         output_writer = csv.writer(output_file, delimiter='\t')
         output_writer.writerow(["accuracy percentage: ", acc])
     output_file.close()
