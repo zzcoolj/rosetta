@@ -173,6 +173,8 @@ def align_and_show(chap_en, chap_ba, en_output_path, ba_output_path, show_detail
     en_aligned_text_list, ba_aligned_text_list = aligned_indexes2aligned_texts(aligned_indexes, chap_en, chap_ba, en_output_path, ba_output_path, write=write)
     return en_aligned_text_list, ba_aligned_text_list
 
+# Structure 3
+def 
     # en_paras = []
     # ba_paras = []
     # with open('translation-dashboard/data/en-ba-para-align/en-chapter-' + str(chap) + '.txt', "r") as en_txt:

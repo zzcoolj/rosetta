@@ -130,7 +130,7 @@ if __name__ == '__main__':
     wc = FreqDist()
 
     # Structures: 1-paragraph alignment only, 2-sentence alignment based on paragraphs, 3-direct sentence alignment
-    structures = {1: "para", 2: "sent", 3: ""}
+    structures = {1: "para", 2: "psent", 3: ""}
     struct_num = 2
 
     for i in range(1, 44):
