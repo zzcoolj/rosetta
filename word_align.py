@@ -55,10 +55,13 @@ def sentence_alignment_from_one_paragraph(en_para, po_para):
 
 
 def para_as_sent(en_path, trans_path):
+    en_paragraphs = []
+    trans_paragraphs = []
     with open(en_path, 'r', encoding='utf-8') as file:
         en_paragraphs = file.readlines()
     with open(trans_path, 'r', encoding='utf-8') as file:
-        trans_paragraphs = file.readlines()
+        for line in file:
+            trans_paragraphs.append(line.replace('<sent>', ' '))
 
     if len(en_paragraphs) != len(trans_paragraphs):
         print('[ERROR: Paragraphs are not aligned.]')
