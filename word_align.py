@@ -120,6 +120,7 @@ def word_count(file_path):
 def write_common_words_translations(model, wc, topN, output):
     with open(output, 'wt', encoding='utf-8') as trans_file:
         trans_writer = csv.writer(trans_file, delimiter='\t')
+        # TODO implement a new method of evaluation (based on Pierre's advice)
         for (word, count) in wc.most_common(topN):
             # print(search_word_translation(model, word))
             for (trans, score) in search_word_translation(model, word):
@@ -133,8 +134,8 @@ if __name__ == '__main__':
     wc = FreqDist()
 
     # Structures: 1-paragraph alignment only, 2-sentence alignment based on paragraphs, 3-direct sentence alignment
-    structures = {1: "para", 2: "psent", 3: ""}
-    struct_num = 1
+    structures = {1: "para", 2: "psent", 3: "sent"}
+    struct_num = 3
 
     for i in range(1, 44):
         en_path = 'translation-dashboard/data/en-ba-' + structures[struct_num] + '-align/en-chapter-' + str(i) + '.txt'
