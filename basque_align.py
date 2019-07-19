@@ -175,70 +175,96 @@ def align_and_show(chap_en, chap_ba, en_output_path, ba_output_path, show_detail
 
 
 # Structure 3
-def chap_to_sent_align(chap, chap_en, chap_ba):
+def chap_to_sent_align(chap):
     en_paras = []
     ba_paras = []
     with open('translation-dashboard/data/en-ba-para-align/en-chapter-' + str(chap) + '.txt', "r") as en_txt:
-        for line in en_txt:
+        for line in en_txt: # each line is a paragraph
+            en_paras.append(line)
+            '''
             if("<para>" in line):
                 loc = line.find("<para>")
                 en_paras.append(line[:loc])
                 en_paras.append(line[loc+6:])
             else:
                 en_paras.append(line)
+            '''
     with open('translation-dashboard/data/en-ba-para-align/ba-chapter-' + str(chap) + '.txt', "r") as ba_txt:
-        for line in ba_txt:
+        for line in ba_txt: # each line is a paragraph
+            ba_paras.append(line)
+            '''
             if ("<para>" in line):
                 loc = line.find("<para>")
                 ba_paras.append(line[:loc])
                 ba_paras.append(line[loc + 6:])
             else:
                 ba_paras.append(line)
+            '''
 
     en_sents_lens = []
     ba_sents_lens = []
-    for en, ba in a: # for each paragraph
-        en_sents = stokenizer(en_paras[en])
-        ba_sents = stokenizer(ba_paras[ba])
+    for para in en_paras:
+        en_sents = stokenizer(para)
         for i in range(len(en_sents)):
             #get the number of words in the sentence
             en_sents_lens.append(len(en_sents[i].split()))
+    for para in ba_paras:
+        ba_sents = stokenizer(para)
         for i in range(len(ba_sents)):
             #get the number of words in the sentence
             ba_sents_lens.append(len(ba_sents[i].split()))
-    # print(en_sents_lens) # [25, 14, 12, 3, 21, 30, 28, 7, 12, 34, 51, 15, 33, 4, 31, 22, 7, 14, 41, 9, 26, 60, 13, 3, 20, 8, 13, 40, 16, 29, 17, 6, 12, 40, 17, 10, 16, 32, 23, 16, 18, 25, 7, 5, 19, 14, 13, 16, 17, 22, 10, 69, 51, 13, 30, 33, 35, 5, 40, 13, 16, 17, 22, 10, 69, 51, 13, 30, 33, 35, 5, 40, 32, 22, 17, 5, 8, 1, 3, 3, 3, 1, 22, 23]
-    # print(ba_sents_lens) # [18, 12, 11, 5, 23, 32, 19, 8, 8, 30, 41, 15, 28, 5, 24, 17, 8, 11, 29, 10, 22, 45, 12, 4, 18, 4, 9, 34, 13, 13, 9, 15, 5, 14, 48, 15, 6, 11, 14, 8, 18, 16, 15, 23, 6, 5, 19, 12, 16, 17, 13, 18, 11, 13, 34, 37, 16, 17, 13, 18, 11, 13, 34, 37, 22, 21, 15, 4, 5, 1, 3, 5, 2, 9, 10, 19]
+
+    def align_index(index_mapping):
+        """
+
+        :param index_mapping:   [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (7, 8), (8, 9)]
+        :return:                [(0, [0]), (1, [1]), (2, [2]), (3, [3]), (4, [4]), (5, [5]), (6, [6]), (7, [7, 8]), (8, [9])]
+        """
+        al = {}
+        for (e, g) in index_mapping:
+            if e not in al: al[e] = []
+            al[e].append(g)
+
+        aligned_indexes = [(k, al[k]) for k in sorted(al.keys())]
+        return aligned_indexes
+
     sent_align = gale_church.align_blocks(en_sents_lens, ba_sents_lens)
-    # print(sent_align)
-    # [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (8, 8), (9, 9), (10, 10), (11, 11), (12, 12), (13, 13), (14, 14), (15, 15), (16, 16), (17, 17), (18, 18), (19, 19), (20, 20), (21, 21), (22, 22), (23, 23), (24, 24), (25, 25), (26, 26), (27, 27), (28, 28), (29, 29), (29, 30), (30, 31), (31, 32), (32, 33), (33, 34), (34, 34), (35, 35), (36, 36), (37, 37), (38, 38), (39, 39), (40, 40), (41, 41), (42, 41), (43, 42), (44, 42), (45, 43), (46, 43), (47, 44), (48, 45), (49, 46), (50, 47), (51, 48), (52, 49), (53, 50), (54, 51), (55, 52), (56, 53), (57, 54), (58, 54), (59, 55), (60, 55), (61, 56), (62, 57), (63, 57), (64, 58), (65, 59), (66, 60), (67, 61), (68, 62), (69, 62), (70, 63), (71, 63), (72, 64), (73, 65), (74, 66), (75, 67), (76, 68), (77, 69), (78, 70), (79, 71), (80, 72), (81, 73), (82, 74), (83, 75)]
+    aligned_indexes = align_index(sent_align)
+    #print(aligned_indexes) #[(0, [0]), (1, [1]), (2, [2]), (3, [3]), (4, [4]), (5, [5]), (6, [6]), (7, [7]), (8, [8]), (9, [9]), (10, [10]), (11, [11]), (12, [12]), (13, [13]), (14, [14]), (15, [15]), (16, [16]), (17, [17]), (18, [18]), (19, [19]), (20, [20]), (21, [21]), (22, [22]), (23, [23]), (24, [24]), (25, [25]), (26, [26]), (27, [27]), (28, [28]), (29, [29, 30]), (30, [31]), (31, [32]), (32, [33]), (33, [34]), (34, [35]), (35, [36]), (36, [37]), (37, [38, 39]), (38, [40]), (39, [41]), (40, [42]), (41, [43]), (42, [44]), (43, [45]), (44, [46]), (45, [47]), (46, [48]), (47, [49]), (48, [50]), (49, [51]), (50, [52]), (51, [53, 54]), (52, [55]), (53, [56]), (54, [57]), (55, [58, 59]), (56, [60]), (57, [61]), (58, [62]), (59, [63]), (60, [64]), (61, [65]), (62, [66]), (63, [67]), (64, [68]), (65, [69]), (66, [70]), (67, [71]), (68, [72]), (69, [73]), (70, [74])]
 
+    en_path = 'corpora/english-modified.txt'
+    ba_folder_path = 'corpora/basque'
+    chap_en = get_english_chapter(en_path, chap)
+    chap_ba = get_basque_chapter(ba_folder_path, chap)
+    en_output_path = 'translation-dashboard/data/en-ba-sent-align/en-chapter-' + str(chap) + '.txt'
+    ba_output_path = 'translation-dashboard/data/en-ba-sent-align/ba-chapter-' + str(chap) + '.txt'
 
-    #write
-    for i in range(len(sents_list_of_aligned_chapters_en)):
-        en_aligned_text_list, ba_aligned_text_list = align_and_show(sents_list_of_aligned_chapters_en[i], sents_list_of_aligned_chapters_ba[i], '', '', write=False)
-        en_aligned_sents.extend(en_aligned_text_list)
-        ba_aligned_sents.extend(ba_aligned_text_list)
+    en_aligned_text_list = []
+    ba_aligned_text_list = []
 
-    en_output_file = "translation-dashboard/data/en-ba-psent-align/en-chapter-" + str(chap) + ".txt"
-    ba_output_file = "translation-dashboard/data/en-ba-psent-align/ba-chapter-" + str(chap) + ".txt"
+    for para in chap_en:
+        en_aligned_text_list.extend(stokenizer(para)) # produces list of all sentences
+    for para in chap_ba:
+        ba_aligned_text_list.extend(stokenizer(para)) # produces list of all sentences
 
-    with open(en_output_file, 'w', encoding='utf-8') as en_file:
-        for i in range(len(en_aligned_sents)):
-            en_file.write(en_aligned_sents[i].replace("<para>", " ") + '\n')
-            en_file.write(en_aligned_sents[i].replace("<para>", " ") + '\n')
-            en_file.write(en_aligned_sents[i].replace("<"))
-            en_file.write(en_aligned_sents[i].replace("<para>", " ") + '\n')
-    with open(ba_output_file, 'w', encoding='utf-8') as ba_file:
-        for i in range(len(ba_aligned_sents)):
-            ba_file.write(ba_aligned_sents[i].replace("<para>", " ") + '\n')
+    #writing
+    with open(en_output_path, 'wt', encoding='utf-8') as en_file:
+        for en, ba_list in aligned_indexes:
+            en_file.write(en_aligned_text_list[en] + '\n')
 
-    # if show_detail:
-    #     print("\nText of the aligned sentences:")
-    #     for (i, v) in all:
-    #         print("{} {}\n---".format(i, chap_en[i]))
-    #         for j in v:
-    #             print("{} {}".format(j, chap_ba[j]))
-    #         print()
+    with open(ba_output_path, 'wt', encoding= 'utf-8') as ba_file:
+        for en, ba_list in aligned_indexes:
+            ba_txt_list = []
+            if len(ba_list) > 1:
+                for i in ba_list:
+                    ba_txt_list.append(ba_aligned_text_list[i])
+                ba_file.write('<sent>'.join(str(v) for v in ba_txt_list) + '\n')
+            else:
+                ba_file.write(ba_aligned_text_list[ba_list[0]] + '\n')
+
+    #print(en_aligned_text_list)
+    #print(ba_aligned_text_list)
+
 
 
 if __name__ == '__main__':
@@ -259,4 +285,7 @@ if __name__ == '__main__':
     for i in range(1, 44):
         align_sents_of_aligned_chapter_pair(i)
 
-
+    # Structure 3
+    print('\n' + 'Running Structure 3...')
+    for i in range(1, 44):
+        chap_to_sent_align(i)
