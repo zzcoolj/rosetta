@@ -1,16 +1,20 @@
-# Testing word_align with IBMModel2.
+# Testing word_align with IBMModel2
 """
 Starting with the aligned paragraphs in each chapter.
 """
 import operator
 import pickle
+from typing import List
+import string
 import dill
 import csv
 from nltk import FreqDist
 from nltk.translate import AlignedSent
 from nltk.translate import IBMModel1, IBMModel2, IBMModel3, IBMModel4, IBMModel5
+from nltk.tokenize import word_tokenize as tokenizer
 from timeit import default_timer as timer
 import socket
+
 
 def sentence_alignment_from_one_paragraph(en_para, po_para):
     en_sent = []
@@ -27,7 +31,7 @@ def sentence_alignment_from_one_paragraph(en_para, po_para):
     for sent in doc.sents:
         en_count += 1
         en_sent.append(sent.text)
-        print('*******'+sent.text)
+        # print('*******'+sent.text)
 
     # Polish sentence segmenter
     nlp = Polish()  # just the language with no model
@@ -52,21 +56,45 @@ def sentence_alignment_from_one_paragraph(en_para, po_para):
 
 
 def para_as_sent(en_path, trans_path):
+    en_paragraphs = []
+    trans_paragraphs = []
     with open(en_path, 'r', encoding='utf-8') as file:
         en_paragraphs = file.readlines()
     with open(trans_path, 'r', encoding='utf-8') as file:
-        trans_paragraphs = file.readlines()
+        for line in file:
+            trans_paragraphs.append(line.replace('<sent>', ' '))
 
     if len(en_paragraphs) != len(trans_paragraphs):
         print('[ERROR: Paragraphs are not aligned.]')
 
     corpus = []
     for i in range(len(en_paragraphs)):
-        # TODO tokenizer
-        en_sent = en_paragraphs[i].split() # splitting each paragraph into words
+        '''
+        en_sent = tokenizer(en_paragraphs[i])
+        trans_sent = tokenizer(trans_paragraphs[i])
+        '''
+        en_sent = en_paragraphs[i].split()
         trans_sent = trans_paragraphs[i].split()
 
-        corpus.append(AlignedSent(en_sent, trans_sent))
+        en_sent_lower = []
+        trans_sent_lower = []
+
+        for x in en_sent:
+            '''
+            if x in string.punctuation:
+                break
+            else:
+            '''
+            en_sent_lower.append(x.lower())
+        for x in trans_sent:
+            '''
+            if x in string.punctuation:
+                break
+            else:
+            '''
+            trans_sent_lower.append(x.lower())
+
+        corpus.append(AlignedSent(en_sent_lower, trans_sent_lower))
     return corpus
 
 
@@ -84,14 +112,29 @@ def word_count(file_path):
     # Only for English so far.
     with open(file_path, "r", encoding='utf-8') as myfile:
         data = myfile.read().replace('\n', ' ')
+
     data = data.split(' ')
-    fdist1 = FreqDist(data)
+
+    '''
+    data = tokenizer(data)
+
+    data_refined = []
+
+    for x in data:
+        if x in string.punctuation:
+            break
+        else:
+            data_refined.append(x.lower())
+    # TODO consider merging methods word_count and para_as_sent
+    '''
+    fdist1 = FreqDist(data)  # use data_refined for punctuation
     return fdist1
 
 
 def write_common_words_translations(model, wc, topN, output):
     with open(output, 'wt', encoding='utf-8') as trans_file:
         trans_writer = csv.writer(trans_file, delimiter='\t')
+        # TODO implement a new method of evaluation (based on Pierre's advice)
         for (word, count) in wc.most_common(topN):
             # print(search_word_translation(model, word))
             for (trans, score) in search_word_translation(model, word):
@@ -103,21 +146,28 @@ def write_common_words_translations(model, wc, topN, output):
 if __name__ == '__main__':
     aligned_paras = []
     wc = FreqDist()
+
+    # Structures: 1-paragraph alignment only, 2-sentence alignment based on paragraphs, 3-direct sentence alignment
+    structures = {1: "para", 2: "psent", 3: "sent"}
+    struct_num = 1
+
     for i in range(1, 44):
-        en_path = 'translation-dashboard/data/en-ba-para-align/en-chapter-' + str(i) + '.txt'
-        ba_path = 'translation-dashboard/data/en-ba-para-align/ba-chapter-' + str(i) + '.txt'
+        en_path = 'translation-dashboard/data/en-ba-' + structures[struct_num] + '-align/en-chapter-' + str(i) + '.txt'
+        ba_path = 'translation-dashboard/data/en-ba-' + structures[struct_num] + '-align/ba-chapter-' + str(i) + '.txt'
         aligned_paras.extend(para_as_sent(en_path, ba_path))
         wc += word_count(en_path)
+    # print (wc.freq("i"))
 
-    num_iterations = 5
+    num_iterations = 20
     start = timer()
     model = IBMModel2(aligned_paras, num_iterations)
     end = timer()
-    timeelapsed = end - start
+    timeelapsed = end - start  # timer will only evaluate time taken to run IBM Models
 
     with open('align_models/ibm-model-runtimes.csv', 'a', encoding='utf-8') as output_file:
         output_writer = csv.writer(output_file, delimiter='\t')
-        output_writer.writerow(["2", str(num_iterations), timeelapsed, socket.gethostname()])
+        output_writer.writerow(
+            ["2", str(num_iterations), timeelapsed, socket.gethostname(), 'struct' + str(struct_num)])
     output_file.close()
 
     # Save model and word count
@@ -125,4 +175,4 @@ if __name__ == '__main__':
         dill.dump(model, m_file)
     with open('align_models/en.wc', 'wb') as wc_file:
         pickle.dump(wc, wc_file)
-    write_common_words_translations(model, wc, 200, 'align_models/word-align2.csv')
+    write_common_words_translations(model, wc, 50, 'align_models/word-align.csv')

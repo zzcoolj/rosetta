@@ -68,21 +68,30 @@ def para_as_sent(en_path, trans_path):
 
     corpus = []
     for i in range(len(en_paragraphs)):
+        '''
         en_sent = tokenizer(en_paragraphs[i])
         trans_sent = tokenizer(trans_paragraphs[i])
+        '''
+        en_sent = en_paragraphs[i].split()
+        trans_sent = trans_paragraphs[i].split()
+
         en_sent_lower = []
         trans_sent_lower = []
 
         for x in en_sent:
+            '''
             if x in string.punctuation:
                 break
             else:
-                en_sent_lower.append(x.lower())
+            '''
+            en_sent_lower.append(x.lower())
         for x in trans_sent:
+            '''
             if x in string.punctuation:
                 break
             else:
-                trans_sent_lower.append(x.lower())
+            '''
+            trans_sent_lower.append(x.lower())
 
         corpus.append(AlignedSent(en_sent_lower, trans_sent_lower))
     return corpus
@@ -102,6 +111,10 @@ def word_count(file_path):
     # Only for English so far.
     with open(file_path, "r", encoding='utf-8') as myfile:
         data = myfile.read().replace('\n', ' ')
+
+    data = data.split(' ')
+
+    '''
     data = tokenizer(data)
 
     data_refined = []
@@ -112,8 +125,8 @@ def word_count(file_path):
         else:
             data_refined.append(x.lower())
     # TODO consider merging methods word_count and para_as_sent
-
-    fdist1 = FreqDist(data_refined)
+    '''
+    fdist1 = FreqDist(data) # use data_refined for punctuation
     return fdist1
 
 
