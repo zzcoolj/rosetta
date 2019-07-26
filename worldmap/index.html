@@ -768,12 +768,21 @@
             document.getElementById("nav").style.visibility = "visible";
             document.getElementById("img").style.visibility = "visible";
             document.getElementById("section").style.visibility = "visible";
-        } else {
+        }
+        else if (bubble.name === 'Basque')
+        {
+            openInNewTab('../translation-dashboard/table.html?chapter=1');
+        }
+        else {
             document.getElementById("nav").style.visibility = "hidden";
             document.getElementById("img").style.visibility = "hidden";
             document.getElementById("section").style.visibility = "hidden";
         }
     });
+    function openInNewTab(url) {
+        var win = window.open(url, '_blank');
+        win.focus();
+    }
     function ml() {
         document.getElementById("title").innerText = "Monteiro Lobato (1934)"
         document.getElementById("info").innerHTML = "It is quite visible why there is no paratext for the translation by Monteiro Lobato. As he was the owner of the publishing house, Companhia Editora Nacional, he had chosen the text to be translated and he did not need a validation for his translation. Also, as a famous writer it was crucial that his name appeared on the cover so the readers could identify him. His translation and Flaksman’s have their names on the cover. Although there are many studies on Lobato and his translation strategy, his pedagogical use, there is not exactly a study on his translation of HF, since in that text he kept the characters from Twain’s book, not including his own to tell the story of HF. But he makes visible cuts (the two notes of Twain: notice and explanatory), the poem “Ode to Stephen Dowling Bots, Dec’d” (Chapter 17), Hamlet’s Soliloquy (Chapter 21) and everything that he must have considered unnecessarily for translation, according to what some Lobato scholars explain his free way of intervening in the text.";
