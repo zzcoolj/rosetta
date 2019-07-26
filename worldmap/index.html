@@ -132,7 +132,8 @@
             centered: 'DEU', // position
             country: 'Germany',
             fillKey: 'wr',
-            date: '1954-03-01'
+            date: '1954-03-01',
+            linkTag: 'ge'
         },
         {
             name: 'Italian',
@@ -169,7 +170,8 @@
             centered: 'RUS', // position
             country: 'Russia',
             fillKey: 'wr',
-            date: '1954-03-01'
+            date: '1954-03-01',
+            linkTag: 'ru'
         },
         {
             name: 'Spanish',
@@ -207,7 +209,8 @@
             centered: 'BGR', // position
             country: 'Bulgaria',
             fillKey: 'mr',
-            date: '1954-03-01'
+            date: '1954-03-01',
+            linkTag: 'bu'
         },
         {
             name: 'Czech',
@@ -239,7 +242,8 @@
             centered: 'NLD', // position
             country: 'Netherlands',
             fillKey: 'mr',
-            date: '1954-03-01'
+            date: '1954-03-01',
+            linkTag: 'du'
         },
         {
             name: 'Estonian',
@@ -260,7 +264,8 @@
             centered: 'FIN', // position
             country: 'Finland',
             fillKey: 'mr',
-            date: '1954-03-01'
+            date: '1954-03-01',
+            linktag: 'fi'
         },
         {
             name: 'Greek',
@@ -289,7 +294,8 @@
             centered: 'HUN', // position
             country: 'Hungary',
             fillKey: 'mr',
-            date: '1954-03-01'
+            date: '1954-03-01',
+            linkTag: 'hu'
         },
         {
             name: 'Icelandic',
@@ -345,7 +351,8 @@
             centered: 'POL', // position
             country: 'Poland',
             fillKey: 'mr',
-            date: '1954-03-01'
+            date: '1954-03-01',
+            linkTag: 'pol'
         },
         {
             name: 'Portuguese',
@@ -353,7 +360,8 @@
             centered: 'PRT', // position
             country: 'Portugal',
             fillKey: 'mr',
-            date: '1954-03-01'
+            date: '1954-03-01',
+            linkTag: 'por'
         },
         {
             name: 'Romanian',
@@ -406,7 +414,8 @@
             centered: 'UKR', // position
             country: 'Ukraine',
             fillKey: 'mr',
-            date: '1954-03-01'
+            date: '1954-03-01',
+            linkTag: 'uk'
         },
         //Under-resourced languages
         {
@@ -773,41 +782,11 @@
         {
             openInNewTab('../translation-dashboard/table.html?chapter=1');
         }
-        else if (bubble.name === 'Bulgarian')
+        else if (bubble.linkTag === 'bu' || bubble.linkTag === 'du' || bubble.linkTag === 'fi'
+                    || bubble.linkTag === 'ge' || bubble.linkTag === 'hu' || bubble.linkTag === 'pol'
+                    || bubble.linkTag === 'por' || bubble.linkTag === 'ru' || bubble.linkTag === 'uk')
         {
-            openInNewTab('../translation-dashboard/pie-chart.html?target_lang=bu');
-        }
-        else if (bubble.name === 'Dutch')
-        {
-            openInNewTab('../translation-dashboard/pie-chart.html?target_lang=du');
-        }
-        else if (bubble.name === 'Finnish')
-        {
-            openInNewTab('../translation-dashboard/pie-chart.html?target_lang=fi');
-        }
-        else if (bubble.name === 'German')
-        {
-            openInNewTab('../translation-dashboard/pie-chart.html?target_lang=ge');
-        }
-        else if (bubble.name === 'Hungarian')
-        {
-            openInNewTab('../translation-dashboard/pie-chart.html?target_lang=hu');
-        }
-        else if (bubble.name === 'Polish')
-        {
-            openInNewTab('../translation-dashboard/pie-chart.html?target_lang=pol');
-        }
-        else if (bubble.name === 'Portuguese')
-        {
-            openInNewTab('../translation-dashboard/pie-chart.html?target_lang=por');
-        }
-        else if (bubble.name === 'Russian')
-        {
-            openInNewTab('../translation-dashboard/pie-chart.html?target_lang=ru');
-        }
-        else if (bubble.name === 'Ukrainian')
-        {
-            openInNewTab('../translation-dashboard/pie-chart.html?target_lang=uk');
+            openInNewTab('../translation-dashboard/pie-chart.html?target_lang=' + bubble.linkTag);
         }
         else {
             document.getElementById("nav").style.visibility = "hidden";
