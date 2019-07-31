@@ -41,8 +41,22 @@ Yiddish|	pdf|	|	|		Tom and Huck(Noah)	|poor scan quality<br/> As I don't underst
 - [Check out team work boards in Trello](https://trello.com/b/LulZRg4T/rosetta4slavic)
 - Jump into the hackers team: contact me!
 
-### Alignment algorithms research
+### Alignment Algorithms Research
 - Read this PhD [thesis](references/73143_XU_2016_diffusion.pdf) Page 83 (P98 in pdf) - Page 89 (P104 in pdf)
+
+### Alignment Evaluations
+- We have three main structures of producing word alignment, as shown in the diagram below. 
+![3-structure-diagram](images/3-structure-diagram.png)
+- During evaluation, we also devised a "cleaning" procedure in our pre-processing, entailing these three changes: removing punctuation marks, lower-casing tokens, and applying different tokenizers.
+- After four evaluations of accuracy, we produced the results below.
+
+| IBM Model # | Iteration Count | Words Evaluated | Structure # | "Cleaning" Status | Accuracy Produced |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| IBM Model 1 | 20 iterations | 50 words | Structure 1 | No Cleaning | 40.00% |
+| IBM Model 1 | 20 iterations | 50 words | Structure 1 | Yes Cleaning | 32.00% |
+| IBM Model 1 | 20 iterations | 20 words | Structure 2 | Yes Cleaning | 25.00% |
+| IBM Model 2 | 20 iterations | 50 words | Structure 1 | No Cleaning | 32.00% |
+
 
 ### Experts analysis and crowd sourcing
 - Papers to read
