@@ -142,6 +142,22 @@ def write_common_words_translations(model, wc, topN, output):
                     trans = 'None'
                 trans_writer.writerow([word, trans, score])
 
+# option 1 for randomization
+def write_random1_words_translations(model, wc, numWords, output):
+    with open(output, 'wt', encoding='utf-8') as trans_file:
+        trans_writer = csv.writer(trans_file, delimiter='\t')
+        wordlist = []
+        for (word, count) in wc.most_common(wc.N()): #wc.N() returns total number of samples
+            for i in range(count):
+                wordlist.append(word)
+        print(wordlist)
+        for i in range(numWords):
+            rand = random.randint(0, len(wordlist))
+            for (trans, score) in search_word_translation(model, wordlist[rand]):
+                if trans is None:
+                    trans = 'None'
+                trans_writer.writerow([wordlist[rand], trans, score])
+
 # option 2 for randomization
 def write_random2_words_translations(model, wc, numWords, output):
     with open(output, 'wt', encoding='utf-8') as trans_file:
@@ -190,4 +206,4 @@ if __name__ == '__main__':
         dill.dump(model, m_file)
     with open('align_models/en.wc', 'wb') as wc_file:
         pickle.dump(wc, wc_file)
-    write_random2_words_translations(model, wc, 50, 'align_models/word-align.csv')
+    write_random1_words_translations(model, wc, 50, 'align_models/word-align.csv')
