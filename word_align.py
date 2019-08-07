@@ -142,11 +142,12 @@ def write_common_words_translations(model, wc, topN, output):
                     trans = 'None'
                 trans_writer.writerow([word, trans, score])
 
-# option 1 for randomization
+# option 1 for randomization (randomly from the text)
 def write_random1_words_translations(model, wc, numWords, output):
     with open(output, 'wt', encoding='utf-8') as trans_file:
         trans_writer = csv.writer(trans_file, delimiter='\t')
         wordlist = []
+        # TODO the following for loop can be more concise
         for (word, count) in wc.most_common(wc.N()): #wc.N() returns total number of samples
             for i in range(count):
                 wordlist.append(word)
@@ -158,7 +159,7 @@ def write_random1_words_translations(model, wc, numWords, output):
                     trans = 'None'
                 trans_writer.writerow([wordlist[rand], trans, score])
 
-# option 2 for randomization
+# option 2 for randomization (randomly from a dictionary-like "table" of word options)
 def write_random2_words_translations(model, wc, numWords, output):
     with open(output, 'wt', encoding='utf-8') as trans_file:
         trans_writer = csv.writer(trans_file, delimiter='\t')
