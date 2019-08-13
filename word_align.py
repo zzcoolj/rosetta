@@ -158,6 +158,11 @@ def write_random1_words_translations(model, wc, numWords, output):
                 if trans is None:
                     trans = 'None'
                 trans_writer.writerow([wordlist[rand], trans, score])
+                wordlist.remove(wordlist[rand])
+                '''
+                l = [wordlist[rand], trans, str(score)]
+                trans_writer.writerow('\t'.join(l))
+                '''
 
 # option 2 for randomization (randomly from a dictionary-like "table" of word options)
 def write_random2_words_translations(model, wc, numWords, output):
@@ -191,7 +196,7 @@ if __name__ == '__main__':
     # print (wc.freq("i"))
 
 
-    num_iterations = 3
+    num_iterations = 20
     start = timer()
     model = IBMModel1(aligned_paras, num_iterations)
     end = timer()
@@ -207,4 +212,4 @@ if __name__ == '__main__':
         dill.dump(model, m_file)
     with open('align_models/en.wc', 'wb') as wc_file:
         pickle.dump(wc, wc_file)
-    write_random1_words_translations(model, wc, 50, 'align_models/word-align.csv')
+    write_random2_words_translations(model, wc, 50, 'align_models/word-align.csv')
