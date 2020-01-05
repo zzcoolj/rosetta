@@ -2,7 +2,7 @@ import csv
 
 #file_name is name of csv file
 def create_aligned_matrix(file_name, num_eng_words, top_n):
-    with open(file_name, 'r') as csvFile:
+    with open(file_name, 'r', encoding='utf-8') as csvFile:
         csvreader = csv.reader(csvFile, delimiter = ' ')
         #row_count = sum(1 for row in csvreader) # number of rows in csv file
         matrix = []
@@ -10,6 +10,8 @@ def create_aligned_matrix(file_name, num_eng_words, top_n):
         my_list = []
         for row in csvreader:
             vals = row[0].split("\t")
+            print(vals)
+            '''
             if(line_count <= (num_eng_words * top_n)): # and line_count <= row_count  
                 if line_count % top_n == 1:
                     my_list.append(vals[0])  # english word
@@ -20,6 +22,7 @@ def create_aligned_matrix(file_name, num_eng_words, top_n):
                         matrix.append(my_list)
                         my_list = []
                 line_count += 1
+            '''
         return matrix
 
 

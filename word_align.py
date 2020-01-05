@@ -13,6 +13,7 @@ from nltk.translate import IBMModel1, IBMModel2, IBMModel3, IBMModel4, IBMModel5
 from nltk.tokenize import word_tokenize as tokenizer
 from timeit import default_timer as timer
 import socket
+import random
 
 
 def sentence_alignment_from_one_paragraph(en_para, po_para):
@@ -141,6 +142,43 @@ def write_common_words_translations(model, wc, topN, output):
                     trans = 'None'
                 trans_writer.writerow([word, trans, score])
 
+# option 1 for randomization (randomly from the text)
+def write_random1_words_translations(model, wc, numWords, output):
+    with open(output, 'wt', encoding='utf-8') as trans_file:
+        trans_writer = csv.writer(trans_file, delimiter='\t')
+        wordlist = []
+        # TODO the following for loop can be more concise
+        for (word, count) in wc.most_common(wc.N()): #wc.N() returns total number of samples
+            for i in range(count):
+                wordlist.append(word)
+        print(wordlist)
+        for i in range(numWords):
+            rand = random.randint(0, len(wordlist))
+            for (trans, score) in search_word_translation(model, wordlist[rand]):
+                if trans is None:
+                    trans = 'None'
+                trans_writer.writerow([wordlist[rand], trans, score])
+                wordlist.remove(wordlist[rand])
+                '''
+                l = [wordlist[rand], trans, str(score)]
+                trans_writer.writerow('\t'.join(l))
+                '''
+
+# option 2 for randomization (randomly from a dictionary-like "table" of word options)
+def write_random2_words_translations(model, wc, numWords, output):
+    with open(output, 'wt', encoding='utf-8') as trans_file:
+        trans_writer = csv.writer(trans_file, delimiter='\t')
+        wordlist = []
+        for (word, count) in wc.most_common(wc.N()): #wc.N() returns total number of samples
+            wordlist.append(word)
+        print(wordlist)
+        for i in range(numWords):
+            rand = random.randint(0, len(wordlist))
+            for (trans, score) in search_word_translation(model, wordlist[rand]):
+                if trans is None:
+                    trans = 'None'
+                trans_writer.writerow([wordlist[rand], trans, score])
+
 
 if __name__ == '__main__':
     aligned_paras = []
@@ -148,7 +186,7 @@ if __name__ == '__main__':
 
     # Structures: 1-paragraph alignment only, 2-sentence alignment based on paragraphs, 3-direct sentence alignment
     structures = {1: "para", 2: "psent", 3: "sent"}
-    struct_num = 3
+    struct_num = 1
 
     for i in range(1, 44):
         en_path = 'translation-dashboard/data/en-ba-' + structures[struct_num] + '-align/en-chapter-' + str(i) + '.txt'
@@ -174,4 +212,4 @@ if __name__ == '__main__':
         dill.dump(model, m_file)
     with open('align_models/en.wc', 'wb') as wc_file:
         pickle.dump(wc, wc_file)
-    write_common_words_translations(model, wc, 100, 'align_models/word-align.csv')
+    write_random2_words_translations(model, wc, 50, 'align_models/word-align.csv')
