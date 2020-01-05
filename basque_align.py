@@ -5,6 +5,7 @@ from nltk.tokenize import sent_tokenize as stokenizer
 
 def get_basque_chapter(folder_path, chap):
     """
+    Basque corpus is collected by dynamic_web_crawler.py
     :param folder_path:
     :param chap: int (In Basque version, Chapter0 is the author information. Real content starts with 1)
     :return: [paragraph (type: String)]
@@ -24,7 +25,7 @@ def get_basque_chapter(folder_path, chap):
 
 def get_english_chapter(path, chap):
     """
-
+    For tagged corpus
     :param path:
     :param chap: int
     :return: [paragraph (type: String)]
@@ -50,6 +51,58 @@ def get_english_chapter(path, chap):
                     exit()
             else:
                 continue
+    return paras
+
+
+def get_bulgarian_chapter(path, chap_int, para_separ, para_separ_type, end_valid_line_num, file_total_lines):
+    """
+     :param file_path:
+     :param para_separ:
+     :param para_separ_type: 1:startswith (1 para/line); 2:endswith (1 para/line); 3:contains (n lines/para)
+     :param end_valid_line_num:
+     :param file_total_lines:
+     :return:
+     """
+    with open(path, 'r', encoding='utf-8') as file:
+        data = file.readlines()
+    total_lines = len(data)
+    if total_lines != file_total_lines:  # File information matching check
+        print('[ERROR] #lines does not match.')
+        print(total_lines)
+        exit()
+    chapter_count = 0
+    chapter_content_starting_line = []
+    if para_separ_type == 1:
+        for i in range(total_lines):
+            if data[i].startswith(para_separ):
+                chapter_count += 1
+                chapter_content_starting_line.append(i)
+    else:
+        print('[ERROR] para_separ_type invalid')
+    if chapter_count != 43:
+        print('[ERROR] #chapters is not 43.')
+        print('#chapters: ', chapter_count)
+        exit()
+
+    paras = []
+    if para_separ_type == 1 or para_separ_type == 2:
+        # We say each none-empty line in chapter is a paragraph EXCEPT some special content in the last chapter.
+
+        # TODO: Attention +2 works for Bulgarian, Ukrainian and Finnish. But it is depend on txt content structure
+        # For Bulgarian: +1 is chapter title, +2 should be empty
+        start_line_num = chapter_content_starting_line[chap_int - 1] + 2
+        if chap_int == chapter_count:  # last chapter: special case
+            end_line_num = end_valid_line_num
+        else:
+            end_line_num = chapter_content_starting_line[chap_int]
+        if start_line_num > end_line_num:
+            print('[ERROR] start_line_num > end_line_num')
+
+        for line_num in range(start_line_num, end_line_num):
+            if not str.strip(data[line_num]):  # empty line
+                continue
+            else:
+                paras.append(str.strip(data[line_num]))
     return paras
 
 
@@ -122,33 +175,15 @@ def aligned_indexes2aligned_texts(aligned_indexes, en_list_of_texts, ba_list_of_
     return en_aligned_text_list, ba_aligned_text_list
 
 
-def align_sents_of_aligned_chapter_pair(chap):
-    sents_list_of_aligned_chapters_en, sents_list_of_aligned_chapters_ba = get_sents_from_aligned_chapter(chap)
-    en_aligned_sents = []
-    ba_aligned_sents = []
-    for i in range(len(sents_list_of_aligned_chapters_en)):
-        en_aligned_text_list, ba_aligned_text_list = align_and_show(sents_list_of_aligned_chapters_en[i], sents_list_of_aligned_chapters_ba[i], '', '', write=False)
-        en_aligned_sents.extend(en_aligned_text_list)
-        ba_aligned_sents.extend(ba_aligned_text_list)
-
-    en_output_file = "translation-dashboard/data/en-ba-psent-align/en-chapter-" + str(chap) + ".txt"
-    ba_output_file = "translation-dashboard/data/en-ba-psent-align/ba-chapter-" + str(chap) + ".txt"
-
-    with open(en_output_file, 'w', encoding='utf-8') as en_file:
-        for i in range(len(en_aligned_sents)):
-            en_file.write(en_aligned_sents[i].replace("<para>", " ") + '\n')
-    with open(ba_output_file, 'w', encoding='utf-8') as ba_file:
-        for i in range(len(ba_aligned_sents)):
-            ba_file.write(ba_aligned_sents[i].replace("<para>", " ") + '\n')
-
-
-def align_and_show(chap_en, chap_ba, en_output_path, ba_output_path, show_detail=False, write=True):
+def align_and_show(chap_en, chap_ba, en_output_path, ba_output_path, write=True):
     """
 
+    :param write:
+    :param ba_output_path:
+    :param en_output_path:
     :param chap: chapter number (int)
     :param chap_en: list of texts in the corresponding English Chapter
     :param chap_ba: ... Basque ...
-    :param show_detail:
     :return:
     """
     def align_index(index_mapping):
@@ -172,6 +207,27 @@ def align_and_show(chap_en, chap_ba, en_output_path, ba_output_path, show_detail
     aligned_indexes = align_index(index_mapping)
     en_aligned_text_list, ba_aligned_text_list = aligned_indexes2aligned_texts(aligned_indexes, chap_en, chap_ba, en_output_path, ba_output_path, write=write)
     return en_aligned_text_list, ba_aligned_text_list
+
+
+# Structure 2
+def align_sents_of_aligned_chapter_pair(chap):
+    sents_list_of_aligned_chapters_en, sents_list_of_aligned_chapters_ba = get_sents_from_aligned_chapter(chap)
+    en_aligned_sents = []
+    ba_aligned_sents = []
+    for i in range(len(sents_list_of_aligned_chapters_en)):
+        en_aligned_text_list, ba_aligned_text_list = align_and_show(sents_list_of_aligned_chapters_en[i], sents_list_of_aligned_chapters_ba[i], '', '', write=False)
+        en_aligned_sents.extend(en_aligned_text_list)
+        ba_aligned_sents.extend(ba_aligned_text_list)
+
+    en_output_file = "translation-dashboard/data/en-ba-psent-align/en-chapter-" + str(chap) + ".txt"
+    ba_output_file = "translation-dashboard/data/en-ba-psent-align/ba-chapter-" + str(chap) + ".txt"
+
+    with open(en_output_file, 'w', encoding='utf-8') as en_file:
+        for i in range(len(en_aligned_sents)):
+            en_file.write(en_aligned_sents[i].replace("<para>", " ") + '\n')
+    with open(ba_output_file, 'w', encoding='utf-8') as ba_file:
+        for i in range(len(ba_aligned_sents)):
+            ba_file.write(ba_aligned_sents[i].replace("<para>", " ") + '\n')
 
 
 # Structure 3
@@ -266,26 +322,37 @@ def chap_to_sent_align(chap):
     #print(ba_aligned_text_list)
 
 
-
 if __name__ == '__main__':
-    # Structure 1
     en_path = 'corpora/english-modified.txt'
     ba_folder_path = 'corpora/basque'
-    for i in range(1, 44):
-        print('Chapter:', str(i))
-        en_file_path = 'translation-dashboard/data/en-ba-para-align/en-chapter-' + str(i) + '.txt'
-        ba_file_path = 'translation-dashboard/data/en-ba-para-align/ba-chapter-' + str(i) + '.txt'
-        if i == 44:
-            align_and_show(get_english_chapter(en_path, i), get_basque_chapter(ba_folder_path, i), en_file_path, ba_file_path, show_detail=True)
-        else:
-            align_and_show(get_english_chapter(en_path, i), get_basque_chapter(ba_folder_path, i), en_file_path, ba_file_path)
-        # if i == 3: exit()
+    bu_path = 'corpora/slavic/Bulgarian/Mark_Tven_-_Prikljuchenijata_na_Hykylberi_Fin_-1345-b.txt'
 
-    # Structure 2
+    # Structure 1
     for i in range(1, 44):
-        align_sents_of_aligned_chapter_pair(i)
+        # en_ba_output_path = 'translation-dashboard/data/en-ba-para-align/en-chapter-' + str(i) + '.txt'
+        # ba_output_path = 'translation-dashboard/data/en-ba-para-align/ba-chapter-' + str(i) + '.txt'
+        # align_and_show(get_english_chapter(en_path, i), get_basque_chapter(ba_folder_path, i), en_ba_output_path,
+        #                ba_output_path)
 
-    # Structure 3
-    print('\n' + 'Running Structure 3...')
-    for i in range(1, 44):
-        chap_to_sent_align(i)
+        en_bu_output_path = 'translation-dashboard/data/en-bu-para-align/en-chapter-' + str(i) + '.txt'
+        bu_output_path = 'translation-dashboard/data/en-bu-para-align/bu-chapter-' + str(i) + '.txt'
+        align_and_show(get_english_chapter(en_path, i), get_bulgarian_chapter(bu_path, i, '\tГлава ', 1, 2537, 2549-1),
+                       en_bu_output_path, bu_output_path)
+
+
+    # # Structure 2
+    # for i in range(1, 44):
+    #     align_sents_of_aligned_chapter_pair(i)
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    # # Structure 3
+    # print('\n' + 'Running Structure 3...')
+    # for i in range(1, 44):
+    #     chap_to_sent_align(i)

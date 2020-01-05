@@ -14,6 +14,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
     var chapter = getQueryVariable("chapter");
+    var dict_language_shorname = {};
+    dict_language_shorname[2] = 'ba';
+    dict_language_shorname[3] = 'bu';
+    var dict_language_name = {};
+    dict_language_name[2] = 'Basque';
+    dict_language_name[3] = 'Bulgarian';
+
+    var lang = dict_language_shorname[getQueryVariable("lang")];
+    var language = dict_language_name[getQueryVariable("lang")];
     console.log("chapter: " + chapter);
     var text_arr = [];
     var text_arr_po = [];
@@ -38,8 +47,8 @@ function readTextFile_En(file, text_arr)
     }
     rawFile.send(null);
 }
-readTextFile_En("data/en-ba-para-align/en-chapter-" + chapter +".txt", text_arr);
-readTextFile_En("data/en-ba-para-align/ba-chapter-" + chapter + ".txt", text_arr_po);
+readTextFile_En("data/en-"+lang+"-para-align/en-chapter-" + chapter +".txt", text_arr);
+readTextFile_En("data/en-"+lang+"-para-align/"+lang+"-chapter-" + chapter + ".txt", text_arr_po);
 
 // //TODO delete function below
 // function readTextFile_Po(file)
@@ -89,7 +98,7 @@ function addElement() {
 
     var z = document.createElement("TH");
     z.setAttribute("class", "th");
-    var t = document.createTextNode("Basque");
+    var t = document.createTextNode(language);
     z.appendChild(t);
     y.appendChild(z);
 
@@ -134,7 +143,7 @@ function getQueryVariable(variable)
 }
 
 
-document.getElementById("parent").innerHTML = '<h3 align="center"> <span class="lefttab"> English - Basque Chapter '+chapter+'</h3>';
+document.getElementById("parent").innerHTML = '<h3 align="center"> <span class="lefttab"> English - '+language+' Chapter '+chapter+'</h3>';
 
 </script>
 
