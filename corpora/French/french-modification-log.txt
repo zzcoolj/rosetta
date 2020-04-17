@@ -1,0 +1,10 @@
+1. line 356
+	before: 
+		<chapter id="7" name="Mademoiselle Williamson"></chapter>
+	after:
+		put the "</chapter>" to line 434 
+2. line 486
+	before: 
+		<p>— Le radeau ? Il n’y a plus de radeau, massa Huck.</p></chapter>
+	after: 
+		put the "</chapter>" to line 487 
