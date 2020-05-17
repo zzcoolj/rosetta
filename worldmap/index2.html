@@ -20,9 +20,18 @@
                 iconUrl: 'dots/blue-dot.png',
                 iconSize: [15, 15],
             });
+            var orangeIcon = L.icon({
+                iconUrl: 'dots/orange-dot.png',
+                iconSize: [15, 15],
+            });
+            var redIcon = L.icon({
+                iconUrl: 'dots/red-dot.png',
+                iconSize: [15, 15],
+            });
 
 
             var mymap = L.map('mapid').setView([22.903585,3.8709499], 2);
+            mymap.setMaxBounds(mymap.getBounds());
 
             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -34,11 +43,34 @@
             }).addTo(mymap);
 
 		    const english = L.marker([41.7671184,-72.7015662], {icon: blueIcon}).
-		        bindPopup("<b>The Adventures of Huckleberry Finn</b><br>Language: English<br>Date: February 18, 1885<br>Publisher: undefined<br>Location: Mark Twain House in Hartford, CT<br>Page Count: undefined",
+		        bindPopup("<b>The Adventures of Huckleberry Finn</b><br><b>Language:</b> English<br><b>Date:</b> February 18, 1885<br><b>Publisher:</b> undefined<br><b>Location:</b> Mark Twain House in Hartford, CT<br><b>Page Count:</b> 366",
+		        {className: 'stylePopup'}).closePopup();
+		    const korean = L.marker([37.5665, 126.9780], {icon: blueIcon}).
+		        bindPopup("<b>Hok'ulperi p'in-ui mohom</b><br><b>Language:</b> Korean<br><b>Translator:</b> Kwak, Kyong-su<br><b>Date:</b> 1990<br><b>Publisher:</b> Kumsong Youth Publishing House (Kumsong ch'ulp'ansa)<br><b>Location:</b> Seoul, South Korea<br><b>Page Count:</b> 534",
 		        {className: 'stylePopup'}).closePopup();
 
 
+		    const arabic = L.marker([30.0444, 31.2357], {icon: orangeIcon}).
+		        bindPopup("<b>Mughāmrāt Hilkbirīfīn</b><br><b>Language:</b> Arabic<br><b>Translator:</b> Al-Siwīfī, Mukhtār<br><b>Date:</b> 1986<br><b>Publisher:</b> Al-Hayʻah al-Miṣrīyah al-Āmmah lil-Kitāb<br><b>Location:</b> Al-Qāhirah (Cairo), Egypt<br><b>Page Count:</b> 363",
+		        {className: 'stylePopup'}).closePopup();
+		    const estonian = L.marker([59.4129419,24.673865], {icon: orangeIcon}).
+		        bindPopup("<b>Huckleberry Finni seiklused</b><br><b>Language:</b> Estonian<br><b>Translator:</b> Bergmann, A.; Sillaots, M.<br><b>Date:</b> 1989<br><b>Publisher:</b> Eesti Raamat<br><b>Location:</b> Tallinn, Estonia<br><b>Page Count:</b> 512",
+		        {className: 'stylePopup'}).closePopup();
+
+
+		    const albanian1 = L.marker([41.327490, 19.818613], {icon: redIcon}).
+		        bindPopup("<b>Aventurat e Hekelber Finit</b><br><b>Language:</b> Albanian<br><b>Translator:</b> Zheji, Gjergj<br><b>Date:</b> 2006<br><b>Publisher:</b> Argeta LMG<br><b>Location:</b> Tiranë, Albania<br><b>Page Count:</b> undefined",
+		        {className: 'stylePopup'}).closePopup();
+		    const albanian2 = L.marker([41.320261, 19.812930], {icon: redIcon}).
+		        bindPopup("<b>Aventurat e Hakëlberi Finit</b><br><b>Language:</b> Albanian<br><b>Translator:</b> Koka, Dritan<br><b>Date:</b> 2008<br><b>Publisher:</b> Dritan<br><b>Location:</b> Tiranë, Albania<br><b>Page Count:</b> 243",
+		        {className: 'stylePopup'}).closePopup();
+
             english.addTo(mymap);
+            korean.addTo(mymap);
+            arabic.addTo(mymap);
+            estonian.addTo(mymap);
+            albanian1.addTo(mymap);
+            albanian2.addTo(mymap);
         </script>
     </div>
 </body>
