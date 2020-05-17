@@ -1,3 +1,9 @@
 #mapid {
     height: 100vh;
 }
+
+.stylePopup .leaflet-popup-content-wrapper {
+    background: #3a5169;
+    color: #fff;
+    border-radius: 0px;
+}

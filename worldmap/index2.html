@@ -16,7 +16,13 @@
             crossorigin=""></script>
     <div id="mapid">
         <script>
-            var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+            var blueIcon = L.icon({
+                iconUrl: 'dots/blue-dot.png',
+                iconSize: [15, 15],
+            });
+
+
+            var mymap = L.map('mapid').setView([22.903585,3.8709499], 2);
 
             L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -26,6 +32,13 @@
                 zoomOffset: -1,
                 accessToken: 'pk.eyJ1IjoiYWxleHpoYWkiLCJhIjoiY2thYmJjZTgwMGNweDJwcWx0eHNlZG44eCJ9._j5SkAZME5uqhov1FmxBAA'
             }).addTo(mymap);
+
+		    const english = L.marker([41.7671184,-72.7015662], {icon: blueIcon}).
+		        bindPopup("<b>The Adventures of Huckleberry Finn</b><br>Language: English<br>Date: February 18, 1885<br>Publisher: undefined<br>Location: Mark Twain House in Hartford, CT<br>Page Count: undefined",
+		        {className: 'stylePopup'}).closePopup();
+
+
+            english.addTo(mymap);
         </script>
     </div>
 </body>

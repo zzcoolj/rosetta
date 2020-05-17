@@ -20,6 +20,7 @@ The goal of the World Map is to create a beautiful and functional global display
 ## Development Resources
 ### Leaflet
 - [Leaflet](https://leafletjs.com/)
+- [Documentation](https://leafletjs.com/reference-1.6.0.html)
 ### DataMaps
 - [DataMaps](http://datamaps.github.io)
 - [Code on GitHub](https://github.com/markmarkoh/datamaps/blob/master/README.md#getting-started)
