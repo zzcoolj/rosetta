@@ -9,6 +9,7 @@
 The goal of the World Map is to create a beautiful and functional global display of translations.
 ### Tasks
 - [ ] Input more data/fix data for different countries with Ronald’s resources and Shelley’s comments.
+- [ ] Add a key to explain the different dot colors.
 - [ ] Move the dots onto the city of publication, not a random place in the country.
 - [ ] Map Inter-country Connections
 - [ ] Visualize connections and translations over time with scroll
