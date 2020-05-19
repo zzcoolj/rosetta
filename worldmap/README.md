@@ -19,10 +19,10 @@ The goal of the World Map is to create a beautiful and functional global display
 ## Translation
 ### [Master Translation Information Spreadsheet](https://docs.google.com/spreadsheets/d/1IRu_YTL3WMbZdLDrWbwMc3vCNls2WDIxCz_7jwKT2Bw/edit#gid=0)
 ### Translation Resources 
-- [Original List 1](references/List of translations to feed the map1.pdf)
+- [Original List 1](references/List%of%translations%to%feed%the%map1.pdf)
 - [Original List 2](references/datav1.xlsx)
 - [Data4HFMap](references/Data4HFMap.docx)
-- [Huck's Persian Translations](references/Huck's Persian Translations.docx)
+- [Huck's Persian Translations](references/Huck's%Persian%Translations.docx)
 ## Development Resources
 ### Leaflet
 - [Leaflet](https://leafletjs.com/)
