@@ -43,10 +43,21 @@
                 accessToken: 'pk.eyJ1IjoiYWxleHpoYWkiLCJhIjoiY2thYmJjZTgwMGNweDJwcWx0eHNlZG44eCJ9._j5SkAZME5uqhov1FmxBAA'
             }).addTo(mymap);
 
+            //English Version from Hartford
 		    const english = L.marker([41.7671184,-72.7015662], {icon: blueIcon}).
-		        bindPopup("<b>The Adventures of Huckleberry Finn</b><br><b>Language:</b> English<br><b>Date:</b> February 18, 1885<br><b>Publisher:</b> undefined<br><b>Location:</b> Mark Twain House in Hartford, CT<br><b>Page Count:</b> 366",
+		        bindPopup("<b>Adventures of Huckleberry Finn</b><br><b>Language:</b> English<br><b>Date:</b> February 18, 1885<br><b>Publisher:</b> undefined<br><b>Location:</b> Hartford, CT<br><b>Page Count:</b> 366",
 		        {className: 'stylePopup'}).closePopup();
 		    english.addTo(mymap);
+		    //English Version from London in 1884
+		    const english1 = L.marker([51.490137,-0.1335877], {icon: blueIcon}).
+		        bindPopup("<b>Adventures of Huckleberry Finn</b><br><b>Language:</b> English<br><b>Date:</b> 1884<br><b>Publisher:</b> Chatto & Windus<br><b>Location:</b> London<br><b>Page Count:</b> undefined",
+		        {className: 'stylePopup'}).closePopup();
+		    english1.addTo(mymap);
+		    //English Version from NYC Century Magazine
+		    const english2 = L.marker([40.6971494,-74.2598679], {icon: blueIcon}).
+		        bindPopup("<b>Adventures of Huckleberry Finn</b><br><b>Language:</b> English<br><b>Date:</b> December 1884 and January 1885<br><b>Publisher:</b> Century Magazine<br><b>Location:</b> New York City, NY<br><b>Page Count:</b> undefined",
+		        {className: 'stylePopup'}).closePopup();
+		    english2.addTo(mymap);
 		    const korean = L.marker([37.5665, 126.9780], {icon: blueIcon}).
 		        bindPopup("<b>Hok'ulperi p'in-ui mohom</b><br><b>Language:</b> Korean<br><b>Translator:</b> Kwak, Kyong-su<br><b>Date:</b> 1990<br><b>Publisher:</b> Kumsong Youth Publishing House (Kumsong ch'ulp'ansa)<br><b>Location:</b> Seoul, South Korea<br><b>Page Count:</b> 534",
 		        {className: 'stylePopup'}).closePopup();
