@@ -1,824 +1,101 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-    .background {
-        fill: none;
-        pointer-events: all;
-    }
-    #states {
-        fill: #aaa;
-    }
-    #states .active {
-        fill: orange;
-    }
-    #state-borders {
-        fill: none;
-        stroke: #fff;
-        stroke-width: 1.5px;
-        stroke-linejoin: round;
-        stroke-linecap: round;
-        pointer-events: none;
-    }
-    #header {
-        /*background-color:black;*/
-        /*color:white;*/
-        text-align:center;
-        padding:5px;
-        width: 2300px;
-        height: 970px;
-    }
-    #nav {
-        line-height:30px;
-        background-color:#eeeeee;
-        height:300px;
-        width:200px;
-        float:left;
-        padding:5px;
-    }
-    #img {
-        float: left;
-    }
-    #cover{
-        height: 310px;
-    }
-    #section {
-        width:670px;
-        float:left;
-        padding:10px;
-    }
-    #footer {
-        background-color:black;
-        color:white;
-        clear:both;
-        text-align:center;
-        padding:5px;
-        width: 2300px;
-    }
-</style>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>World Map v2</title>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <script src="jquery-csv.js"></script>
 
+    <!--Leaflet-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""/>
+    <script src="addresspoints.js"></script>
+</head>
 <body>
-<script src="//d3js.org/d3.v3.min.js"></script>
-<script src="//d3js.org/topojson.v1.min.js"></script>
-<script src="datamaps.world.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
 
-<div id="header">
+    <!--Leaflet.markercluster-->
+    <link rel="stylesheet" href="MarkerCluster.css" />
+	<link rel="stylesheet" href="MarkerCluster.Default.css" />
+	<script src="leaflet.markercluster.js"></script>
 
-</div>
+    <div id="mapid">
+        <script type="text/javascript">
+            var blueIcon = L.icon({
+                iconUrl: 'dots/blue-dot.png',
+                iconSize: [15, 15],
+            });
+            var orangeIcon = L.icon({
+                iconUrl: 'dots/orange-dot.png',
+                iconSize: [15, 15],
+            });
+            var redIcon = L.icon({
+                iconUrl: 'dots/red-dot.png',
+                iconSize: [15, 15],
+            });
+            var icons = [blueIcon, orangeIcon, redIcon];
 
-<div id="nav">
-    <p onclick="ap()">Alda Porto (2013)</p>
-    <p onclick="re()">Rosaura Eichenberg (2011)</p>
-    <p onclick="ml()">Monteiro Lobato (1934)</p>
-    <p onclick="sf()">Sergio Flaksman (1996)</p>
-</div>
+            var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                maxZoom: 20,
+                id: 'mapbox/light-v10',
+                tileSize: 512,
+                zoomOffset: -1,
+                minZoom: 2,
+                accessToken: 'pk.eyJ1IjoiYWxleHpoYWkiLCJhIjoiY2thYmJjZTgwMGNweDJwcWx0eHNlZG44eCJ9._j5SkAZME5uqhov1FmxBAA'
+            });
 
-<div id="img">
-    <img id="cover" src="">
-</div>
+            var mymap = L.map('mapid', {layers: [tiles]}).setView([22.903585,3.8709499], 2);
+            mymap.setMaxBounds(mymap.getBounds());
 
-<div id="section">
-    <h1 id="title"></h1>
-    <p id="info"></p>
-</div>
+            var markers = L.markerClusterGroup();
 
-<div id="footer">
-    GLOBAL Digital Humanities, Crowdsourcing, Knowledge Organization, and Deep Mapping (GLOBAL HUCK)
-</div>
+            for (var i = 0; i < addressPoints.length; i++) {
+                var pt = addressPoints[i];
+                var lang = pt[0];
+                var status = pt[1];
+                var title = pt[2];
+                var translator = pt[3];
+                var year = pt[4];
+                var publisher = pt[5];
+                var city = pt[6];
+                var page = pt[7];
+                var lat = pt[8];
+                var lng = pt[9];
 
-<script>
-    var bubble_map = new Datamap({
-        element: document.getElementById("header"),
-        geographyConfig: {
-            popupOnHover: false,
-            highlightOnHover: false
-        },
-        fills: {
-            defaultFill: '#ABDDA4',
-            wr: 'blue',
-            mr: 'orange',
-            ur: 'red',
-            bg: '#009B3A'
-        },
-    });
-    bubble_map.bubbles([
-        //well-resourced languages
-        {
-            name: 'English',
-            radius: 5,
-            centered: 'USA', // position
-            country: 'USA',
-            fillKey: 'wr',
-            date: '1954-03-01'
-        },
-        {
-            name: 'Chinese',
-            radius: 5,
-            centered: 'CHN', // position
-            country: 'China',
-            fillKey: 'wr',
-            date: ''
-        },
-        {
-            name: 'French',
-            radius: 5,
-            centered: 'FRA', // position
-            country: 'France',
-            fillKey: 'wr',
-            date: ''
-        },
-        {
-            name: 'German',
-            radius: 5,
-            centered: 'DEU', // position
-            country: 'Germany',
-            fillKey: 'wr',
-            date: '1954-03-01',
-            linkTag: 'ge'
-        },
-        {
-            name: 'Italian',
-            radius: 5,
-            centered: 'ITA', // position
-            country: 'Italy',
-            fillKey: 'wr',
-            date: ''
-        },
-        {
-            name: 'Japanese',
-            radius: 5,
-            centered: 'JPN', // position
-            country: 'Japan',
-            fillKey: 'wr',
-            date: ''
-        },
-        {
-            name: 'Korean',
-            radius: 5,
-            centered: 'KOR', // position
-            country: 'Korea',
-            fillKey: 'wr',
-            date: '1990',
-            translated_title: 'Tomo Sojerio nuotykiai',
-            translator: 'Kwak, Kyong-su',
-            publisher: 'Kumsong ch\'ulp\'ansa [Republic of Korea]',
-            publisher_city: 'Seoul',
-            page_count: '534'
-        },
-        {
-            name: 'Russian',
-            radius: 5,
-            centered: 'RUS', // position
-            country: 'Russia',
-            fillKey: 'wr',
-            date: '1954-03-01',
-            linkTag: 'ru'
-        },
-        {
-            name: 'Spanish',
-            radius: 5,
-            centered: 'ESP', // position
-            country: 'Spain',
-            fillKey: 'wr',
-            date: ''
-        },
-        {
-            name: 'Swedish',
-            radius: 5,
-            centered: 'SWE', // position
-            country: 'Sweden',
-            fillKey: 'wr',
-            date: ''
-        },
-        //Medium-resourced languages
-        {
-            name: 'Arabic',
-            radius: 5,
-            centered: '', //TODO position
-            country: 'Egypt',
-            fillKey: 'mr',
-            date: '1986',
-            translated_title: 'Mughāmrāt Hilkbirīfīn',
-            translator: 'Al-Siwīfī, Mukhatār',
-            publisher: 'Al-Hay\ʻah al-Miṣrīyah al-Āmmah lil-Kitāb',
-            publisher_city: 'Al-Qāhirah',
-            page_count: '363'
-        },
-        {
-            name: 'Bulgarian',
-            radius: 5,
-            centered: 'BGR', // position
-            country: 'Bulgaria',
-            fillKey: 'mr',
-            date: '1954-03-01',
-            linkTag: 'bu'
-        },
-        {
-            name: 'Czech',
-            radius: 5,
-            centered: 'CZE', // position
-            country: 'Czechia',
-            fillKey: 'mr',
-            date: ''
-        },
-        {
-            name: 'Croatian',
-            radius: 5,
-            centered: 'HRV', // position
-            country: 'Croatia',
-            fillKey: 'mr',
-            date: ''
-        },
-        {
-            name: 'Danish',
-            radius: 5,
-            centered: 'DNK', // position
-            country: 'Denmark',
-            fillKey: 'mr',
-            date: ''
-        },
-        {
-            name: 'Dutch',
-            radius: 5,
-            centered: 'NLD', // position
-            country: 'Netherlands',
-            fillKey: 'mr',
-            date: '1954-03-01',
-            linkTag: 'du'
-        },
-        {
-            name: 'Estonian',
-            radius: 5,
-            centered: 'EST', // position
-            country: 'Estonia',
-            fillKey: 'mr',
-            date: '1989',
-            translated_title: 'Huckleberry Finni seiklused',
-            translator: 'Bergmann, A.; Sillaots, M.',
-            publisher: 'Eesti Raamat [USSR (to 1991)]',
-            publisher_city: 'Tallinn',
-            page_count: '1989'
-        },
-        {
-            name: 'Finnish',
-            radius: 5,
-            centered: 'FIN', // position
-            country: 'Finland',
-            fillKey: 'mr',
-            date: '1954-03-01',
-            linktag: 'fi'
-        },
-        {
-            name: 'Greek',
-            radius: 5,
-            centered: 'GRC', // position
-            country: 'Greece',
-            fillKey: 'mr',
-            date: ''
-        },
-        {
-            name: 'Hebrew',
-            radius: 5,
-            centered: 'ISR', // position
-            country: 'Israel',
-            fillKey: 'mr',
-            date: '2005',
-            translated_title: 'Harpatqeotaw shel Huckleberry Finn',
-            translator: 'Farkash, Yaniv',
-            publisher: 'A. Nir [Israel]',
-            publisher_city: 'Tel Aviv',
-            page_count: '431'
-        },
-        {
-            name: 'Hungarian',
-            radius: 5,
-            centered: 'HUN', // position
-            country: 'Hungary',
-            fillKey: 'mr',
-            date: '1954-03-01',
-            linkTag: 'hu'
-        },
-        {
-            name: 'Icelandic',
-            radius: 5,
-            centered: 'ISL', // position
-            country: 'Iceland',
-            fillKey: 'mr',
-            date: '1986',
-            translated_title: 'Stikilberja-Finnur',
-            translator: 'Bjarnason, Kristmundur; Kristjánsson, Árni',
-            publisher: 'AB [Iceland]',
-            publisher_city: 'Reykjavík',
-            page_count: '244'
-        },
-        {
-            name: 'Latvian',
-            radius: 5,
-            centered: 'LVA', // position
-            country: 'Latvia',
-            fillKey: 'mr',
-            date: ''
-        },
-        {
-            name: 'Lithuanian',
-            radius: 5,
-            country: 'Lithuania',
-            fillKey: 'mr',
-            date: '1984',
-            latitude: 54.683333,
-            longitude: 25.316667,
-            translated_title: 'Heklberio Fino nuotykiai',
-            translator: 'Churginaitė Valentina',
-            publisher: 'Vaga [USSR (to 1991)]',
-            publisher_city: 'Vilnius',
-            page_count: '519'
-        },
-        {
-            name: 'Norwegian',
-            radius: 5,
-            centered: 'NOR', // position
-            country: 'Norway',
-            fillKey: 'mr',
-            date: '2006',
-            translated_title: 'Huckleberry Finn',
-            translator: 'Hopp, Zinken',
-            publisher: 'Fono forl [Norway]',
-            publisher_city: 'Oslo',
-            page_count: ''
-        },
-        {
-            name: 'Polish',
-            radius: 5,
-            centered: 'POL', // position
-            country: 'Poland',
-            fillKey: 'mr',
-            date: '1954-03-01',
-            linkTag: 'pol'
-        },
-        {
-            name: 'Portuguese',
-            radius: 5,
-            centered: 'PRT', // position
-            country: 'Portugal',
-            fillKey: 'mr',
-            date: '1954-03-01',
-            linkTag: 'por'
-        },
-        {
-            name: 'Romanian',
-            radius: 5,
-            centered: 'ROU', // position
-            country: 'Romania',
-            fillKey: 'mr',
-            date: ''
-        },
-        {
-            name: 'Serbian',
-            radius: 5,
-            centered: 'SRB', // position
-            country: 'Serbia',
-            fillKey: 'mr',
-            date: '2005',
-            translated_title: 'Doživljaji Haklberi Fina',
-            translator: 'Držić, Leo; Miličević, Nika',
-            publisher: 'Mediasat [Spain]',
-            publisher_city: 'Madrid',
-            page_count: '505'
-        },
-        {
-            name: 'Slovak',
-            radius: 5,
-            centered: 'SVK', // position
-            country: 'Slovakia',
-            fillKey: 'mr',
-            date: ''
-        },
-        {
-            name: 'Slovenian',
-            radius: 5,
-            centered: 'SVN', // position
-            country: 'Slovenia',
-            fillKey: 'mr',
-            date: ''
-        },
-        {
-            name: 'Turkish',
-            radius: 5,
-            centered: 'TUR', // position
-            country: 'Turkey',
-            fillKey: 'mr',
-            date: ''
-        },
-        {
-            name: 'Ukrainian',
-            radius: 5,
-            centered: 'UKR', // position
-            country: 'Ukraine',
-            fillKey: 'mr',
-            date: '1954-03-01',
-            linkTag: 'uk'
-        },
-        //Under-resourced languages
-        {
-            name: 'Afrikans',
-            radius: 5,
-            centered: 'NAM', // position
-            country: 'Namibia',
-            fillKey: 'ur',
-            date: ''
-        },
-        {
-            name: 'Albanian',
-            radius: 5,
-            centered: 'ALB', // position
-            country: 'Albania',
-            fillKey: 'ur',
-            date: '2008',
-            translated_title: 'Aventurat e Hakëlberi Finit',
-            translator: 'Koka, Dritan',
-            publisher: 'Dritan [Albania]',
-            publisher_city: 'Tiranë',
-            page_count: '243'
-        },
-        {
-            name: 'Assamese',
-            radius: 5,
-            country: 'India',
-            fillKey: 'ur',
-            date: '2002',
-            latitude: 26.14,
-            longitude: 91.77,
-            translated_title: 'Aghari Lara',
-            translator: 'Baruwa, Tarun Chandra',
-            publisher: 'Saraighat Prakashan [India]',
-            publisher_city: 'Guwahati',
-            page_count: '158'
-        },
-        {
-            name: 'Bengali',
-            radius: 5,
-            centered: 'BGD', // position
-            country: 'Bangladesh',
-            fillKey: 'ur',
-            date: '1986',
-            translated_title: 'The adventures of Huckleberry Fin',
-            translator: 'Jamil, Rowshan',
-            publisher: 'Seba prakashani',
-            publisher_city: 'Dhaka',
-            page_count: '100'
-        },
-        {
-            name: 'Burmese',
-            radius: 5,
-            centered: 'MMR', // position
-            country: 'Myanmar',
-            fillKey: 'ur',
-            date: ''
-        },
-        {
-            name: 'Catalan',
-            radius: 5,
-            country: '',
-            fillKey: 'ur',
-            date: '',
-            latitude: 42.5,
-            longitude: 1.516667
-        },
-        {
-            name: 'Chuvash',
-            radius: 5,
-            country: 'Russia',
-            fillKey: 'ur',
-            date: '1985',
-            latitude: 55.55,
-            longitude: 47.1,
-            translated_title: 'Gekl\'berri Finn temtepĕr kursa şüreni',
-            translator: 'Sokolova, Askliada',
-            publisher: 'Čuvašskoe knižnoe izdatel\'stvo',
-            publisher_city: 'Čeboksary',
-            page_count: '327'
-        },
-        {
-            name: 'Farsi',
-            radius: 5,
-            centered: 'IRN', // position
-            country: 'Iran',
-            fillKey: 'ur',
-            date: '1987',
-            translated_title: 'Sargozasht-e Hakelberi Fin',
-            translator: 'Daryā Bandari, Najaf',
-            publisher: 'Khārazmi [Iran, Islamic Rep.]',
-            publisher_city: 'Tehrān',
-            page_count: '379'
-        },
-        {
-            name: 'Georgian',
-            radius: 5,
-            centered: 'GEO', // position
-            country: 'Georgia',
-            fillKey: 'ur',
-            date: '1983',
-            translated_title: 'Priključenija Gekl\'berri Finna',
-            translator: '',
-            publisher: 'Nakaduli [USSR (to 1991)]',
-            publisher_city: 'Tbilisi',
-            page_count: '276'
-        },
-        {
-            name: 'Hindi',
-            radius: 5,
-            centered: 'IND', // position
-            country: 'India',
-            fillKey: 'ur',
-            date: ''
-        },
-        {
-            name: 'Indonesian',
-            radius: 5,
-            centered: 'IDN', // position
-            country: 'Indonesia',
-            fillKey: 'ur',
-            date: ''
-        },
-        {
-            name: 'Kazakh',
-            radius: 5,
-            centered: 'KAZ', // position
-            country: 'Kazakhstan',
-            fillKey: 'ur',
-            date: ''
-        },
-        {
-            name: 'Kirghiz',
-            radius: 5,
-            centered: 'KGZ', // position
-            country: 'Kyrgyzstan',
-            fillKey: 'ur',
-            date: '1987',
-            translated_title: 'Gekl\'berri Findin žoruktary',
-            translator: 'Isaev, Kurmanbek',
-            publisher: 'Mektep [USSR (to 1991)]',
-            publisher_city: 'Frunze',
-            page_count: '267'
-        },
-        {
-            name: 'Macedonian',
-            radius: 5,
-            centered: 'MKD', // position
-            country: 'North Macedonia',
-            fillKey: 'ur',
-            date: '1979',
-            translated_title: 'Haklberi Fin',
-            translator: 'Crvenkovski, Dušan',
-            publisher: 'Kultura [Yugoslavia (to 2002)]',
-            publisher_city: 'Skopje',
-            page_count: '284'
-        },
-        {
-            name: 'Malay',
-            radius: 5,
-            centered: 'BRU', // position
-            country: 'Brunei',
-            fillKey: 'ur',
-            date: '1983',
-            translated_title: 'Pengembaraan Huckleberry Finn',
-            translator: '',
-            publisher: 'Whereever Distributors [Malaysia]',
-            publisher_city: 'Kuala Lumpur',
-            page_count: '143'
-        },
-        {
-            name: 'Malayalam',
-            radius: 5,
-            country: '',
-            fillKey: 'ur',
-            date: '',
-            latitude: 8.5,
-            longitude: 77
-        },
-        {
-            name: 'Marathi',
-            radius: 5,
-            country: '',
-            fillKey: 'ur',
-            date: '',
-            latitude: 18.97,
-            longitude: 72.82
-        },
-        {
-            name: 'Oriya',
-            radius: 5,
-            country: 'India',
-            fillKey: 'ur',
-            date: '1977',
-            latitude: 18.97,
-            longitude: 72.82,
-            translated_title: 'Sahari yubaka',
-            translator: 'Rajendraprasad Acharya',
-            publisher: 'Jagannath Rath [India]',
-            publisher_city: 'Cuttack',
-            page_count: '69'
-        },
-        {
-            name: 'Sinhalese',
-            radius: 5,
-            country: 'Sri Lanka',
-            fillKey: 'ur',
-            date: '1998',
-            latitude: 20.27,
-            longitude: 85.82,
-            translated_title: 'Huckleberryge hapankam',
-            translator: 'Anagiratne, Chandra',
-            publisher: 'Dayawansa Jayakody and Company [Sri Lanka]',
-            publisher_city: 'Colombo',
-            page_count: '333'
-        },
-        {
-            name: 'Tamil',
-            radius: 5,
-            centered: 'LKA', // position
-            country: 'Sri Lanka',
-            fillKey: 'ur',
-            date: ''
-        },
-        {
-            name: 'Tatar',
-            radius: 5,
-            country: '',
-            fillKey: 'ur',
-            date: '',
-            latitude: 55.55,
-            longitude: 50.933333
-        },
-        {
-            name: 'Telugu',
-            radius: 5,
-            country: 'India',
-            fillKey: 'ur',
-            date: '1978',
-            latitude: 16.5,
-            longitude: 80.64,
-            translated_title: 'Hakalberi phin',
-            translator: 'Nanduri Ramamohanaravu',
-            publisher: 'Navodaya publishers [India]',
-            publisher_city: 'Vijayavada',
-            page_count: '228'
-        },
-        {
-            name: 'Thai',
-            radius: 5,
-            centered: 'THA', // position
-            country: 'Thailand',
-            fillKey: 'ur',
-            date: ''
-        },
-        {
-            name: 'Uzbech',
-            radius: 5,
-            centered: 'UZB', // position
-            country: 'Uzbekistan',
-            fillKey: 'ur',
-            date: ''
-        },
-        {
-            name: 'Basque',
-            radius: 5,
-            country: '',
-            fillKey: 'ur',
-            date: '1961-10-31',
-            latitude: 42.833333,
-            longitude: -2.683333
-        },
-        {
-            name: 'Vietnamese',
-            radius: 5,
-            centered: 'VNM', // position
-            country: 'Viet Nam',
-            fillKey: 'ur',
-            date: ''
-        },
-        {
-            name: 'Yiddish',
-            radius: 5,
-            centered: 'BIH', // position
-            country: 'Bosnia and Herzegovina',
-            fillKey: 'ur',
-            date: ''
-        },
-        {
-            name: 'Moldovian',
-            radius: 5,
-            centered: 'MDA', // position
-            country: 'Moldova, Republic of',
-            fillKey: 'ur',
-            date: '2008',
-            translated_title: 'Aventurile lui Huckleberry Finn',
-            translator: 'Solomon, Petre',
-            publisher: 'Prut International',
-            publisher_city: 'Chisinau',
-            page_count: '332'
-        },
-        {
-            name: 'Armenian',
-            radius: 5,
-            centered: 'ARM', // position
-            country: 'Armenia',
-            fillKey: 'ur',
-            date: '1979',
-            translated_title: 'Heklberi Finni arkaçnerë',
-            translator: '',
-            publisher: 'Sovetakan groh [USSR (to 1991)]',
-            publisher_city: 'Erevan',
-            page_count: '549'
-        },
-        {
-            name: 'Turkmen',
-            radius: 5,
-            centered: 'AFG', // position
-            country: 'Afghanistan',
-            fillKey: 'ur',
-            date: '1989',
-            translated_title: 'Tom Sojeriń ve Gekl\'berri Finniń bašdan gečirenleri',
-            translator: 'Berdiev, Danatar',
-            publisher: 'Magaryf [USSR (to 1991)]',
-            publisher_city: 'Ašhabad',
-            page_count: '443'
-        },
-        //Brazilian Portuguese
-        {
-            name: 'Portuguese',
-            radius: 10,
-            centered: 'BRA', // position
-            country: 'Brazil',
-            fillKey: 'bg',
-            date: ''
-        }
-    ]
-        , {
-        popupTemplate: function(geo, data) {
-            return ['<div class="hoverinfo">' + data.name + ' translation from ' + data.country,
-            '<br/>Title: ' +  data.translated_title + '',
-            '<br/>Translator: ' +  data.translator + '',
-            '<br/>Date: ' +  data.date + '',
-            '<br/>Publisher: ' +  data.publisher + '',
-            '<br/>City: ' +  data.publisher_city + '',
-            '<br/>Page Count: ' +  data.page_count + '',
-            '</div>'].join('');
+                var marker = L.marker(new L.LatLng(lat, lng), { icon: icons[status] });
+                popupText = "<b>" + title + "</b><br><b>Language:</b> " + lang + "<br><b>Translator:</b> " + translator + "<br><b>Date:</b> " + year + "<br><b>Publisher:</b> " + publisher + "<br><b>Location:</b> " + city + "<br><b>Page Count:</b> " + page;
+                marker.bindPopup(popupText, {className: 'stylePopup'});
+                marker.closePopup();
+                markers.addLayer(marker);
+            }
+
+            mymap.addLayer(markers);
+
+            //English Version from Hartford
+            const english = L.marker([41.7671184,-72.7015662], {icon: blueIcon}).
+                bindPopup("<b>Adventures of Huckleberry Finn</b><br><b>Author:</b> Mark Twain<br><b>Language:</b> English<br><b>Date:</b> February 18, 1885<br><b>Publisher:</b> Charles L. Webster And Company<br><b>Location:</b> Hartford, CT<br><b>Page Count:</b> 366",
+                {className: 'stylePopup'}).closePopup();
+            english.addTo(mymap);
+            //English Version from London in 1884
+            const english1 = L.marker([51.490137,-0.1335877], {icon: blueIcon}).
+                bindPopup("<b>Adventures of Huckleberry Finn</b><br><b>Author:</b> Mark Twain<br><b>Language:</b> English<br><b>Date:</b> 1884<br><b>Publisher:</b> Chatto & Windus<br><b>Location:</b> London<br><b>Page Count:</b> undefined",
+                {className: 'stylePopup'}).closePopup();
+            english1.addTo(mymap);
+            //English Version from NYC Century Magazine
+            const english2 = L.marker([40.6971494,-74.2598679], {icon: blueIcon}).
+                bindPopup("<b>Adventures of Huckleberry Finn</b><br><b>Author:</b> Mark Twain<br><b>Illustrator:</b> E. W. Kemble<br><b>Language:</b> English<br><b>Date:</b> December 1884 and January 1885<br><b>Publisher:</b> Century Magazine<br><b>Location:</b> New York City, NY<br><b>Page Count:</b> undefined",
+                {className: 'stylePopup'}).closePopup();
+            english2.addTo(mymap);
 
 
 
-
-        }
-    }
-    );
-    d3.selectAll('.datamaps-bubble').on('click', function(bubble) {
-        if (bubble.country === 'Brazil')
-        {
-            ap();
-            document.getElementById("nav").style.visibility = "visible";
-            document.getElementById("img").style.visibility = "visible";
-            document.getElementById("section").style.visibility = "visible";
-        }
-        else if (bubble.name === 'Basque')
-        {
-            openInNewTab('../translation-dashboard/table.html?chapter=1');
-        }
-        else if (bubble.linkTag === 'bu' || bubble.linkTag === 'du' || bubble.linkTag === 'fi'
-                    || bubble.linkTag === 'ge' || bubble.linkTag === 'hu' || bubble.linkTag === 'pol'
-                    || bubble.linkTag === 'por' || bubble.linkTag === 'ru' || bubble.linkTag === 'uk')
-        {
-            openInNewTab('../translation-dashboard/pie-chart.html?target_lang=' + bubble.linkTag);
-        }
-        else {
-            document.getElementById("nav").style.visibility = "hidden";
-            document.getElementById("img").style.visibility = "hidden";
-            document.getElementById("section").style.visibility = "hidden";
-        }
-    });
-    function openInNewTab(url) {
-        var win = window.open(url, '_blank');
-        win.focus();
-    }
-    function ml() {
-        document.getElementById("title").innerText = "Monteiro Lobato (1934)"
-        document.getElementById("info").innerHTML = "It is quite visible why there is no paratext for the translation by Monteiro Lobato. As he was the owner of the publishing house, Companhia Editora Nacional, he had chosen the text to be translated and he did not need a validation for his translation. Also, as a famous writer it was crucial that his name appeared on the cover so the readers could identify him. His translation and Flaksman’s have their names on the cover. Although there are many studies on Lobato and his translation strategy, his pedagogical use, there is not exactly a study on his translation of HF, since in that text he kept the characters from Twain’s book, not including his own to tell the story of HF. But he makes visible cuts (the two notes of Twain: notice and explanatory), the poem “Ode to Stephen Dowling Bots, Dec’d” (Chapter 17), Hamlet’s Soliloquy (Chapter 21) and everything that he must have considered unnecessarily for translation, according to what some Lobato scholars explain his free way of intervening in the text.";
-        document.getElementById("cover").src = "data/ml.png"
-    }
-    function sf() {
-        document.getElementById("title").innerText = "Sergio Flaksman (1996)"
-        document.getElementById("info").innerHTML = "Sergio Flaksman was the translator who received more attention from the media (newspaper article) and from the publishing house where his translation was published, since it has a foreword, a translator's note, and a postface. So that the reception of his translation was positive. The newspaper article is about Twain, Huck and how difficult the task for translating Huck is, there are excerpts from the book and a whole page of Flaksman’s text. His own note is about his translation strategy and reflections about the act of translation and the translation of dialects, which for him is impossible. Finally, the foreword and the postface were written by a famous author, Ana Maria Machado.";
-        document.getElementById("cover").src = "data/sf.png"
-    }
-    function re() {
-        document.getElementById("title").innerText = "Rosaura Eichenberg (2011)"
-        document.getElementById("info").innerHTML = "Rosaura Eichenberg does not describe her translation strategy but makes some remarks concerning the act of translation in her translator's note. She contextualizes the “n-word” and explains the implications of its use today and what words she chose to translate it, which are “negro” and “preto”. (TWAIN, Mark. As Aventuras de Huckleberry Finn. Tradução de Rosaura Eichenberg. Porto Alegre: L&PM. 2011, p.5-8)";
-        document.getElementById("cover").src = "data/re.png"
-    }
-    function ap() {
-        document.getElementById("title").innerText = "Alda Porto (2013)"
-        document.getElementById("info").innerHTML = "The translation of Alda Porto only presents a foreword signed by a university professor who discusses the importance of the HF and of Mark Twain. The title of the foreword is “A Celebração de Mark Twain em As Aventuras de Huckleberry Finn” by Vera Lúcia Harabagi Hanna.  (TWAIN, Mark. As Aventuras de Huckleberry Finn. Tradução de Alda Porto. São Paulo: Martin Claret. 2013, p.11-15.)";
-        document.getElementById("cover").src = "data/ap.png"
-    }
-    document.getElementById("nav").style.visibility = "hidden";
-</script>
-
+        </script>
+    </div>
 </body>
+<footer>
+</footer>
+</html>
