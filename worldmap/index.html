@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>World Map v2</title>
+    <title>Rosetta WorldMap</title>
     <link rel="stylesheet" href="styles.css" type="text/css">
 
     <!--Leaflet-->
@@ -17,9 +17,14 @@
             crossorigin=""></script>
 
     <!--Leaflet.markercluster-->
+    <!--https://github.com/Leaflet/Leaflet.markercluster-->
     <link rel="stylesheet" href="markercluster/MarkerCluster.css" />
 	<link rel="stylesheet" href="markercluster/MarkerCluster.Default.css" />
 	<script src="markercluster/leaflet.markercluster.js"></script>
+
+    <!--Leaflet.SmoothWheelZoom-->
+    <!--https://github.com/mutsuyuki/Leaflet.SmoothWheelZoom-->
+    <script src="SmoothWheelZoom.js"></script>
 
     <div id="mapid">
         <script type="text/javascript">
@@ -37,7 +42,7 @@
             });
             var icons = [blueIcon, orangeIcon, redIcon];
 
-            var tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            var light = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
                 maxZoom: 20,
                 id: 'mapbox/light-v10',
@@ -46,13 +51,17 @@
                 minZoom: 2,
                 accessToken: 'pk.eyJ1IjoiYWxleHpoYWkiLCJhIjoiY2thYmJjZTgwMGNweDJwcWx0eHNlZG44eCJ9._j5SkAZME5uqhov1FmxBAA'
             });
+            var mymap = L.map('mapid', {
+                layers: [light],
 
-            var mymap = L.map('mapid', {layers: [tiles]}).setView([22.903585,3.8709499], 2);
+                scrollWheelZoom: false, // disable original zoom function
+                smoothWheelZoom: true,  // enable smooth zoom
+                smoothSensitivity: 0.75
+                }).setView([22.903585,3.8709499], 2);
 
             var markers = L.markerClusterGroup({
-                maxClusterRadius: 40
+                maxClusterRadius: 5
             });
-
             for (var i = 0; i < addressPoints.length; i++) {
                 var pt = addressPoints[i];
                 var lang = pt[0];
@@ -72,7 +81,6 @@
                 marker.closePopup();
                 markers.addLayer(marker);
             }
-
             mymap.addLayer(markers);
 
             //English Version from Hartford

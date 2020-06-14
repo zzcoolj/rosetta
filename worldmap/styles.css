@@ -1,5 +1,10 @@
 #mapid {
-    height: 100vh;
+    height: 75vh;
+    width: 75vw;
+    margin: auto;
+    margin-top: 12.5vh;
+    margin-bottom: 12.5vh;
+    z-index: 9999;
 }
 
 .stylePopup .leaflet-popup-content-wrapper {
@@ -11,7 +16,6 @@
     line-height: 22px;
     color: #000000;
     font-size: 15px;
-
 }
 .legend i {
     width: 15px;
