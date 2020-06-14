@@ -8,8 +8,8 @@ The goal of the World Map is to create a beautiful and functional global display
 - Mouseover bubbles for general information.
 - The bigger green bubble in Brazil’s position is clickable: You gonna get a menu with 4 translators with the corresponding book cover and description at the bottom of the page. Changing the cover and the description by clicking different translators name. Hide all by clicking other bubbles.
 ## Tasks
-- [ ] Input more data/fix data for different countries with Ronald’s resources and Shelley’s comments.
-- [ ] Add a key to explain the different dot colors.
+- [x] Input more data/fix data for different countries with Ronald’s resources and Shelley’s comments.
+- [x] Add a key to explain the different dot colors.
 - [x] Move the dots onto the city of publication, not a random place in the country.
 - [ ] Map Inter-country Connections
 - [ ] Visualize connections and translations over time with scroll
