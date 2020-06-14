@@ -49,7 +49,9 @@
 
             var mymap = L.map('mapid', {layers: [tiles]}).setView([22.903585,3.8709499], 2);
 
-            var markers = L.markerClusterGroup();
+            var markers = L.markerClusterGroup({
+
+            });
 
             for (var i = 0; i < addressPoints.length; i++) {
                 var pt = addressPoints[i];
@@ -94,8 +96,31 @@
             english3.closePopup();
             english3.addTo(mymap);
 
+            function getColor(d) {
+                return d === "well-resourced" ? '#2D3EE9' :
+                       d === "medium-resourced"  ? '#EAA12C' :
+                                                    '#EA3E2C';
+            }
 
+            var legend = L.control({position: 'bottomright'});
+            legend.onAdd = function (mymap) {
 
+            var div = L.DomUtil.create('div', 'info legend');
+            labels = ['<strong>Language Status Categories</strong>'],
+            categories = ["well-resourced","medium-resourced","under-resourced"];
+
+            for (var i = 0; i < categories.length; i++) {
+                    div.innerHTML +=
+                    labels.push(
+                        '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+                    (categories[i] ? categories[i] : '+'));
+
+                }
+                div.innerHTML = labels.join('<br>');
+                return div;
+            };
+
+            legend.addTo(mymap);
         </script>
     </div>
 </body>
