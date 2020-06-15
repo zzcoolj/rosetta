@@ -85,21 +85,23 @@
 
             //English Version from Hartford
             var english1 = L.marker([41.7671184,-72.7015662], {icon: blueIcon});
-            english1.bindPopup("<b>Adventures of Huckleberry Finn</b><br><b>Author:</b> Mark Twain<br><b>Language:</b> English<br><b>Date:</b> February 18, 1885<br><b>Publisher:</b> Charles L. Webster And Company<br><b>Location:</b> Hartford, CT<br><b>Page Count:</b> 366",{className: 'stylePopup'});
+            var english1cover1 = '<img class="cover-img" src="covers/english/hartford1.jpeg" height="140vh"/>';
+            var english1cover2 = '<img class="cover-img" src="covers/english/hartford2.jpg" height="140vh"/>';
+            english1.bindPopup("<b>Adventures of Huckleberry Finn</b><br><b>Author:</b> Mark Twain<br><b>Language:</b> English<br><b>Date:</b> February 18, 1885<br><b>Publisher:</b> Charles L. Webster And Company<br><b>Location:</b> Hartford, CT<br><b>Page Count:</b> 366<br><br>" + english1cover1 + english1cover2, {className: 'stylePopup'});
             english1.closePopup();
             english1.addTo(mymap);
 
             //English Version from London in 1884
             var english2 = L.marker([51.490137,-0.1335877], {icon: blueIcon});
-            var english2cover = '<img src="covers/english/london.jpg" height="200vh"/>';
+            var english2cover = '<img class="cover-img" src="covers/english/london.jpg" height="200vh"/>';
             english2.bindPopup("<b>Adventures of Huckleberry Finn</b><br><b>Author:</b> Mark Twain<br><b>Language:</b> English<br><b>Date:</b> 1884<br><b>Publisher:</b> Chatto & Windus<br><b>Location:</b> London<br><b>Page Count:</b> undefined<br><br>" + english2cover,{className: 'stylePopup'});
             english2.closePopup();
             english2.addTo(mymap);
 
             //English Version from NYC Century Magazine
             var english3 = L.marker([40.6971494,-74.2598679], {icon: blueIcon});
-            var english3cover1 = '<img src="covers/english/century1.jpg" height="125vh"/>';
-            var english3cover2 = '<img src="covers/english/century2.jpg" height="125vh"/>';
+            var english3cover1 = '<img class="cover-img" src="covers/english/century1884.png" height="140vh"/>';
+            var english3cover2 = '<img class="cover-img" src="covers/english/century1885.jpg" height="140vh"/>';
             english3.bindPopup("<b>Adventures of Huckleberry Finn</b><br><b>Author:</b> Mark Twain<br><b>Illustrator:</b> E. W. Kemble<br><b>Language:</b> English<br><b>Date:</b> December 1884 and January 1885<br><b>Publisher:</b> Century Magazine<br><b>Location:</b> New York City, NY<br><b>Page Count:</b> undefined<br><br>" + english3cover1 + english3cover2,{className: 'stylePopup'});
             english3.closePopup();
             english3.addTo(mymap);

@@ -1,13 +1,10 @@
 #mapid {
-    height: 75vh;
-    width: 75vw;
+    height: 100vh;
+    width: 100vw;
     margin: auto;
-    margin-top: 12.5vh;
-    margin-bottom: 12.5vh;
-    z-index: 9999;
 }
-
 .stylePopup .leaflet-popup-content-wrapper {
+    z-index: 10;
     background: #3a5169;
     color: #fff;
     border-radius: 0px;
@@ -27,4 +24,13 @@
 
     border-radius: 50%;
     border:1px solid white;
+}
+.cover-img {
+    position: relative;
+    z-index: 10000;
+    transition: transform 0.5s;
+}
+.cover-img:hover {
+    z-index: 10001;
+    transform: scale(2);
 }
