@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Rosetta WorldMap</title>
     <link rel="stylesheet" href="styles.css" type="text/css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Righteous&display=swap" rel="stylesheet">
     <!--Leaflet-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -12,19 +12,28 @@
     <script src="addresspoints.js"></script>
 </head>
 <body>
+    <div class="header">
+        <h1 class="title">Global Huck</h1>
+        <p class="desc">Resources for Endangered Languages Through Translated Texts</p>
+    </div>
+
+    <!--Leaflet-->
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
             integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossorigin=""></script>
-
     <!--Leaflet.markercluster-->
     <!--https://github.com/Leaflet/Leaflet.markercluster-->
     <link rel="stylesheet" href="markercluster/MarkerCluster.css" />
 	<link rel="stylesheet" href="markercluster/MarkerCluster.Default.css" />
 	<script src="markercluster/leaflet.markercluster.js"></script>
-
     <!--Leaflet.SmoothWheelZoom-->
     <!--https://github.com/mutsuyuki/Leaflet.SmoothWheelZoom-->
     <script src="SmoothWheelZoom.js"></script>
+    <!--Leaflet.Control.Search-->
+    <!--http://leaflet.control.search/-->
+    <link rel="stylesheet" href="leaflet-search/leaflet-search.src.css"/>
+    <script src="leaflet-search/leaflet-search.src.js"></script>
+
 
     <div id="mapid">
         <script type="text/javascript">
@@ -124,11 +133,11 @@
             var legend = L.control({position: 'bottomright'});
             legend.onAdd = function (mymap) {
 
-            var div = L.DomUtil.create('div', 'info legend');
-            labels = ['<strong>Language Status Categories</strong>'],
-            categories = ["well-resourced","medium-resourced","under-resourced"];
+                var div = L.DomUtil.create('div', 'info legend');
+                labels = ['<strong>Number of Points: </strong>' + addressPoints.length + '<br><strong>Language Status Categories</strong>'],
+                categories = ["well-resourced","medium-resourced","under-resourced"];
 
-            for (var i = 0; i < categories.length; i++) {
+                for (var i = 0; i < categories.length; i++) {
                     div.innerHTML +=
                     labels.push(
                         '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
@@ -140,6 +149,14 @@
             };
 
             legend.addTo(mymap);
+
+
+            var controlSearch = new L.Control.Search({
+                position:'topright',
+                layer: markers
+            });
+
+            map.addControl( controlSearch );
         </script>
     </div>
 </body>
