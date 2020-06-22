@@ -3,7 +3,6 @@ html, body {
     height: 100%;
     overflow: hidden
 }
-
 #mapid {
     height: 80vh;
     width: 95vw;
@@ -12,7 +11,12 @@ html, body {
     margin-top: 15vh;
     */
 }
-
+iframe {
+    height: 80vh;
+    width: 95vw;
+    display: block;
+    margin: auto;
+}
 .header {
     text-align: center;
 }
@@ -20,9 +24,72 @@ html, body {
     font-family: 'Righteous', cursive;
 }
 .desc {
-    margin-top: -2.5vh;
+    margin-top: -1.5vh;
     font-family: 'Open Sans', sans-serif;
 }
+
+
+.nav-bar{
+    margin-top: -1vh;
+    margin-bottom: 2vh;
+    font-family: 'Open Sans', sans-serif;
+    color: #000000;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+li {
+    display: inline;
+}
+a {
+    text-decoration: none;
+}
+a:visited {
+    color: black;
+}
+.nav-current {
+    color: #eaa12c;
+}
+
+/* from https://tympanus.net/Development/CreativeLinkEffects */
+.bracket-links a::before,
+.bracket-links a::after {
+	display: inline-block;
+	opacity: 0;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+	-moz-transition: -moz-transform 0.3s, opacity 0.2s;
+	transition: transform 0.3s, opacity 0.2s;
+}
+
+.bracket-links a::before {
+	margin-right: 10px;
+	content: '[';
+	-webkit-transform: translateX(20px);
+	-moz-transform: translateX(20px);
+	transform: translateX(20px);
+}
+
+.bracket-links a::after {
+	margin-left: 10px;
+	content: ']';
+	-webkit-transform: translateX(-20px);
+	-moz-transform: translateX(-20px);
+	transform: translateX(-20px);
+}
+
+.bracket-links a:hover::before,
+.bracket-links a:hover::after,
+.bracket-links a:focus::before,
+.bracket-links a:focus::after {
+	opacity: 1;
+	-webkit-transform: translateX(0px);
+	-moz-transform: translateX(0px);
+	transform: translateX(0px);
+}
+
 
 .stylePopup .leaflet-popup-content-wrapper {
     z-index: 10;
