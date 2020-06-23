@@ -29,7 +29,17 @@ iframe {
     font-family: 'Open Sans';
     font-size: 14pt;
 }
-
+.section {
+    margin-left: 20vw;
+    margin-right: 20vw;
+    font-family: 'Open Sans';
+    font-size: 12pt;
+}
+.section-title {
+    font-family: 'Righteous', cursive;
+    margin-top: 5vh;
+    margin-bottom: -2vh;
+}
 
 .nav-bar{
     margin-top: -1vh;
