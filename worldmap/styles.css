@@ -2,10 +2,14 @@ html, body {
     margin: 0;
     height: 100%;
 }
+.no-scroll {
+    overflow: hidden;
+}
 #mapid {
     height: 80vh;
     width: 95vw;
     margin: auto;
+    z-index: 1000;
     /*
     margin-top: 15vh;
     */
@@ -183,4 +187,12 @@ a:visited {
 .cover-img:hover {
     z-index: 10001;
     transform: scale(2);
+}
+
+#refreshButton {
+  position: absolute;
+  z-index: 1001;
+  border-radius: 4px;
+  height: 25px;
+  width: 25px;
 }

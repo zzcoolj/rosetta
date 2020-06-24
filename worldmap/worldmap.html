@@ -11,7 +11,7 @@
         crossorigin=""/>
     <script src="addresspoints.js"></script>
 </head>
-<body>
+<body class="no-scroll">
     <div class="header">
         <h1 class="title">ROSETTA</h1>
         <p class="desc">Resources for Endangered Languages Through Translated Texts</p>
@@ -48,15 +48,15 @@
     <div id="mapid">
         <script type="text/javascript">
             var blueIcon = L.icon({
-                iconUrl: 'dots/blue-dot.svg',
+                iconUrl: 'images/dots/blue-dot.svg',
                 iconSize: [15, 15],
             });
             var orangeIcon = L.icon({
-                iconUrl: 'dots/orange-dot.svg',
+                iconUrl: 'images/dots/orange-dot.svg',
                 iconSize: [15, 15],
             });
             var redIcon = L.icon({
-                iconUrl: 'dots/red-dot.svg',
+                iconUrl: 'images/dots/red-dot.svg',
                 iconSize: [15, 15],
             });
             var icons = [blueIcon, orangeIcon, redIcon];
@@ -153,11 +153,9 @@
 
             var legend = L.control({position: 'bottomright'});
             legend.onAdd = function (mymap) {
-
                 var div = L.DomUtil.create('div', 'info legend');
-                labels = ['<strong>Number of Points: </strong>' + (addressPoints.length+3) + '<br><strong>Language Status Categories:</strong>'],
+                labels = ['<strong>Language Status Categories:</strong>'],
                 categories = ["well-resourced","medium-resourced","under-resourced"];
-
 
                 for (var i = 0; i < categories.length; i++) {
                     div.innerHTML += labels.push('<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' + (categories[i] ? categories[i] : '+') + ' (' + catCount[i] + ')');
@@ -165,9 +163,31 @@
                 div.innerHTML = labels.join('<br>');
                 return div;
             };
-
             legend.addTo(mymap);
 
+            var count = L.control({position: 'topright'});
+            count.onAdd = function (mymap) {
+
+                var div = L.DomUtil.create('div', 'info legend');
+                labels = ['<strong>Points on Map: </strong>' + (addressPoints.length+3)],
+                div.innerHTML = labels.join('<br>');
+                return div;
+            };
+            count.addTo(mymap);
+
+            var refreshButton = L.control({position: 'topleft'});
+            refreshButton.onAdd = function (mymap) {
+
+                var div = L.DomUtil.create('div', 'info legend');
+                labels = ['<button style="background: url(images/refresh.svg)" id="refreshButton" onclick="refresh()" title="Return to original view"></button>'],
+                div.innerHTML = labels.join('<br>');
+                return div;
+            };
+            refreshButton.addTo(mymap);
+
+            function refresh() {
+                mymap.setView([22.903585,3.8709499], 2);
+            }
 
             var controlSearch = new L.Control.Search({
                 position:'topright',
