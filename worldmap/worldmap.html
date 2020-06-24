@@ -81,6 +81,8 @@
             var markers = L.markerClusterGroup({
                 maxClusterRadius: 30
             });
+            var catCount = [3, 0, 0];
+
             for (var i = 0; i < addressPoints.length; i++) {
                 var pt = addressPoints[i];
                 var lang = pt[0];
@@ -96,6 +98,15 @@
                 if (pt[10]!== "_") {
                     var cover_address = pt[10];
                 }
+
+                if (pt[1] === 0) {
+                    catCount[0] += 1;
+                } else if (pt[1] === 1) {
+                    catCount[1] += 1;
+                } else {
+                    catCount[2] += 1;
+                }
+
 
                 var marker = L.marker(new L.LatLng(lat, lng), { icon: icons[status] });
                 popupText = "<b>" + title + "</b><br><b>Language:</b> " + lang + "<br><b>Translator:</b> " + translator + "<br><b>Date:</b> " + year + "<br><b>Publisher:</b> " + publisher + "<br><b>Location:</b> " + city + "<br><b>Page Count:</b> " + page;
@@ -144,15 +155,12 @@
             legend.onAdd = function (mymap) {
 
                 var div = L.DomUtil.create('div', 'info legend');
-                labels = ['<strong>Number of Points: </strong>' + addressPoints.length + '<br><strong>Language Status Categories:</strong>'],
+                labels = ['<strong>Number of Points: </strong>' + (addressPoints.length+3) + '<br><strong>Language Status Categories:</strong>'],
                 categories = ["well-resourced","medium-resourced","under-resourced"];
 
-                for (var i = 0; i < categories.length; i++) {
-                    div.innerHTML +=
-                    labels.push(
-                        '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
-                    (categories[i] ? categories[i] : '+'));
 
+                for (var i = 0; i < categories.length; i++) {
+                    div.innerHTML += labels.push('<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' + (categories[i] ? categories[i] : '+') + ' (' + catCount[i] + ')');
                 }
                 div.innerHTML = labels.join('<br>');
                 return div;
