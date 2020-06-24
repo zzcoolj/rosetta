@@ -1,7 +1,7 @@
 html, body {
     margin: 0;
     height: 100%;
-    overflow: hidden
+    overflow: hidden;
 }
 #mapid {
     height: 80vh;
@@ -11,11 +11,17 @@ html, body {
     margin-top: 15vh;
     */
 }
-iframe {
-    height: 80vh;
-    width: 95vw;
+iframe#time-map {
     display: block;
     margin: auto;
+    height: 80vh;
+    width: 95vw;
+}
+iframe#contribute-form {
+    display: block;
+    margin: auto;
+    width: 640px;
+    height: 70vh;
 }
 .header {
     text-align: center;
