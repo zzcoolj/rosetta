@@ -177,14 +177,12 @@
 
             var refreshButton = L.control({position: 'topleft'});
             refreshButton.onAdd = function (mymap) {
-
                 var div = L.DomUtil.create('div', 'info legend');
                 labels = ['<button style="background: url(images/refresh.svg)" id="refreshButton" onclick="refresh()" title="Return to original view"></button>'],
                 div.innerHTML = labels.join('<br>');
                 return div;
             };
             refreshButton.addTo(mymap);
-
             function refresh() {
                 mymap.setView([22.903585,3.8709499], 2);
             }
@@ -193,9 +191,19 @@
                 position:'topright',
                 layer: markers
             });
-
             map.addControl( controlSearch );
         </script>
+    </div>
+
+    <div id="#table">
+        <script>
+            for (var i = 0; i < addressPoints.length; i++) {
+                var pt = addressPoints[i];
+                var lang = pt[0];
+
+            }
+        </script>
+
     </div>
 </body>
 <footer>
