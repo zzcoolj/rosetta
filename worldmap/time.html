@@ -12,14 +12,19 @@
         <p class="desc">Resources for Endangered Languages Through Translated Texts</p>
     </div>
 
-    <div class="nav-bar">
-        <ul class="bracket-links">
-            <li><a href="index.html" class="button">Home</a></li>
-            <li><a href="worldmap.html" class="button">World Map</a></li>
-            <li><a class="nav-current" href="time.html" class="button">Time Map</a></li>
-            <li><a href="heatmap.html" class="button">Heat Map</a></li>
-            <li><a href="contribute.html" class="button">Contribute</a></li>
-        </ul>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <div class="dropdown">
+            <button class="dropbtn">Huckleberry Finn Maps
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="worldmap.html" class="button">World Map</a>
+                <a class="nav-current" href="time.html" class="button">Time Map</a>
+                <a href="heatmap.html" class="button">Heat Map</a>
+            </div>
+          </div>
+        <a href="contribute.html" class="button">Contribute</a>
     </div>
 
     <iframe id="time-map" src="https://alexzhai.carto.com/builder/a48aa670-104a-4085-b0d6-ee5cdefda581/embed" frameborder="0" allowfullscreen></iframe>
