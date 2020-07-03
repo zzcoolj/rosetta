@@ -108,6 +108,7 @@
                 if (pt[11]!== "_") {
                     var cover_address = pt[11];
                 }
+                var link = pt[12];
 
                 if (pt[1] === 0) {
                     catCount[0] += 1;
@@ -119,6 +120,11 @@
 
                 var marker = L.marker(new L.LatLng(lat, lng), { icon: icons[status] });
                 popupText = "<b>" + title + "</b><br><b>Language:</b> " + lang + "<br><b>Series:</b> " + series +  "<br><b>Translator:</b> " + translator + "<br><b>Date:</b> " + year + "<br><b>Publisher:</b> " + publisher + "<br><b>Location:</b> " + city + "<br><b>Page Count:</b> " + page;
+                if (link != "undefined") {
+                    popupText += "<br><br> <a class='linkToText' target='_blank' href=" + link + "><strong>[ View Text ]</strong></a>";
+                }
+
+
                 if (pt[10]!== "_") {
                     var cover = "<img class='cover-img' src=covers/" + cover_address + " height='200vh'/>";
                     marker.bindPopup(popupText + "<br><br>" + cover, {className: 'stylePopup'});
@@ -183,9 +189,6 @@
 
                 var div = L.DomUtil.create('div', 'info legend');
                 labels = ['<strong>Points on Map: </strong>' + (addressPoints.length+3-countNoCoordinates) + '<br><strong>Not Displayed: </strong>' + countNoCoordinates + ' ' + '<div class="tooltip">(?)<span class="tooltiptext">No Location Information</span></div>'],
-
-
-
                 div.innerHTML = labels.join('<br>');
                 return div;
             };
