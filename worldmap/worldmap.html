@@ -87,21 +87,26 @@
                 maxClusterRadius: 30
             });
             var catCount = [3, 0, 0];
+            var countNoCoordinates = 0;
 
             for (var i = 0; i < addressPoints.length; i++) {
                 var pt = addressPoints[i];
                 var lang = pt[0];
                 var status = pt[1];
                 var title = pt[2];
-                var translator = pt[3];
-                var year = pt[4];
-                var publisher = pt[5];
-                var city = pt[6];
-                var page = pt[7];
-                var lat = pt[8];
-                var lng = pt[9];
-                if (pt[10]!== "_") {
-                    var cover_address = pt[10];
+                var series = pt[3];
+                var translator = pt[4];
+                var year = pt[5];
+                var publisher = pt[6];
+                var city = pt[7];
+                var page = pt[8];
+                var lat = pt[9];
+                var lng = pt[10];
+                if (lat == 0 && lng == 0) {
+                    countNoCoordinates += 1;
+                }
+                if (pt[11]!== "_") {
+                    var cover_address = pt[11];
                 }
 
                 if (pt[1] === 0) {
@@ -112,9 +117,8 @@
                     catCount[2] += 1;
                 }
 
-
                 var marker = L.marker(new L.LatLng(lat, lng), { icon: icons[status] });
-                popupText = "<b>" + title + "</b><br><b>Language:</b> " + lang + "<br><b>Translator:</b> " + translator + "<br><b>Date:</b> " + year + "<br><b>Publisher:</b> " + publisher + "<br><b>Location:</b> " + city + "<br><b>Page Count:</b> " + page;
+                popupText = "<b>" + title + "</b><br><b>Language:</b> " + lang + "<br><b>Series:</b> " + series +  "<br><b>Translator:</b> " + translator + "<br><b>Date:</b> " + year + "<br><b>Publisher:</b> " + publisher + "<br><b>Location:</b> " + city + "<br><b>Page Count:</b> " + page;
                 if (pt[10]!== "_") {
                     var cover = "<img class='cover-img' src=covers/" + cover_address + " height='200vh'/>";
                     marker.bindPopup(popupText + "<br><br>" + cover, {className: 'stylePopup'});
@@ -123,7 +127,11 @@
                     marker.bindPopup(popupText, {className: 'stylePopup'});
                 }
                 marker.closePopup();
-                markers.addLayer(marker);
+
+                if (lat != 0 && lng != 0) {
+                    markers.addLayer(marker);
+                }
+
             }
             mymap.addLayer(markers);
 
@@ -174,7 +182,10 @@
             count.onAdd = function (mymap) {
 
                 var div = L.DomUtil.create('div', 'info legend');
-                labels = ['<strong>Points on Map: </strong>' + (addressPoints.length+3)],
+                labels = ['<strong>Points on Map: </strong>' + (addressPoints.length+3-countNoCoordinates) + '<br><strong>Not Displayed: </strong>' + countNoCoordinates + ' ' + '<div class="tooltip">(?)<span class="tooltiptext">No Location Information</span></div>'],
+
+
+
                 div.innerHTML = labels.join('<br>');
                 return div;
             };
