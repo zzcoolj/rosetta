@@ -95,20 +95,21 @@
                 var status = pt[1];
                 var title = pt[2];
                 var series = pt[3];
-                var translator = pt[4];
-                var year = pt[5];
-                var publisher = pt[6];
-                var city = pt[7];
-                var page = pt[8];
-                var lat = pt[9];
-                var lng = pt[10];
+                var edition = pt[4];
+                var translator = pt[5];
+                var year = pt[6];
+                var publisher = pt[7];
+                var city = pt[8];
+                var page = pt[9];
+                var lat = pt[10];
+                var lng = pt[11];
                 if (lat == 0 && lng == 0) {
                     countNoCoordinates += 1;
                 }
-                if (pt[11]!== "_") {
-                    var cover_address = pt[11];
+                if (pt[12]!== "_") {
+                    var cover_address = pt[12];
                 }
-                var link = pt[12];
+                var link = pt[13];
 
                 if (pt[1] === 0) {
                     catCount[0] += 1;
@@ -119,12 +120,12 @@
                 }
 
                 var marker = L.marker(new L.LatLng(lat, lng), { icon: icons[status] });
-                popupText = "<b>" + title + "</b><br><b>Language:</b> " + lang + "<br><b>Series/Collection:</b> " + series +  "<br><b>Translator:</b> " + translator + "<br><b>Date:</b> " + year + "<br><b>Publisher:</b> " + publisher + "<br><b>Location:</b> " + city + "<br><b>Page Count:</b> " + page;
+                popupText = "<b>" + title + "</b><br><b>Language:</b> " + lang + "<br><b>Series/Collection:</b> " + series +  "<br><b>Edition:</b> " + edition + "<br><b>Translator:</b> " + translator + "<br><b>Date:</b> " + year + "<br><b>Publisher:</b> " + publisher + "<br><b>Location:</b> " + city + "<br><b>Page Count:</b> " + page;
                 if (link != "undefined") {
                     popupText += "<br><br> <a class='linkToText' target='_blank' href=" + link + "><strong>[ View Text ]</strong></a>";
                 }
 
-                if (pt[11]!== "_") {
+                if (pt[12]!== "_") {
                     var cover = "<img class='cover-img' src=covers/" + cover_address + " height='200vh'/>";
                     marker.bindPopup(popupText + "<br><br>" + cover, {className: 'stylePopup'});
                 }
