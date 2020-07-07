@@ -119,7 +119,7 @@
                 }
 
                 var marker = L.marker(new L.LatLng(lat, lng), { icon: icons[status] });
-                popupText = "<b>" + title + "</b><br><b>Language:</b> " + lang + "<br><b>Series:</b> " + series +  "<br><b>Translator:</b> " + translator + "<br><b>Date:</b> " + year + "<br><b>Publisher:</b> " + publisher + "<br><b>Location:</b> " + city + "<br><b>Page Count:</b> " + page;
+                popupText = "<b>" + title + "</b><br><b>Language:</b> " + lang + "<br><b>Series/Collection:</b> " + series +  "<br><b>Translator:</b> " + translator + "<br><b>Date:</b> " + year + "<br><b>Publisher:</b> " + publisher + "<br><b>Location:</b> " + city + "<br><b>Page Count:</b> " + page;
                 if (link != "undefined") {
                     popupText += "<br><br> <a class='linkToText' target='_blank' href=" + link + "><strong>[ View Text ]</strong></a>";
                 }
