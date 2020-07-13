@@ -11,13 +11,12 @@ The goal of the World Map is to create a beautiful and functional global display
 - [x] Input more data/fix data for different countries with Ronald’s resources and Shelley’s comments.
 - [x] Add a key to explain the different dot colors.
 - [x] Move the dots onto the city of publication, not a random place in the country.
-- [ ] Map Inter-country Connections
-- [ ] Visualize connections and translations over time with scroll
+- [x] Visualize connections and translations over time with scroll
 - [ ] World Map Search Function (search for specific versions, dates, translators, locations, etc)
-- [ ] Allow users to upload their own resources and create their own datapoints
-- [ ] Add information/about section about the purpose of the World Map
+- [x] Allow users to upload their own resources and create their own datapoints
+- [x] Add information/about section about the purpose of the World Map
 ## Translation
-### [Master Translation Information Spreadsheet](https://docs.google.com/spreadsheets/d/1IRu_YTL3WMbZdLDrWbwMc3vCNls2WDIxCz_7jwKT2Bw/edit#gid=0)
+### [Master Translation Information Spreadsheet](https://docs.google.com/spreadsheets/d/1sQtRXbG75R3gzBwgiKGg_GZJ8MnEodmHRJf6rCj35P0/edit?usp=sharing)
 ### Translation Resources 
 - [Original List 1](references/List%of%translations%to%feed%the%map1.pdf)
 - [Original List 2](references/datav1.xlsx)
