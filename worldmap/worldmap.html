@@ -119,7 +119,18 @@
                     catCount[2] += 1;
                 }
 
-                var marker = L.marker(new L.LatLng(lat, lng), { icon: icons[status] });
+                var marker = L.marker(new L.LatLng(lat, lng), {
+                    'icon': icons[status],
+                    'title': title,
+                    'language': lang,
+                    'series': series,
+                    'edition': edition,
+                    'translator': translator,
+                    'year': year,
+                    'publisher': publisher,
+                    'city': city
+                });
+                marker.properties = {'title-prop-name': title};
                 popupText = "<b>" + title + "</b><br><b>Language:</b> " + lang + "<br><b>Series/Collection:</b> " + series +  "<br><b>Edition:</b> " + edition + "<br><b>Translator:</b> " + translator + "<br><b>Date:</b> " + year + "<br><b>Publisher:</b> " + publisher + "<br><b>Location:</b> " + city + "<br><b>Page Count:</b> " + page;
                 if (link != "undefined") {
                     popupText += "<br><br> <a class='linkToText' target='_blank' href=" + link + "><strong>[ View Text ]</strong></a>";
@@ -207,10 +218,14 @@
             }
 
             var controlSearch = new L.Control.Search({
-                position:'topright',
-                layer: markers
+                layer: L.featureGroup([markers]),
+                position:'topleft',
+                propertyName: 'title',
+                moveToLocation: function(latlng, title, map) {
+                    map.setView(latlng, 13);
+                }
             });
-            map.addControl( controlSearch );
+            mymap.addControl( controlSearch );
         </script>
     </div>
 
@@ -219,7 +234,6 @@
             for (var i = 0; i < addressPoints.length; i++) {
                 var pt = addressPoints[i];
                 var lang = pt[0];
-
             }
         </script>
 
