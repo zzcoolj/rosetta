@@ -183,7 +183,7 @@
                                                     '#EA3E2C';
             }
 
-            var legend = L.control({position: 'topright'});
+            var legend = L.control({position: 'bottomleft'});
             legend.onAdd = function (mymap) {
                 var div = L.DomUtil.create('div', 'info legend');
                 labels = ['<strong>Language Status Categories:</strong>'],
@@ -197,7 +197,7 @@
             };
             legend.addTo(mymap);
 
-            var count = L.control({position: 'topright'});
+            var count = L.control({position: 'bottomleft'});
             count.onAdd = function (mymap) {
 
                 var div = L.DomUtil.create('div', 'info legend');
@@ -225,7 +225,9 @@
                 propertyName: 'title',
                 moveToLocation: function(latlng, title, map) {
                     map.setView(latlng, 13);
-                }
+                },
+                initial: false,
+                textPlaceholder: 'Search for a title'
             });
             mymap.addControl( controlSearch );
 

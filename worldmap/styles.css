@@ -97,8 +97,8 @@ a:visited {
   padding: 5px 0;
   position: absolute;
   z-index: 10001;
-  top: 125%;
-  right: 10%;
+  top: -100%;
+  left: 140%;
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -234,7 +234,7 @@ a.linkToText {
     margin-top: 2.5px;
     margin-bottom: 2.5px;
     margin-right: 8px;
-
+    z-index: 1000000;
     border-radius: 50%;
     border:1px solid white;
 }
