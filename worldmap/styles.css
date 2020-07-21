@@ -99,7 +99,7 @@ a:visited {
   padding: 5px 0;
   position: absolute;
   z-index: 10001;
-  top: -150%;
+  top: -140%;
   right: 0%;
   opacity: 0;
   transition: opacity 0.3s;
