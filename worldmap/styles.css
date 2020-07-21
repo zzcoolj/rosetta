@@ -249,9 +249,10 @@ a.linkToText {
 }
 
 #refreshButton {
-  position: absolute;
+  position: relative;
   z-index: 1001;
   border-radius: 4px;
   height: 25px;
   width: 25px;
+  padding: 10px !important;
 }
