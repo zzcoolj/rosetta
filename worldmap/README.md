@@ -1,6 +1,6 @@
 # Web Development Notes
 ## General Information
-### [GLOBAL HUCK Website, not up to date](https://rosetta.univ-lille.fr/worldmap/)
+### [GLOBAL HUCK Website](https://rosetta.univ-lille.fr/worldmap/)
 ### Goals
 The goal of the World Map is to create a beautiful and functional global display of translations.
 ### Existing Features:
