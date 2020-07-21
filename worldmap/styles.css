@@ -85,9 +85,32 @@ a:visited {
   position: relative;
   display: inline-block;
   border-bottom: 1px dotted black;
+  color: black !important;
+  text-decoration: none !important;
 }
 
-.tooltip .tooltiptext {
+.tooltip .tooltiptext1 {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 10001;
+  top: -150%;
+  right: 0%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext1 {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip .tooltiptext2 {
   visibility: hidden;
   width: 120px;
   background-color: #555;
@@ -98,12 +121,12 @@ a:visited {
   position: absolute;
   z-index: 10001;
   top: -100%;
-  left: 140%;
+  left: 200%;
   opacity: 0;
   transition: opacity 0.3s;
 }
 
-.tooltip:hover .tooltiptext {
+.tooltip:hover .tooltiptext2 {
   visibility: visible;
   opacity: 1;
 }

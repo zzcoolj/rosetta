@@ -227,7 +227,7 @@
             count.onAdd = function (mymap) {
 
                 var div = L.DomUtil.create('div', 'info legend');
-                labels = ['<strong>Points on Map: </strong>' + (addressPoints.length+3-countNoCoordinates) + '<br><strong>Not Displayed: </strong>' + countNoCoordinates + ' ' + '<div class="tooltip">(?)<span class="tooltiptext">No Location Information</span></div>'],
+                labels = ['<div class="tooltip"><strong># Points on Map:</strong><span class="tooltiptext1"><a style="color:white" target="_blank" href="https://docs.google.com/spreadsheets/d/1sQtRXbG75R3gzBwgiKGg_GZJ8MnEodmHRJf6rCj35P0/edit?usp=sharing">View map data</a></span></div>' + ' ' + (addressPoints.length+3-countNoCoordinates) + '<br><strong>Not Displayed: </strong>' + countNoCoordinates + ' ' + '<div class="tooltip">(?)<span class="tooltiptext2">No Location Information</span></div>'],
                 div.innerHTML = labels.join('<br>');
                 return div;
             };
@@ -249,15 +249,17 @@
                 layer: markers,
                 position:'topleft',
                 propertyName: 'title',
-                moveToLocation: function(latlng, title, map) {
-                    mymap.setView(latlng, 13);
+                moveToLocation: function(latlng, title, mymap) {
+                    mymap.setView(latlng, 10);
                 },
                 initial: false,
                 textPlaceholder: 'Search for a title',
 
                 buildTip: function(text, val) {
                     return '<a href="#" class="'+val.layer.options.title+'">'+ text + ' | ' + val.layer.options.language + ' | ' + val.layer.options.year + '</a>';
-                }
+                },
+
+                tooltipLimit: -1
             });
             mymap.addControl( controlSearch );
 
