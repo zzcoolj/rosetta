@@ -291,3 +291,27 @@ a.linkToText {
     margin-bottom: -7.5vh;
     float: right;
 }
+
+/*gallery for team*/
+.gallery {
+    margin-top: 5vh !important;
+}
+.gallery img{
+  width: 15vw;
+  height: 15vw;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
+  border-radius: 50%;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.person {
+    width: 20vw;
+    text-align: center;
+}
+.person-title {
+    margin-top: -2vh;
+}
