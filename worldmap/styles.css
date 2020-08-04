@@ -283,3 +283,11 @@ a.linkToText {
 #french-about {
     display: none;
 }
+
+#about-lang-toggle {
+    margin-top: 3vh;
+    font-family: 'Open Sans';
+    font-size: 12pt;
+    margin-bottom: -7.5vh;
+    float: right;
+}

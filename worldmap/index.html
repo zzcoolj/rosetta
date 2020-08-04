@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Rosetta: Home</title>
     <link rel="stylesheet" href="styles.css" type="text/css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&family=Righteous&display=swap" rel="stylesheet">
     <!--Leaflet-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -34,10 +34,13 @@
         <a href="contribute.html" class="button">Contribute</a>
     </div>
 
-    <ul style="list-style-type: none">
-        <li style="display: inline"><a style="font-weight: bold" id="english-about-link" onclick="myFunction('english-about', 'french-about', 'english-about-link', 'french-about-link')">ENGLISH</a></li>
-        <li style="display: inline"><a id="french-about-link" onclick="myFunction('french-about', 'english-about', 'french-about-link', 'english-about-link')">FRENCH</a></li>
-    </ul>
+    <div class="section" id="about-lang-toggle">
+        <ul style="list-style-type: none">
+            <li style="display: inline"><a style="font-weight: bold" id="english-about-link" onclick="myFunction('english-about', 'french-about', 'english-about-link', 'french-about-link')">english</a></li>
+            <li> | </li>
+            <li style="display: inline"><a id="french-about-link" onclick="myFunction('french-about', 'english-about', 'french-about-link', 'english-about-link')">français</a></li>
+        </ul>
+    </div>
 
     <div class="section" id="english-about">
         <h3 class="section-title">About the Project</h3>
