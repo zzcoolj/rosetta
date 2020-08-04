@@ -279,3 +279,7 @@ a.linkToText {
   width: 25px;
   padding: 10px !important;
 }
+
+#french-about {
+    display: none;
+}

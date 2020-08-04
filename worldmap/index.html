@@ -10,6 +10,8 @@
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
         crossorigin=""/>
     <script src="addresspoints.js"></script>
+
+    <script src="scripts.js"></script>
 </head>
 <body>
     <div class="header">
@@ -32,12 +34,23 @@
         <a href="contribute.html" class="button">Contribute</a>
     </div>
 
+    <ul style="list-style-type: none">
+        <li style="display: inline"><a style="font-weight: bold" id="english-about-link" onclick="myFunction('english-about', 'french-about', 'english-about-link', 'french-about-link')">ENGLISH</a></li>
+        <li style="display: inline"><a id="french-about-link" onclick="myFunction('french-about', 'english-about', 'french-about-link', 'english-about-link')">FRENCH</a></li>
+    </ul>
 
-    <div class="section">
+    <div class="section" id="english-about">
         <h3 class="section-title">About the Project</h3>
-        <p>Out of the world’s 6000+ languages only a small fraction currently enjoys the benefits of modern information technologies. Languages left behind are called technologically low-resourced and endangered (even though they may have millions of speakers).</p>
-        <p>This collaborative and interdisciplinary digital humanities research project aims to help create digital resources in those languages by combining Computational Linguistics, Library and Information Science, American Literature, and Translation Studies. Much as the Rosetta stone helped decipher the demotic and hieroglyphic scripts thanks to the presence of the Greek translation, our project intends to help preserve contemporary endangered languages and assist with their survival through translation.</p>
-        <p>Our project puts to use extant translated versions of a single fictional text—Mark Twain’s Adventures of Huckleberry Finn--into a number of low-resourced languages spanning a period of nearly a century and a half. The project relies on the involvement of humans for data collection while natural language processing tools will generate digital language resources for these languages (dictionaries, thesauri, etc.). In the process, scholars of American literature and Translation Studies will also have the opportunity to gain insight into the global circulation of a canonical American novel.</p>
+        <p>Out of the world’s 6000+ languages only a small fraction currently enjoys the benefits of modern information technologies. Languages and cultures left behind are called endangered, indigenous, or technologically low-resourced. ROSETTA is a collaborative and interdisciplinary digital humanities research project, between Stanford University and the Université de Lille and funded by the France-Stanford Center for Interdisciplinary Studies. It aims to preserve and sustain knowledge diversity and cultural heritage by combining different disciplines: Information and Communication Science, Computational Linguistics, American Literature, and Translation Studies. Much as the Rosetta stone helped decipher the demotic and hieroglyphic scripts thanks to the presence of the Greek translation, our project intends to preserve contemporary endangered languages and cultures and assist with their survival through existing transnational translated texts.</p>
+        <p>ROSETTA puts to use extant translated versions of a single text into a number of endangered and low-resourced languages. The project relies on crowdsourcing approaches as well as inclusive, interactive and collaborative user-based approaches for data and information collection. Natural Language Processing methods are then used to generate multilingual knowledge and language resources (corpora, thesauri, dictionaries, etc). During their contribution and exploration, users and scholars will have a contextualized overview about the intercultural and global circulation of a transnational text through an interactive global knowledge map.</p>
+        <p>A first experiment of ROSETTA uses extant translated versions of a single fictional text — Mark Twain’s Adventures of Huckleberry Finn — into a number of low-resourced languages spanning a period of nearly a century and a half. In the process, users and scholars will have the opportunity to gain insight into the global circulation of a transnational American novel.</p>
+    </div>
+
+    <div class="section" id="french-about">
+        <h3 class="section-title">Résumé du Projet</h3>
+        <p>Sur les plus de 6000 langues parlées dans le monde, seulement une petite fraction bénéficie des technologies modernes de l’information. Les langues et cultures délaissées sont appelées indigènes ou en voie de disparition ou encore technologiquement peu dotées. ROSETTA est un projet d’humanité numérique collaboratif et interdisciplinaire qui vise à préserver le patrimoine culturel et à soutenir la diversité de connaissances en combinant plusieurs disciplines : les Sciences de l’Information et la Communication, la Linguistique Computationnelle, la Littérature Américaine et la Traductologie. Tout comme la pierre de Rosette qui a permis le déchiffrement des hiéroglyphes grâce à la présence de la traduction grecque, le projet ROSETTA vise à préserver les langues et cultures menacées de disparition et à les développer grâce à l’existence de supports langagiers traduits.</p>
+        <p>ROSETTA propose d’utiliser les traductions existantes d’un même texte dans un certain nombre de langues en danger et peu dotées. Le projet se base sur des approches de crowdsourcing ainsi que sur une approche inclusive, interactive et collaborative basée sur la contribution de l’utilisateur pour la collecte de données et d’information. Les méthodes de traitement automatique de la langue permettent ensuite de générer des ressources langagières multilingues (corpus, thésaurus, dictionnaires, etc.). Durant leurs contributions et explorations, les utilisateurs et les experts auront un aperçu contextualisé sur la circulation globale et interculturelle d’un texte transnational à travers une carte globale et interactive de connaissances.</p>
+        <p>Une première expérimentation a été réalisé en collectant les traductions existantes du roman Adventures of Huckleberry Finn dans un certain nombre de langues en danger et peu dotées couvrant une période de près d’un siècle et demi. Durant le processus, les utilisateurs et les experts pourront contextualiser et explorer la circulation globale et inter-culturelle d’une oeuvre américaine transnationale.</p>
     </div>
 </body>
 <footer>
