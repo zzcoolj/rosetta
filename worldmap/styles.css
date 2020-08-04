@@ -46,8 +46,9 @@ iframe#contribute-form {
 }
 .section-title {
     font-family: 'Righteous', cursive;
-    margin-top: 5vh;
+    margin-top: 3vh;
     font-size: 16pt;
+    margin-bottom: -1vh;
 }
 
 .nav-bar{
@@ -285,11 +286,17 @@ a.linkToText {
 }
 
 #about-lang-toggle {
-    margin-top: 3vh;
+    margin-top: 1vh;
     font-family: 'Open Sans';
     font-size: 12pt;
     margin-bottom: -7.5vh;
     float: right;
+}
+#english-about-link {
+    cursor: pointer;
+}
+#french-about-link {
+    cursor: pointer;
 }
 
 /*gallery for team*/
@@ -327,4 +334,13 @@ a.linkToText {
 }
 .person-portrait:hover {
     opacity: 0.7 !important;
+}
+
+/*footer*/
+#logos {
+    margin-left: 40vw !important;
+}
+.org-logo {
+    margin-top: 4vh;
+    width: 10vw;
 }
