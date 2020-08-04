@@ -31,7 +31,7 @@ iframe#contribute-form {
 }
 .title {
     font-family: 'Righteous', cursive;
-    font-size: 20pt;
+    font-size: 22pt;
 }
 .desc {
     margin-top: -1.5vh;
@@ -47,7 +47,7 @@ iframe#contribute-form {
 .section-title {
     font-family: 'Righteous', cursive;
     margin-top: 5vh;
-    margin-bottom: -2vh;
+    font-size: 16pt;
 }
 
 .nav-bar{
@@ -294,7 +294,7 @@ a.linkToText {
 
 /*gallery for team*/
 .gallery {
-    margin-top: 5vh !important;
+    margin-top: 2vh !important;
 }
 .gallery img{
   width: 15vw;
@@ -311,7 +311,20 @@ a.linkToText {
 .person {
     width: 20vw;
     text-align: center;
+    position: relative;
+    float: left;
+}
+.person-name {
+    margin-top: 5px;
 }
 .person-title {
     margin-top: -2vh;
+    margin-bottom: 2vh;
+}
+
+.person-portrait {
+    transition: all 0.15s linear;
+}
+.person-portrait:hover {
+    opacity: 0.7 !important;
 }

@@ -27,3 +27,10 @@ function myFunction(id1, id2, id3, id4) {
   b.style.fontWeight = "normal";
 
 }
+
+function fade(id) {
+    document.getElementById(id).style.opacity = "0.7";
+}
+function unFade(id) {
+    document.getElementById(id).style.opacity = "1.0";
+}
