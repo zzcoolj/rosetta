@@ -328,6 +328,12 @@ a.linkToText {
     margin-top: -2vh;
     margin-bottom: 2vh;
 }
+.person-subtitle {
+    margin-top: -1vh;
+    font-size: 10pt;
+    width: 15vw;
+    margin-left: 2.5vw;
+}
 
 .person-portrait {
     transition: all 0.15s linear;
