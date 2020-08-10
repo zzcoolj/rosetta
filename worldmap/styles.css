@@ -6,13 +6,20 @@ html, body {
     overflow: hidden;
 }
 #mapid {
-    height: 80vh;
+    height: 70vh;
     width: 95vw;
     margin: auto;
     z-index: 1000;
     /*
     margin-top: 15vh;
     */
+}
+.map-about {
+    width: 95vw;
+    margin-left: 2.5vw;
+    font-family: 'Open Sans';
+    font-size: 10pt;
+    margin-top: -1.2vh;
 }
 iframe#time-map {
     display: block;
@@ -113,7 +120,7 @@ a:visited {
 
 .tooltip .tooltiptext2 {
   visibility: hidden;
-  width: 120px;
+  width: 175px;
   background-color: #555;
   color: #fff;
   text-align: center;
@@ -121,10 +128,10 @@ a:visited {
   padding: 5px 0;
   position: absolute;
   z-index: 10001;
-  top: -100%;
-  left: 200%;
+  top: -135%;
+  left: 140%;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity;
 }
 
 .tooltip:hover .tooltiptext2 {
@@ -349,4 +356,15 @@ a.linkToText {
 .org-logo {
     margin-top: 4vh;
     width: 5vw;
+}
+#footing {
+    margin-left: 25vw;
+    margin-right: 25vw;
+    margin-top: 5vh !important;
+    margin-bottom: -1.5vh;
+
+    font-family: 'Open Sans';
+    font-size: 10pt;
+    width: 50vw;
+    text-align: center;
 }
