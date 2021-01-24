@@ -86,7 +86,7 @@ a:visited {
     color: black;
 }
 .nav-current {
-    color: #eaa12c !important;
+    color: #eba050 !important;
 }
 
 /* https://www.w3schools.com/howto/howto_css_tooltip.asp */
@@ -184,7 +184,7 @@ a.linkToText {
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn {
-    color: #eaa12c;
+    color: #eba050;
 }
 
 .dropdown-content {
