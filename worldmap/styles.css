@@ -65,6 +65,7 @@ iframe#contribute-form {
     color: #000000;
     font-size: 12pt;
     color: #000000;
+    text-align: center;
 }
 ul {
     list-style-type: none;
@@ -150,7 +151,8 @@ a.linkToText {
     text-align: center !important;
     margin-top: -1.5vh;
     margin-bottom: 2vh;
-    margin-left: 37.1vw;
+    margin-left: 31.5vw;
+
 
 }
 
